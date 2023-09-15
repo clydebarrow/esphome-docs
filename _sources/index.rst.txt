@@ -23,17 +23,17 @@ ESPHome is a system to control your ESP8266/ESP32 and RP2040 by simple yet power
             <h3 class="guide-card-title">Getting started</h3>
             <ul>
                 <li>
-                    <a class="reference" href="/guides/getting_started_hassio.html">
+                    <a class="reference" href="guides/getting_started_hassio.html">
                         from Home Assistant
                     </a>
                 </li>
                 <li>
-                    <a class="reference" href="/guides/getting_started_command_line.html">
+                    <a class="reference" href="guides/getting_started_command_line.html">
                         using the command line
                     </a>
                 </li>
                 <li>
-                    <a class="reference" href="/guides/migrate_sonoff_tasmota.html">
+                    <a class="reference" href="guides/migrate_sonoff_tasmota.html">
                         by migrating from Tasmota
                     </a>
                 </li>
@@ -51,32 +51,32 @@ ESPHome is a system to control your ESP8266/ESP32 and RP2040 by simple yet power
             <h3 class="guide-card-title">Next steps</h3>
             <ul>
                 <li>
-                    <a class="reference" href="/guides/faq.html">
+                    <a class="reference" href="guides/faq.html">
                         FAQ and Tips
                     </a>
                 </li>
                 <li>
-                    <a class="reference" href="/guides/automations.html">
+                    <a class="reference" href="guides/automations.html">
                         Automations
                     </a>
                 </li>
                 <li>
-                    <a class="reference" href="/guides/diy.html">
+                    <a class="reference" href="guides/diy.html">
                         DIY Examples
                     </a>
                 </li>
                 <li>
-                    <a class="reference" href="/guides/configuration-types.html">
+                    <a class="reference" href="guides/configuration-types.html">
                         Configuration types
                     </a>
                 </li>
                 <li>
-                    <a class="reference" href="/guides/creators.html">
+                    <a class="reference" href="guides/creators.html">
                         Sharing ESPHome devices
                     </a>
                 </li>
                 <li>
-                    <a class="reference" href="/guides/made_for_esphome.html">
+                    <a class="reference" href="guides/made_for_esphome.html">
                         Made for ESPHome program
                     </a>
                 </li>
@@ -96,17 +96,17 @@ ESPHome is a system to control your ESP8266/ESP32 and RP2040 by simple yet power
                     </a>
                 </li>
                 <li>
-                    <a class="reference" href="/changelog/index.html">
+                    <a class="reference" href="changelog/index.html">
                         Changelog
                     </a>
                 </li>
                 <li>
-                    <a class="reference" href="/guides/supporters.html">
+                    <a class="reference" href="guides/supporters.html">
                         Supporters
                     </a>
                 </li>
                 <li>
-                    <a class="reference" href="/guides/contributing.html">
+                    <a class="reference" href="guides/contributing.html">
                         Contributing
                     </a>
                 </li>
