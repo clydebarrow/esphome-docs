@@ -1,0 +1,230 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="Instruction for using touchscreen components.">
+<meta itemprop="name" content="Touchscreen Components">
+<meta itemprop="description" content="Instruction for using touchscreen components.">
+<meta itemprop="image" content="https://esphome.io/_images/folder-open.png">
+<meta name="twitter:title" content="Touchscreen Components">
+<meta name="twitter:image:src" content="https://esphome.io/_images/folder-open.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="Instruction for using touchscreen components.">
+<meta property="og:title" content="Touchscreen Components">
+<meta property="og:image" content="https://esphome.io/_images/folder-open.png">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Instruction for using touchscreen components.">
+
+    <title>Touchscreen Components &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../../_static/pygments_dark.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="canonical" href="https://esphome.io/components/touchscreen/index.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="EKTF2232 Touchscreen Controller" href="ektf2232.html" />
+    <link rel="prev" title="Stepper Component" href="../stepper/index.html" />
+  <link rel="stylesheet" href="../../_static/custom.css?hash=ab494674" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="/_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="/_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="/_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="/_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/_static/favicon-16x16.png">
+  <link rel="manifest" href="/_static/site.webmanifest">
+  <link rel="mask-icon" href="/_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/logo-text.svg" alt="Logo"/>
+            </a></p><link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+
+<div id="search"></div>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showSubResults: true });
+    });
+</script>
+
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Touchscreen Components</a><ul>
+<li><a class="reference internal" href="#base-touchscreen-configuration">Base Touchscreen Configuration</a><ul>
+<li><a class="reference internal" href="#configuration-variables">Configuration variables:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#on-touch-trigger"><code class="docutils literal notranslate"><span class="pre">on_touch</span></code> Trigger</a></li>
+<li><a class="reference internal" href="#binary-sensor">Binary Sensor</a><ul>
+<li><a class="reference internal" href="#id1">Configuration variables:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+  </div><hr />
+<ul>
+    <li><a href="https://discord.gg/KhAMKrd" target="_blank">Join the community</a></li>
+    <li><a href="https://twitter.com/esphome_" target="_blank">Follow us on Twitter</a></li>
+    <li><a href="https://github.com/esphome/esphome" target="_blank">Source Code</a></li>
+    <li><a href="mailto:esphome@nabucasa.com">Contact</a> (no support!)</li>
+</ul>
+ESPHome is an open source project by <a href="https://www.nabucasa.com" target="_blank">Nabu Casa</a>
+<ul>
+    <li><a href="https://www.netlify.com" target="_blank">This site is powered by Netlify</a></li>
+</ul>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+  
+  <ul class="breadcrumbs">
+      <li><a href="../index.html">Components</a> ➔</li>
+      <li>Touchscreen Components</li>
+  </ul>
+  
+
+
+          <div class="body" role="main">
+            
+  <section id="touchscreen-components">
+<h1>Touchscreen Components<a class="headerlink" href="#touchscreen-components" title="Permalink to this heading">¶</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">touchscreen</span></code> component holds the base code for most touchscreen components
+available in ESPHome and is responsible for passing the touch events to
+<code class="docutils literal notranslate"><span class="pre">binary_sensors</span></code> with the <code class="docutils literal notranslate"><span class="pre">touchscreen</span></code> platform.</p>
+<section id="base-touchscreen-configuration">
+<span id="config-touchscreen"></span><h2>Base Touchscreen Configuration<a class="headerlink" href="#base-touchscreen-configuration" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example touchscreen</span>
+<span class="nt">touchscreen</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="nt">on_touch</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">then</span><span class="p">:</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+<section id="configuration-variables">
+<h3>Configuration variables:<a class="headerlink" href="#configuration-variables" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>on_touch</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/automations.html#automation"><span class="std std-ref">Automation</span></a>): An automation to perform
+when the touchscreen is touched. See <a class="reference internal" href="#touchscreen-on-touch"><span class="std std-ref">on_touch Trigger</span></a>.</p></li>
+<li><p><strong>display</strong> (<strong>Required</strong>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): The display to use. If only one display is
+available, this can be omitted.</p></li>
+</ul>
+</section>
+</section>
+<section id="on-touch-trigger">
+<span id="touchscreen-on-touch"></span><h2><code class="docutils literal notranslate"><span class="pre">on_touch</span></code> Trigger<a class="headerlink" href="#on-touch-trigger" title="Permalink to this heading">¶</a></h2>
+<p>This automation will be triggered when the touchscreen detects a touch.</p>
+<p>This trigger provides one argument named <code class="docutils literal notranslate"><span class="pre">touch</span></code> of type <a class="reference external" href="/api/structesphome_1_1touchscreen_1_1_touch_point.html">touchscreen::TouchPoint</a> which has two integer members: <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> which
+represent the position of the touch in relation to the display width and height. It also has optional members that will be set
+depending on the touchscreen platform.</p>
+</section>
+<section id="binary-sensor">
+<h2>Binary Sensor<a class="headerlink" href="#binary-sensor" title="Permalink to this heading">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">touchscreen</span></code> binary sensor allows you to setup areas on the touch screen as virtual
+buttons.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">binary_sensor</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">touchscreen</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Top Left Touch Button</span>
+<span class="w">    </span><span class="nt">x_min</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">    </span><span class="nt">x_max</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span>
+<span class="w">    </span><span class="nt">y_min</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">    </span><span class="nt">y_max</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span>
+<span class="w">    </span><span class="nt">page_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">home_page_id</span>
+</pre></div>
+</div>
+<section id="id1">
+<h3>Configuration variables:<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>name</strong> (<em>Optional</em>, string): The name for the binary sensor.</p></li>
+<li><p><strong>id</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Manually specify the ID used for code generation.</p></li>
+<li><p><strong>touchscreen_id</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Manually specify the ID of the touchscreen.</p></li>
+<li><p><strong>x_min</strong> (<strong>Required</strong>, int): Left coordinate of the screen area to be detected as the virtual button.</p></li>
+<li><p><strong>x_max</strong> (<strong>Required</strong>, int): Right coordinate of the screen area to be detected as the virtual button.</p></li>
+<li><p><strong>y_min</strong> (<strong>Required</strong>, int): Top coordinate of the screen area to be detected as the virtual button.</p></li>
+<li><p><strong>y_max</strong> (<strong>Required</strong>, int): Bottom coordinate of the screen area to be detected as the virtual button.</p></li>
+<li><p><strong>page_id</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Only trigger this binary sensor if the display is showing this page.</p></li>
+<li><p>All other options from <a class="reference internal" href="../binary_sensor/index.html#config-binary-sensor"><span class="std std-ref">Binary Sensor</span></a>.</p></li>
+</ul>
+</section>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../binary_sensor/index.html#binary-sensor-filters"><span class="std std-ref">Binary Sensor Filters</span></a></p></li>
+<li><p><a class="reference internal" href="../display/inkplate6.html"><span class="doc">Inkplate 6 Plus</span></a></p></li>
+<li><p><a class="reference internal" href="ektf2232.html"><span class="doc">EKTF2232</span></a></p></li>
+<li><p><a class="reference internal" href="xpt2046.html"><span class="doc">XPT2046</span></a></p></li>
+<li><p><a class="reference internal" href="tt21100.html"><span class="doc">TT21100</span></a></p></li>
+<li><p><a class="reference external" href="/api/touchscreen_8h.html">API Reference</a></p></li>
+<li><p><a class="reference external" href="/api/touchscreen__binary__sensor_8h.html">API Reference</a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/components/touchscreen/index.rst">Edit this page on GitHub</a></p></li>
+</ul>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ektf2232.html">EKTF2232 Touchscreen Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lilygo_t5_47.html">Lilygo T5 4.7” Touchscreen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tt21100.html">TT21100 Touch Screen Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xpt2046.html">XPT2046 Touch Screen Controller (Updated version)</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 2023.8.3 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="/changelog/2023.8.0.html">View Changelog</a>
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null || window.location.pathname.lastIndexOf("/changelog/", 0) === 0) { window.localStorage.setItem("version", "2023.8");
+    } else if (old !== "2023.8") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "2023.8");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+</html>

@@ -1,0 +1,281 @@
+ST7789V TFT LCD
+===============
+
+.. seo::
+    :description: Instructions for setting up ST7789V TFT LCD display drivers.
+    :image: st7789v.jpg
+
+.. _st7789v:
+
+Usage
+-----
+
+The ``st7789v`` display platform allows you to use
+ST7789V (`datasheet <https://github.com/Xinyuan-LilyGO/TTGO-T-Display>`__,
+`Tindie <https://www.tindie.com/products/ttgo/lilygor-ttgo-t-display/>`__)
+displays with ESPHome. Note that this component utilizes the 4-Wire :ref:`SPI bus <spi>`.
+
+.. figure:: images/st7789v-full.jpg
+    :align: center
+    :width: 75.0%
+
+    ST7789V TFT LCD on TTGO T-Display module
+
+The TTGO T-Display module shown has the display attached to the module's board and its connections to the ESP32
+cannot be changed. Other display modules have pin headers or other connectors which must be connected appropriately
+to an ESP module.
+
+.. note::
+
+    Displays larger than the 135x240 pixel display on the TTGO T-Display shown require a significant amount of RAM
+    to operate correctly. Some ESP devices, such as the ESP8266, do not have sufficient memory to support this display.
+    If you attempt to use this component and experience repeated crashes, this is likely the cause of the issue.
+
+.. code-block:: yaml
+
+    # Example minimal configuration entry
+    spi:
+      clk_pin: GPIO18
+      mosi_pin: GPIO19
+
+    display:
+      - platform: st7789v
+        model: TTGO TDisplay 135x240
+        backlight_pin: GPIO4
+        cs_pin: GPIO5
+        dc_pin: GPIO16
+        reset_pin: GPIO23
+        lambda: |-
+          it.print(0, 0, id(font), "Hello World!");
+
+    font:
+      - file: "gfonts://Roboto"
+        id: font
+        size: 20
+
+.. note::
+
+    For more information about the font options see: :ref:`display-fonts`.
+
+.. warning::
+
+    When using the TTGO T-Display module, the GPIO pin numbers above *cannot be changed* as they are
+    hardwired within the module/PCB.
+
+Configuration variables:
+************************
+
+- **model** (**Required**, string): The display model to use. One of the following options:
+
+  - ``TTGO TDisplay 135x240``
+  - ``Adafruit Funhouse 240x240``
+  - ``Adafruit RR 280x240`` (round-rectangular display -- some pixels are "deleted" from corners to form rounded shape)
+  - ``Adafruit S2 TFT FEATHER 240X135`` (requires ``power_supply`` be specified, see below)
+  - ``Custom`` (see details below)
+
+- **cs_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The CS pin.
+- **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
+- **reset_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The RESET pin.
+- **height** (*Optional*, int): When ``model`` is set to "Custom", use this to specify the ``height`` of the display
+  in pixels. This option may not be specified when the ``model`` is not set to "Custom".
+- **width** (*Optional*, int): When ``model`` is set to "Custom", use this to specify the ``width`` of the display
+  in pixels. This option may not be specified when the ``model`` is not set to "Custom".
+- **offset_height** (*Optional*, int): When ``model`` is set to "Custom", use this to specify the display's vertical
+  offset in pixels. This option may not be specified when the ``model`` is not set to "Custom".
+- **offset_width** (*Optional*, int): When ``model`` is set to "Custom", use this to specify the display's horizontal
+  offset in pixels. This option may not be specified when the ``model`` is not set to "Custom".
+- **eightbitcolor** (*Optional*, boolean): Limits the supported color depth to eight bits. May be useful on
+  memory-constrained devices.
+- **backlight_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The display's backlight pin.
+- **power_supply** (*Optional*, :ref:`config-id`): The :doc:`power supply </components/power_supply>` to connect to
+  this display. The power supply will be turned on before attempting to initialize the display. When ``model`` is set
+  to "Adafruit S2 TFT FEATHER 240X135" this option is required as there are variations of this board sold with differing
+  pin assignments.
+- **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
+  See :ref:`display-engine` for more information.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``5s``.
+- **pages** (*Optional*, list): Show pages instead of a single lambda. See :ref:`display-pages`.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+
+.. note::
+
+    On memory-constrained devices, it may be possible to use *part* of the display area by setting the model to "custom"
+    and specifying a smaller ``height`` and/or ``width`` than that of the actual display.
+
+
+Configuration examples
+**********************
+
+To use colors in your lambda:
+
+.. code-block:: yaml
+
+    color:
+      - id: my_red
+        red: 100%
+        green: 3%
+        blue: 5%
+
+    ...
+
+    display:
+        ...
+        lambda: |-
+          it.rectangle(0,  0, it.get_width(), it.get_height(), id(my_red));
+
+
+To bring in color images:
+
+.. code-block:: yaml
+
+    image:
+      - file: "image.jpg"
+        id: my_image
+        resize: 200x200
+        type: RGB24
+
+    ...
+
+    display:
+        ...
+        lambda: |-
+          it.image(0, 0, id(my_image));
+
+Complete example
+****************
+
+The following is an example YAML configuration that you can add to your base device configuration. It defines:
+
+- three fonts (well, one font in three sizes)
+- a ``binary_sensor`` that indicates the state of connectivity to the API
+- a ``binary_sensor`` for each of the two buttons on the TTGO module
+- a ``switch``, allowing control of the backlight from HA
+- several colors
+- a color image to be shown on the display
+- time, for display...on the display
+- the SPI configuration for communicating with the display
+- the display component itself, for use on the TTGO module
+- a lambda which paints the screen as shown in the picture above:
+
+  - blue borders, with a sort of "title bar" along the top
+  - "ESPHome" in yellow in the top left corner
+  - the API connection status, "Online" in green when connected, "Offline" in red when not
+  - the time and date, more or less in the center of the display
+
+To use this example, you need only to provide the font file, "Helvetica.ttf" (or update it to
+a font of your choosing) and an image file, "image.png" (it may also be a ".jpg"). Place these
+into the same directory as the YAML configuration file itself. Comment/Uncomment/Modify the
+appropriate lines of C code in the lambda to hide or show the image or text as you wish.
+
+.. code-block:: yaml
+
+    color:
+      - id: my_red
+        red: 100%
+        green: 0%
+        blue: 0%
+      - id: my_yellow
+        red: 100%
+        green: 100%
+        blue: 0%
+      - id: my_green
+        red: 0%
+        green: 100%
+        blue: 0%
+      - id: my_blue
+        red: 0%
+        green: 0%
+        blue: 100%
+      - id: my_gray
+        red: 50%
+        green: 50%
+        blue: 50%
+
+    font:
+      - file: "Helvetica.ttf"
+        id: helvetica_48
+        size: 48
+      - file: "Helvetica.ttf"
+        id: helvetica_24
+        size: 24
+      - file: "Helvetica.ttf"
+        id: helvetica_12
+        size: 12
+
+    binary_sensor:
+      - platform: status
+        name: "Node Status"
+        id: system_status
+      - platform: gpio
+        pin:
+          number: GPIO0
+          inverted: true
+          mode:
+            input: true
+            pullup: true
+        name: "T-Display Button Input 0"
+        id: tdisplay_button_input_0
+      - platform: gpio
+        pin:
+          number: GPIO35
+          inverted: true
+        name: "T-Display Button Input 1"
+        id: tdisplay_button_input_1
+
+    # Allow dimmable control of the backlight (pin GPIO4)
+    output:
+      - platform: ledc
+        pin: GPIO4
+        id: gpio4
+
+    light:
+      - platform: monochromatic
+        output: gpio4
+        name: "Backlight"
+
+    image:
+      - file: "image.png"
+        id: my_image
+        resize: 200x200
+        type: RGB24
+
+    time:
+      - platform: homeassistant
+        id: esptime
+
+    spi:
+      clk_pin: GPIO18
+      mosi_pin: GPIO19
+
+    display:
+      - platform: st7789v
+        cs_pin: GPIO5
+        dc_pin: GPIO16
+        reset_pin: GPIO23
+        rotation: 270
+        lambda: |-
+          it.rectangle(0,  0, it.get_width(), it.get_height(), id(my_blue));
+          it.rectangle(0, 20, it.get_width(), it.get_height(), id(my_blue));   // header bar
+
+          it.strftime((240 / 2), (140 / 3) * 1 + 5, id(helvetica_24), id(my_gray), TextAlign::CENTER, "%Y-%m-%d", id(esptime).now());
+          it.strftime((240 / 2), (140 / 3) * 2 + 5, id(helvetica_48), id(my_gray), TextAlign::CENTER, "%H:%M:%S", id(esptime).now());
+          it.print(5, 5, id(helvetica_12), id(my_yellow), TextAlign::TOP_LEFT, "ESPHome");
+
+          // Comment out the above lines to see the image without text overlaid
+          // it.image(0, 0, id(my_image));
+
+          if (id(system_status).state) {
+            it.print(235, 5, id(helvetica_12), id(my_green), TextAlign::TOP_RIGHT, "Online");
+          }
+          else {
+            it.print(235, 5, id(helvetica_12), id(my_red), TextAlign::TOP_RIGHT, "Offline");
+          }
+
+
+See Also
+--------
+
+- :doc:`index`
+- :doc:`Power Supply Component </components/power_supply>`
+- :apiref:`st7789v_base/st7789v_base.h`
+- :ghedit:`Edit`

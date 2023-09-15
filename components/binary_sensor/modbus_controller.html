@@ -1,0 +1,211 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="Instructions for setting up a modbus_controller device binary sensor.">
+<meta itemprop="name" content="Modbus Controller Binary Sensor">
+<meta itemprop="description" content="Instructions for setting up a modbus_controller device binary sensor.">
+<meta itemprop="image" content="https://esphome.io/_images/modbus.png">
+<meta name="twitter:title" content="Modbus Controller Binary Sensor">
+<meta name="twitter:image:src" content="https://esphome.io/_images/modbus.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="Instructions for setting up a modbus_controller device binary sensor.">
+<meta property="og:title" content="Modbus Controller Binary Sensor">
+<meta property="og:image" content="https://esphome.io/_images/modbus.png">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Instructions for setting up a modbus_controller device binary sensor.">
+
+    <title>Modbus Controller Binary Sensor &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../../_static/pygments_dark.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="canonical" href="https://esphome.io/components/binary_sensor/modbus_controller.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="MPR121 Capacitive Touch Sensor" href="mpr121.html" />
+    <link rel="prev" title="Hydreon Rain Sensor Binary Sensor" href="hydreon_rgxx.html" />
+  <link rel="stylesheet" href="../../_static/custom.css?hash=ab494674" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="/_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="/_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="/_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="/_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/_static/favicon-16x16.png">
+  <link rel="manifest" href="/_static/site.webmanifest">
+  <link rel="mask-icon" href="/_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/logo-text.svg" alt="Logo"/>
+            </a></p><link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+
+<div id="search"></div>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showSubResults: true });
+    });
+</script>
+
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Modbus Controller Binary Sensor</a><ul>
+<li><a class="reference internal" href="#configuration-variables">Configuration variables:</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+  </div><hr />
+<ul>
+    <li><a href="https://discord.gg/KhAMKrd" target="_blank">Join the community</a></li>
+    <li><a href="https://twitter.com/esphome_" target="_blank">Follow us on Twitter</a></li>
+    <li><a href="https://github.com/esphome/esphome" target="_blank">Source Code</a></li>
+    <li><a href="mailto:esphome@nabucasa.com">Contact</a> (no support!)</li>
+</ul>
+ESPHome is an open source project by <a href="https://www.nabucasa.com" target="_blank">Nabu Casa</a>
+<ul>
+    <li><a href="https://www.netlify.com" target="_blank">This site is powered by Netlify</a></li>
+</ul>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+  
+  <ul class="breadcrumbs">
+      <li><a href="../index.html">Components</a> ➔</li>
+      <li><a href="index.html">Binary Sensor Component</a> ➔</li>
+      <li>Modbus Controller Binary Sensor</li>
+  </ul>
+  
+
+
+          <div class="body" role="main">
+            
+  <section id="modbus-controller-binary-sensor">
+<h1>Modbus Controller Binary Sensor<a class="headerlink" href="#modbus-controller-binary-sensor" title="Permalink to this heading">¶</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">modbus_controller</span></code> binary sensor platform creates a binary sensor from a modbus_controller component
+and requires <a class="reference internal" href="../modbus_controller.html"><span class="doc">Modbus Controller</span></a> to be configured.</p>
+<section id="configuration-variables">
+<h2>Configuration variables:<a class="headerlink" href="#configuration-variables" title="Permalink to this heading">¶</a></h2>
+<ul>
+<li><p><strong>id</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Manually specify the ID used for code generation.</p></li>
+<li><p><strong>name</strong> (<strong>Required</strong>, string): The name of the sensor.</p></li>
+<li><p><strong>register_type</strong> (<strong>Required</strong>): type of the modbus register.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">coil</span></code>: Function 01 (01hex) Read Coils - Reads the ON/OFF status of discrete coils in the device.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">discrete_input</span></code>: Function 02(02hex) - Reads the ON/OFF status of discrete inputs in the device.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">holding</span></code>: Function 03 (03hex) Read Holding Registers - Read the binary contents of holding registers in the device.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">read</span></code>: Function 04 (04hex) Read Input Registers - Read the binary contents of input registers in the device.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>address</strong> (<strong>Required</strong>, int): start address of the first register in a range</p></li>
+<li><p><strong>bitmask</strong> (<em>Optional</em>, int): Some values are packed in a response. The bitmask is used to determined if the result is true or false</p></li>
+<li><p><strong>skip_updates</strong> (<em>Optional</em>, int): By default all sensors of a modbus_controller are updated together. For data points that don’t change very frequently updates can be skipped. A value of 5 would only update this sensor range in every 5th update cycle</p></li>
+<li><p><strong>response_size</strong> (<em>Optional</em>, int): Size of the response for the register in bytes. Defaults to register_count*2.</p></li>
+<li><p><strong>force_new_range</strong> (<em>Optional</em>, boolean): If possible sensors with sequential addresses are grouped together and requested in one range. Setting <code class="docutils literal notranslate"><span class="pre">force_new_range:</span> <span class="pre">true</span></code> enforces the start of a new range at that address.</p></li>
+<li><p><strong>custom_command</strong> (<em>Optional</em>, list of bytes): raw bytes for modbus command. This allows using non-standard commands. If <code class="docutils literal notranslate"><span class="pre">custom_command</span></code> is used <code class="docutils literal notranslate"><span class="pre">address</span></code> and <code class="docutils literal notranslate"><span class="pre">register_type</span></code> can’t be used.
+custom data must contain all required bytes including the modbus device address. The crc is automatically calculated and appended to the command.
+See <a class="reference internal" href="../sensor/modbus_controller.html#modbus-custom-command"><span class="std std-ref">Using custom_command</span></a> how to use <code class="docutils literal notranslate"><span class="pre">custom_command</span></code></p></li>
+<li><p><strong>lambda</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/automations.html#config-lambda"><span class="std std-ref">lambda</span></a>):
+Lambda to be evaluated every update interval to get the new value of the sensor</p>
+<p>Parameters</p>
+<ul class="simple">
+<li><p><strong>x</strong> (bool): The parsed float value of the modbus data</p></li>
+<li><p><strong>data</strong> (std::vector&lt;uint8_t): vector containing the complete raw modbus response bytes for this sensor</p></li>
+<li><p><strong>item</strong> (const pointer to a ModbusBinarySensor object):  The sensor object itself.</p></li>
+</ul>
+<p>Possible return values for the lambda:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">true/false;</span></code> the new value for the sensor.</p></li>
+</ul>
+</li>
+<li><p><strong>offset</strong> (<em>Optional</em>, int): not required for most cases
+offset from start address in bytes. If more than one register is read a modbus read registers command this value is used to find the start of this datapoint relative to start address. The component calculates the size of the range based on offset and size of the value type
+The value for offset depends on the register type. If a binary_sensor is created from an input register the offset is in bytes. For coil and discrete input resisters the LSB of the first data byte contains the coil addressed in the request. The other coils follow toward the high-order end of this byte and from low order to high order in subsequent bytes. For the registers  offset is the position of the relevant bit.
+To get the value of the coil register 2 can be retrieved using address: 2 / offset: 0 or address: 0 / offset 2</p></li>
+</ul>
+<p>Example</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">binary_sensor</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">modbus_controller</span>
+<span class="w">  </span><span class="nt">modbus_controller_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">epever</span>
+<span class="w">  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">battery_internal_resistance_abnormal</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Battery</span><span class="nv"> </span><span class="s">internal</span><span class="nv"> </span><span class="s">resistance</span><span class="nv"> </span><span class="s">abnormal&quot;</span>
+<span class="w">  </span><span class="nt">register_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
+<span class="w">  </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x3200</span>
+<span class="w">  </span><span class="nt">bitmask</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x80</span><span class="w"> </span><span class="c1">#(bit 8)</span>
+</pre></div>
+</div>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="/api/classesphome_1_1_1modbus__controller_1_1_modbus_binary_sensor.html">:modbus_controller::ModbusBinarySensor</a></p></li>
+<li><p><a class="reference internal" href="../modbus_controller.html"><span class="doc">Modbus Controller</span></a></p></li>
+<li><p><a class="reference internal" href="../switch/modbus_controller.html"><span class="doc">Modbus Controller Switch</span></a></p></li>
+<li><p><a class="reference internal" href="../output/modbus_controller.html"><span class="doc">Modbus Controller Output</span></a></p></li>
+<li><p><a class="reference internal" href="../sensor/modbus_controller.html"><span class="doc">Modbus Controller Sensor</span></a></p></li>
+<li><p><a class="reference internal" href="../text_sensor/modbus_controller.html"><span class="doc">Modbus Controller Text Sensor</span></a></p></li>
+<li><p><a class="reference external" href="https://www.modbustools.com/modbus.html">https://www.modbustools.com/modbus.html</a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/components/binary_sensor/modbus_controller.rst">Edit this page on GitHub</a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 2023.8.3 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="/changelog/2023.8.0.html">View Changelog</a>
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null || window.location.pathname.lastIndexOf("/changelog/", 0) === 0) { window.localStorage.setItem("version", "2023.8");
+    } else if (old !== "2023.8") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "2023.8");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+</html>
