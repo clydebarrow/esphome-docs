@@ -192,9 +192,9 @@ This trigger is activated when the alarm changes from to disarmed.
 .. _alarm_control_panel_on_ready_trigger:
 
 ``on_ready`` Trigger
-***********************
+********************
 
-This trigger is activated when the logical 'and' of all the alarm sensors change state. This is useful for implementing alarm ready LED's.
+This trigger is activated when the logical 'and' of all the alarm sensors change state. This is useful for implementing "alarm ready" LEDs.
 Once this trigger is called, you can get the ready state by calling get_all_sensors_ready() in a lambda block.
 
 .. code-block:: yaml
@@ -209,7 +209,7 @@ Once this trigger is called, you can get the ready state by calling get_all_sens
 .. _alarm_control_panel_on_chime_trigger:
 
 ``on_chime`` Trigger
-***********************
+********************
 
 This trigger is activated when a zone sensor marked with chime:true changes from closed to open. This is useful for implementing keypad chimes when a zone
 opens.
@@ -223,6 +223,7 @@ opens.
           - logger.log: "Alarm Chime!"
 
 .. _alarm_control_panel_arm_away_action:
+
 ``arm_away`` Action
 *******************
 
