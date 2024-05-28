@@ -8,25 +8,11 @@
 }
 
 div.document {
-  max-width: 1800px;
-  width: 100%;
   margin-bottom: 50px;
-}
-
-img {
-  max-width: 600px;
-}
-img.hero-img {
-  display: block;
-  width: 100%;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 div.body {
   min-width: initial;
-  max-width: 1500px
 }
 
 div.sphinxsidebar {
@@ -263,28 +249,32 @@ div.body p, div.body dd, div.body li, div.body blockquote {
   hyphens: none;
 }
 .pagefind-ui__form {
-    width: 200px;
+    width: 100%;
+    max-width: 300px;
     left: auto;
-    top: 10px;
-    right: 30px;
-    float: inline-end;
-    overflow: visible;
+    right: auto;
     position: relative;
 }
 
-.pagefind-ui__drawer {
+.pagefind-modular-list-excerpt, .pagefind-modular-list-title {
+    color: #111111 !important;
+}
+
+.search-results {
     background-color: #f8f8f8;
     box-shadow: 0 6px 10px rgb(0 0 0 / 0.2);
     position: absolute;
-    right: 0;
-    width: 650px;
     z-index: 1500;
     margin-top: 4px;
     padding-right: 6px;
     padding-left: 6px;
     border-radius: 12px;
-    transition: height 0.3s ease-in-out;
-
+    overflow: auto;
+    width: 0;
+    height: fit-content;
+    max-width: 650px;
+    transition: height, width 0.1s ease-in-out;
+    display: none;
 }
 
 /* dark theme */
@@ -382,9 +372,16 @@ div.body p, div.body dd, div.body li, div.body blockquote {
     background-color: #8e8129;
   }
 
-  .pagefind-ui__drawer {
+  .search-results {
     background-color: #313131;
     box-shadow: 0 6px 10px rgb(0 0 0 / 0.8);
+  }
+  .pagefind-modular-list-excerpt, .pagefind-modular-list-title {
+      color: #eeeeee !important;
+  }
+
+  .pagefind-ui__form, .pagefind-modular-input, .search-results {
+    color: #ececec !important;
   }
   :root {
     --pagefind-ui-primary: #eeeeee;
