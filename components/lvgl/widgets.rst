@@ -83,6 +83,8 @@ To apply styles to the states, you need to specify them one level above, for exa
 
 The state itself can be can be changed by interacting with the widget, or through :ref:`actions <lvgl-automation-actions>` with ``lvgl.widget.update``.
 
+See :ref:`lvgl-cookbook-cover` for a cookbook example which demonstrates how to use styling and properties to show different states of a Home Assistant entity.
+
 .. _lvgl-widget-flags:
 
 In addition to visual styling, each widget supports some boolean **flags** to influence the behavior:
@@ -114,7 +116,7 @@ In addition to visual styling, each widget supports some boolean **flags** to in
 
 .. note::
 
-    LVGL only supports **integers** for numeric ``value``. Visualizer widgets can't display floats directly, but they allow scaling by 10s.
+    LVGL only supports **integers** for numeric ``value``. Visualizer widgets can't display floats directly, but they allow scaling by 10s. Some examples in the :doc:`Cookbook </cookbook/lvgl>` cover how to do that.
 
 .. _lvgl-widget-parts:
 
@@ -264,6 +266,8 @@ The animation image is similar to the normal ``image`` widget. The main differen
             repeat_count: 100
             duration: 300ms
 
+See :ref:`lvgl-cookbook-animbatt` in the Cookbook for a more detailed example.
+
 .. _lvgl-widget-arc:
 
 ``arc``
@@ -345,7 +349,9 @@ If the ``adv_hittest`` :ref:`flag <lvgl-widget-flags>` is enabled the arc can be
 
     The ``on_value`` trigger is sent as the arc knob is dragged or changed with keys. The event is sent *continuously* while the arc knob is being dragged; this generally has a negative effect on performance. To mitigate this, consider using a :ref:`universal interaction trigger <lvgl-automation-triggers>` like ``on_release``, to get the ``x`` variable once after the interaction has completed.
 
-The ``arc`` can be also integrated as :doc:`Number </components/number/lvgl>` or :doc:`Sensor </components/sensor/lvgl>` component.
+The ``arc`` can be also integrated as a :doc:`Number </components/number/lvgl>` or :doc:`Sensor </components/sensor/lvgl>` component.
+
+See :ref:`lvgl-cookbook-bright` and :ref:`lvgl-cookbook-volume` for examples which demonstrate how to use a slider (or an arc) to control entities in Home Assistant.
 
 .. _lvgl-widget-bar:
 
@@ -465,6 +471,8 @@ To have a button with a text label on it, add a child :ref:`lvgl-widget-label` w
                 args: [ x ]
 
 The ``button`` can be also integrated as a :doc:`Binary Sensor </components/binary_sensor/lvgl>` or as a :doc:`Switch </components/switch/lvgl>` component.
+
+See :ref:`lvgl-cookbook-binent` for an example which demonstrates how to use a checkable button to act on a Home Assistant service.
 
 .. _lvgl-widget-buttonmatrix:
 
@@ -596,7 +604,7 @@ The button matrix widget is a lightweight way to display multiple buttons in row
 
 .. tip::
 
-    The Button Matrix widget supports the :ref:`key_collector` to collect the button presses as key press sequences for further automations.
+    The Button Matrix widget supports the :ref:`key_collector` to collect the button presses as key press sequences for further automations. Check out :ref:`lvgl-cookbook-keypad` for an example.
 
 .. _lvgl-widget-checkbox:
 
@@ -656,7 +664,7 @@ The checkbox widget is made internally from a *tick box* and a label. When the c
 
 .. note::
 
-    In case you configure ``default_font`` in the main section to a custom font, the checkmark will not be shown correctly when the checkbox is in the checked state.
+    In case you configure ``default_font`` in the main section to a custom font, the checkmark will not be shown correctly when the checkbox is in the checked state. See :ref:`lvgl-cookbook-ckboxmark` for how to easily resolve this.
 
 The ``checkbox`` can be also integrated as a :doc:`Switch </components/switch/lvgl>` component.
 
@@ -676,15 +684,13 @@ The Dropdown widget is built internally from a *button* part and a *list* part (
 
 **Configuration variables:**
 
-- **dir** (*Optional*, dict): Where the list part of the dropdown gets created relative to the button part. ``LEFT``, ``RIGHT``, ``BOTTOM``, ``TOP``, defaults to ``BOTTOM``.
-- **dropdown_list** (*Optional*, list): Settings for the dropdown_list *part*, the list with items. Supports a list of :ref:`styles <lvgl-styling>` to customize. Notable are ``text_line_space`` and ``pad_all`` for spacing of list items, and ``text_font`` to separately change the font in the list.
-- **indicator** (*Optional*, list): Settings for the the parent of ``symbol``. Supports a list of :ref:`styles <lvgl-styling>` to customize.
+- **dir** (*Optional*, str): Where the list part of the dropdown gets created relative to the button part. ``LEFT``, ``RIGHT``, ``BOTTOM``, ``TOP``, defaults to ``BOTTOM``.
+- **dropdown_list** (*Optional*, dict): Settings for the the list with items. Supports a list of :ref:`styles <lvgl-styling>` to customize. Notable are ``text_line_space`` and ``pad_all`` for spacing of list items, and ``text_font`` to separately change the font in the list. The parts ``main``, ``scrollbar`` and ``selected`` may be customised. Note that changing styles on the selected item should be done in the ``selected`` part with ``checked`` state. ``max_height`` can be used to limit the height of the list.
+- **indicator** (*Optional*, dict): Styles for the dropdown symbol.
 - **options** (**Required**, list): The list of available options in the drop-down.
-- **scrollbar** (*Optional*, list): Settings for the scrollbar *part*. Supports a list of :ref:`styles <lvgl-styling>` to customize. The scrollbar background, border, shadow properties and width (for its own width) and right padding for the spacing on the right.
 - **selected_index** (*Optional*, int8): The index of the item you wish to be selected.
-- **selected** (*Optional*, list): Settings for the selected item in the list. Supports a list of :ref:`styles <lvgl-styling>` to customize.
 - **symbol** (*Optional*, dict): A symbol (typically an chevron) is shown in dropdown list. If ``dir`` of the drop-down list is ``LEFT`` the symbol will be shown on the left, otherwise on the right. Choose a different :ref:`symbol <lvgl-fonts>` from those built-in or from your own customized font.
-- Style options from :ref:`lvgl-styling` for the background of the button and the list. Uses the typical background properties and :ref:`lvgl-widget-label` text properties for the text on it. ``max_height`` can be used to limit the height of the list. ``text_font`` can be used to set the font of the button part, including the symbol.
+- Style options from :ref:`lvgl-styling` for the background of the button. Uses the typical background properties and :ref:`lvgl-widget-label` text properties for the text on it. ``text_font`` can be used to set the font of the button part, including the symbol.
 
 **Actions:**
 
@@ -714,6 +720,10 @@ The Dropdown widget is built internally from a *button* part and a *list* part (
           - Chello
           - Drums
         selected_index: 2
+        dropdown_list:
+          selected:
+            checked:
+              text_color: 0xFF0000
 
     # Example action:
     on_...:
@@ -988,6 +998,8 @@ The ``led`` can be also integrated as :doc:`Light </components/light/lvgl>` comp
 
     If configured as a light component, ``color`` and ``brightness`` are overridden by the light at startup, according to its ``restore_mode`` setting.
 
+Check out :ref:`lvgl-cookbook-keypad` in the Cookbook for an example which demonstrates how to change the ``led`` styling properties from an automation.
+
 .. _lvgl-widget-line:
 
 ``line``
@@ -1047,20 +1059,21 @@ The meter widget can visualize data in very flexible ways. It can use arcs, need
             - **r_mod**: Adjust the position of the arc from the scale radius with this amount (can be negative). Defaults to ``0``.
             - **start_value**: The value in the scale range to start drawing the arc from.
             - **width**: Arc width in pixels. Defaults to ``4``.
-            - Style options for the *arc* using the :ref:`lvgl-widget-arc` style properties.
+            - **opa**: Opacity of the arc. Defaults to 100%.
         - **image** (*Optional*): Add a rotating needle image to the scale:
             - **id**: Manually specify the :ref:`config-id` used for updating the indicator value at runtime.
             - **pivot_x**: Horizontal position of the pivot point of rotation, in pixels, relative to the top left corner of the image.
             - **pivot_y**: Vertical position of the pivot point of rotation, in pixels, relative to the top left corner of the image.
             - **src**:  The ID of an existing image configuration, representing a needle pointing to the right like ``-o--->``.
             - **value**: The value in the scale range to show at start.
+            - **opa**: Opacity of the image. Defaults to 100%.
         - **line** (*Optional*): Add a needle line to the scale. By default, the length of the line is the same as the scale's radius:
             - **color**: :ref:`Color <lvgl-color>` for the needle line. Defaults to ``0`` (black).
             - **id**: Manually specify the :ref:`config-id` used for updating the indicator value at runtime.
             - **r_mod**: Adjust the length of the needle from the scale radius with this amount (can be negative). Defaults to ``0``.
             - **value**: The value in the scale range to show at start.
             - **width**: Needle line width in pixels. Defaults to ``4``.
-            - Style options for the *needle line* using the :ref:`lvgl-widget-line` style properties, as well as the background properties from :ref:`lvgl-styling` to draw a square (or circle) on the pivot of the needles. Padding makes the square larger.
+            - **opa**: Opacity of the needle. Defaults to 100%.
         - **tick_style** (**Optional**): Add tick style modifications:
             - **color_end**: :ref:`Color <lvgl-color>` for the gradient end of the ticks.
             - **color_start**: :ref:`Color <lvgl-color>` for the gradient start of the ticks.
@@ -1094,8 +1107,12 @@ The meter widget can visualize data in very flexible ways. It can use arcs, need
 
 **Actions:**
 
-- ``lvgl.indicator.update`` :ref:`action <actions-action>` updates indicator options except ``src``, which cannot be updated at runtime. :ref:`lvgl.widget.update <lvgl-automation-actions>` action can be used for the common styles, states or flags of the meter widget (not the indicators).
-    - **id** (**Required**): The ID or a list of IDs of line or image indicators which you want update.
+- ``lvgl.indicator.update`` :ref:`action <actions-action>` updates indicator options as below. :ref:`lvgl.widget.update <lvgl-automation-actions>` action can be used for the common styles, states or flags of the meter widget.
+    - **id** (**Required**): The ID or a list of IDs of indicators to update.
+    - **end_value** (*Optional*): The value in the scale range to end drawing the arc to.
+    - **start_value** (*Optional*): The value in the scale range to start drawing the arc from.
+    - **opa** (*Optional*): Opacity of the indicator.
+
 
 **Triggers:**
 
@@ -1138,6 +1155,8 @@ The meter widget can visualize data in very flexible ways. It can use arcs, need
         - lvgl.indicator.update:
             id: temperature_needle
             value: 3
+
+See :ref:`lvgl-cookbook-gauge`, :ref:`lvgl-cookbook-thermometer` and :ref:`lvgl-cookbook-clock` in the Cookbook for examples which demonstrate how to effectively use this widget.
 
 .. _lvgl-widget-msgbox:
 
@@ -1362,6 +1381,8 @@ Normally, the slider can be adjusted either by dragging the knob, or by clicking
 
 The ``slider`` can be also integrated as :doc:`Number </components/number/lvgl>` or :doc:`Sensor </components/sensor/lvgl>` component.
 
+See :ref:`lvgl-cookbook-bright` and :ref:`lvgl-cookbook-volume` for examples which demonstrate how to use a slider to control entities in Home Assistant.
+
 .. _lvgl-widget-spinbox:
 
 ``spinbox``
@@ -1437,7 +1458,9 @@ The spinbox contains a numeric value (as text) which can be increased or decreas
                 format: "Spinbox value is %f"
                 args: [ x ]
 
-The ``spinbox`` can be also integrated as :doc:`Number </components/number/lvgl>` or :doc:`Sensor </components/sensor/lvgl>` component.
+The ``spinbox`` can be also integrated as a :doc:`Number </components/number/lvgl>` or :doc:`Sensor </components/sensor/lvgl>` component.
+
+See :ref:`lvgl-cookbook-climate` for an example which demonstrates how to implement a thermostat control using the spinbox.
 
 .. _lvgl-widget-spinner:
 
@@ -1530,6 +1553,8 @@ The switch looks like a little slider and can be used to turn something on and o
                 args: [ x ]
 
 The ``switch`` can be also integrated as a :doc:`Switch </components/switch/lvgl>` component.
+
+See :ref:`lvgl-cookbook-relay` for an example which demonstrates how to use a switch to act on a local component.
 
 .. _lvgl-widget-tabview:
 
@@ -1781,6 +1806,7 @@ This powerful :ref:`action <actions-action>` allows changing/updating any widget
             id: my_label_id
             hidden: true
 
+Check out in the Cookbook :ref:`lvgl-cookbook-binent` for an example which demonstrates how to use a template to update the state.
 
 .. _lvgl-automation-shorthands:
 

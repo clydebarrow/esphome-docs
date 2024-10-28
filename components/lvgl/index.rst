@@ -16,6 +16,14 @@ The graphic display should be configured with ``auto_clear_enabled: false`` and 
 
 For interactivity, a :doc:`Touchscreen </components/touchscreen/index>` (capacitive highly preferred), a :doc:`/components/sensor/rotary_encoder` or a custom keypad made up from discrete :doc:`Binary Sensors </components/binary_sensor/index>` can be used.
 
+Check out the detailed examples in :ref:`the Cookbook <lvgl-cookbook>` which demonstrate a number of ways you can integrate your environment with LVGL and ESPHome.
+
+To get started, it is sufficient to add a display and an empty LVGL configuration. If neither ``pages`` nor ``widgets`` is specified, then a default "hello world" page will be shown.
+
+.. code-block:: yaml
+
+    # Example minimal configuration entry
+    lvgl:
 
 Basics
 ------
@@ -105,6 +113,17 @@ The following configuration variables apply to the main ``lvgl`` component, in o
 
         The ``long_press_time`` and ``long_press_repeat_time`` can be fine-tuned also by setting them to ``never`` and using the ``autorepeat`` filter on each binary sensor separately.
 
+    .. tip::
+
+        When using an encoder input device the navigation works as follows:
+
+        - By turning the encoder you can focus on the next/previous object.
+        - When you press the encoder on a simple object (like a button), it will be clicked.
+        - If you press the encoder on a complex object (like a list, message box, etc.) the object will go to edit mode whereby you can adjust the value of the object by turning the encoder.
+        - To leave edit mode, long press the button.
+
+
+
 - **color_depth** (*Optional*, string): The color deph at which the contents are generated. Currently only ``16`` is supported (RGB565, 2 bytes/pixel), which is the default value.
 - **buffer_size** (*Optional*, percentage): The percentage of screen size to allocate buffer memory. Default is ``100%`` (or ``1.0``). For devices without PSRAM, the recommended value is ``25%``.
 - **log_level** (*Optional*, string): Set the logger level specifically for the messages of the LVGL library: ``TRACE``, ``INFO``, ``WARN``, ``ERROR``, ``USER``, ``NONE``. Defaults to ``WARN``.
@@ -146,6 +165,7 @@ The following configuration variables apply to the main ``lvgl`` component, in o
                 align: CENTER
                 text: 'Hello World!'
 
+See :ref:`lvgl-cookbook-navigator` in the Cookbook for an example which demonstrates how to implement a page navigation bar at the bottom of the screen.
 
 .. _lvgl-color:
 
@@ -153,6 +173,8 @@ Colors
 ******
 
 Colors can be specified anywhere in the LVGL configuration either by referencing a preconfigured :ref:`ESPHome color <config-color>` ID or by representing the color in the common hexadecimal notation. For example, ``0xFF0000`` would be red.
+
+You may also use any of the `standard CSS color names <https://developer.mozilla.org/en-US/docs/Web/CSS/named-color>`__, e.g. ``springgreen``.
 
 .. _lvgl-opacity:
 
@@ -176,6 +198,7 @@ You can use :ref:`fonts configured normally<display-fonts>`, the glyphs will be 
 
     For best results, set ``bpp: 4`` to get the glyphs rendered with proper anti-aliasing.
 
+Check out :ref:`lvgl-cookbook-icontext`, :ref:`lvgl-cookbook-iconstat` and :ref:`lvgl-cookbook-iconbatt` in the Cookbook for examples which demonstrate how to use icons and text with TrueType/OpenType fonts.
 
 **Library fonts**
 
@@ -378,6 +401,7 @@ So the precedence happens like this: state based styles override the locally spe
 
 Feel free to experiment to discover inheritance and precedence of the styles based on states between the nested widgets.
 
+:ref:`lvgl-cookbook-theme` The Cookbook contains an example which demonstrates how to implement a gradient style for your widgets.
 
 .. _lvgl-layouts:
 
@@ -388,6 +412,7 @@ Layouts aim to position widgets automatically, eliminating the need to specify `
 
 The layout configuration options are applied to any parent widget or page, influencing the appearance of the children. The position and size calculated by the layout overwrites the *normal* ``x``, ``y``, ``width``, and ``height`` settings of the children.
 
+Check out :ref:`lvgl-cookbook-flex`, :ref:`lvgl-cookbook-grid` and :ref:`lvgl-cookbook-weather` in the Cookbook for examples which demonstrate how to automate widget positioning, potentially reducing the size of your device's YAML configuration, and saving you from lots of manual calculations.
 
 The ``hidden``, ``ignore_layout`` and ``floating`` :ref:`flags <lvgl-widget-flags>` can be used on widgets to ignore them in layout calculations.
 
@@ -594,7 +619,7 @@ This :ref:`action <actions-action>` redraws the entire screen, or optionally onl
 
 This :ref:`action <actions-action>` pauses the activity of LVGL, including rendering.
 
-- **show_snow** (*Optional*, boolean): When paused, display random colored pixels across the entire screen in order to minimize screen burn-in, to relief the tension put on each individual pixel.
+- **show_snow** (*Optional*, boolean): When paused, display random colored pixels across the entire screen in order to minimize screen burn-in, to relief the tension put on each individual pixel. See :ref:`lvgl-cookbook-antiburn` for an example which demonstrates how to use this.
 
 .. code-block:: yaml
 
@@ -801,6 +826,7 @@ The ``on_idle`` :ref:`triggers <automation>` are activated when inactivity time 
             - light.turn_off: display_backlight
             - lvgl.pause:
 
+See :ref:`lvgl-cookbook-idlescreen` for an example which demonstrates how to implement screen saving with idle settings.
 
 See Also
 --------
@@ -811,6 +837,7 @@ See Also
 
     *
 
+- :doc:`LVGL Examples in the Cookbook </cookbook/lvgl>`
 - :doc:`/components/display/index`
 - :doc:`/components/touchscreen/index`
 - :doc:`/components/sensor/rotary_encoder`
