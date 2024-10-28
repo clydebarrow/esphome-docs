@@ -157,10 +157,20 @@
             resizeTarget();
         }
 
+        function search_focus() {
+            const input_field = document.getElementById("pfmod-input-0");
+            if (input_field) {
+                requestAnimationFrame(() => input_field.focus());
+            }
+        }
+
+
         function hideTargets() {
             if (target.style.display !== "none") {
                 target.style.display = "none";
                 document.removeEventListener('click', clickCallback);
+                // keep focus on search box after clicking on search result
+                search_focus();
             }
         }
 
@@ -200,14 +210,7 @@
                 }
             });
         }
-        const input_field = document.getElementById("pfmod-input-0");
-        if (input_field) {
-            input_field.focus({preventScroll: true});
-            input_field.addEventListener("blur", () => {
-                requestAnimationFrame(() => {
-                    input_field.focus({preventScroll: true});
-                });
-            })
-        }
+        // focus the search field on page load.
+        search_focus();
     });
 </script>
