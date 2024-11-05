@@ -796,6 +796,7 @@ Conditions
 This :ref:`condition <common_conditions>` checks if the amount of time specified has passed since the last touch event.
 
 - **timeout** (**Required**, :ref:`templatable <config-templatable>`, int): Amount of :ref:`time <config-time>` expected since the last touch event.
+- **lvgl_id** (*Optional*): The ID of the LVGL instance to monitor.
 
 .. code-block:: yaml
 
@@ -817,6 +818,8 @@ This :ref:`condition <common_conditions>` checks if the amount of time specified
 ******************
 
 This :ref:`condition <common_conditions>` checks if LVGL is in the paused state or not.
+
+- **lvgl_id** (*Optional*): The ID of the LVGL instance to monitor.
 
 .. code-block:: yaml
 
