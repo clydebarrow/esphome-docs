@@ -670,8 +670,6 @@ This :ref:`action <actions-action>` resumes the activity of LVGL, including rend
         - lvgl.resume:
 
 
-.. _lvgl_on_pause_trigger:
-
 ``lvgl.update``
 ***************
 
@@ -861,6 +859,8 @@ The ``on_idle`` :ref:`triggers <automation>` are activated when inactivity time 
             - lvgl.pause:
 
 See :ref:`lvgl-cookbook-idlescreen` for an example which demonstrates how to implement screen saving with idle settings.
+
+.. _lvgl_on_pause_trigger:
 
 ``on_pause``
 ************
