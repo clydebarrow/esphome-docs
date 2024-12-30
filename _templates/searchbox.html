@@ -212,5 +212,10 @@
         }
         // focus the search field on page load.
         search_focus();
+        // focus when clicking on clear button
+        const clears = document.getElementsByClassName("pagefind-modular-list-clear");
+        for (let i = 0; i !== clears.length; i++) {
+            clears[i].addEventListener("click", search_focus);
+        }
     });
 </script>
