@@ -60,7 +60,6 @@ The properties below are common to all widgets.
 
 - **state** (*Optional*, dict): Widgets or their (sub)parts can have have states, which support separate styling. These state styles inherit from the theme, but can be locally set or overridden within style definitions. Can be one of:
     - **checked** (*Optional*, boolean): Toggled or checked state.
-    - **default** (*Optional*, boolean): Normal, released state.
     - **disabled** (*Optional*, boolean): Disabled state (also usable with :ref:`shorthand <lvgl-automation-shorthands>` actions ``lvgl.widget.enable`` and ``lvgl.widget.disable``).
     - **edited** (*Optional*, boolean): Edit by an encoder.
     - **focus_key** (*Optional*, boolean): Focused via keypad or encoder but *not* via touch screen.
