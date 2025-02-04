@@ -178,7 +178,7 @@ ESPHome-specific components or components supporting ESPHome device provisioning
     Improv via Serial, components/improv_serial, improv.svg, dark-invert
     Interval, components/interval, description.svg, dark-invert
     JSON, components/json, json.svg, dark-invert
-    XXTEA, components/xxtea, xxtea.svg, dark-invert
+    XXTEA, components/xxtea, xxtea.svg
     Script, components/script, description.svg, dark-invert
 
 ESPHome Configuration
