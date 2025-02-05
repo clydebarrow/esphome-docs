@@ -37,4 +37,5 @@ Components
     text/index
     update/index
     valve/index
+    packet_transport/index
     *
