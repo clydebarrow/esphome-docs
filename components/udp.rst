@@ -34,6 +34,30 @@ Reliability
 UDP, like any other network protocol, does not provide a guarantee that data will be delivered, but unlike TCP it does not
 even provide any indication whether data has been successfully delivered or not.
 
+
+Write Action
+------------
+
+To write data to the UDP port, use the ``udp.write`` action. This action takes a single argument, the data to write to the UDP port.
+
+- **id** (*Optional*, :ref:`config-id`): The id of the UDP component to use. If there is only one UDP component, this can be omitted.
+- **data** (**Required**, :ref:`templatable <config-templatable>`, string or list of bytes): The data to write to the UDP port.
+
+On Receive Trigger
+------------------
+
+To trigger an action when data is received on the UDP port, use the ``on_receive`` trigger. The trigger is called with a single argument ``data`` representing a ``std::vector<uint8_t>`` of the received data.
+
+.. code-block:: yaml
+
+    udp:
+        on_receive:
+          then:
+            - logger.log:
+                format: "Received %s"
+                args: [format_hex_pretty(data).c_str()]
+
+
 Examples
 --------
 

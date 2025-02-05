@@ -50,5 +50,6 @@ See Also
 
 - :doc:`/components/packet_transport/index`
 - :doc:`/components/binary_sensor/index`
+- :doc:`/components/udp`
 - :ref:`automation`
 - :ghedit:`Edit`
