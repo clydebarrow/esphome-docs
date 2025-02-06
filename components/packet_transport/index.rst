@@ -260,7 +260,7 @@ See Also
     :glob:
 
     *
-    
+
 - :doc:`/components/binary_sensor/packet_transport`
 - :doc:`/components/sensor/packet_transport`
 - :ref:`automation`

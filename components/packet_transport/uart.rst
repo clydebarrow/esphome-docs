@@ -39,7 +39,7 @@ Example Configuration
 See Also
 --------
 
-- :doc:`/components/packet_transport`
+- :ref:`packet-transport`
 - :doc:`/components/uart`
 - :doc:`/components/binary_sensor/packet_transport`
 - :doc:`/components/sensor/packet_transport`

@@ -36,7 +36,7 @@ Example Configuration
 See Also
 --------
 
-- :doc:`/components/packet_transport/index`
+- :ref:`packet-transport`
 - :doc:`/components/udp`
 - :doc:`/components/binary_sensor/packet_transport`
 - :doc:`/components/sensor/packet_transport`
