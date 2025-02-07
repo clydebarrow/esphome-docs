@@ -249,8 +249,42 @@ encryption and a rolling code to a remote host.
         provider: st7735s
         id: wifi_signal_sensor
 
+In the example below we differentiate channels we establish over UDP, by providing multiple configuration keys.
+We provide the value of ``sensor_to_provide`` encrypted, to a node with a specific IP address, and we receive the
+state of ``relay1_sensor`` from tne node named ``device-1`` without any encryption.
 
-.. [#f1] As known in 2024.06.
+.. code-block:: yaml
+
+    udp:
+      - id: udp_output
+        addresses:
+          - 192.168.1.78 # the IP of the specific node to provide the sensor value to
+      - id: udp_input
+    
+    packet_transport:
+      - platform: udp
+        id: transport_output
+        udp_id: udp_output
+        encryption: !secret your_encryption_key
+        sensors:
+          - sensor_to_provide
+      - platform: udp
+        id: transport_input
+        udp_id: udp_input
+        providers:
+          - name: device-1
+    
+    sensor:
+      - platform: ...
+        id: sensor_to_provide
+    
+    binary_sensor:
+      - platform: packet_transport
+        transport_id: transport_input
+        provider: device-1
+        remote_id: relay1_sensor
+
+.. [#f1] As known in 2025.02.
 
 See Also
 --------
