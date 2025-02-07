@@ -83,8 +83,8 @@ Configuration variables:
 
 Wherever a provider name is required, this should be the node name configured in the ``esphome:`` block.
 
-This component supports multiple configurations, making it possible to differentiate between consumers when providing data to them.
-When receiving data in such a configuration, sensors need an ``transport_id`` configuration item to know where to expect data to come from.
+This component supports multiple configurations, making it possible to differentiate between consumers when providing data to them, or providers if they are multiple.
+When receiving data in such a configuration, sensors need a ``transport_id`` configuration item to know where to expect data to come from.
 
 Reliability
 -----------
