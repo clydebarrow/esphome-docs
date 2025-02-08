@@ -28,7 +28,7 @@ Example Configuration
 
     # Example configuration entry
     packet_transport:
-      platform: udp
+      platform: ...
       update_interval: 5s
       encryption: "REPLACEME"
       rolling_code_enable: true
@@ -38,20 +38,19 @@ Example Configuration
         - sensor_id1
         - id: sensor_id2
           broadcast_id: different_id
-
       providers:
-        - name: some-device-name
-          encryption: "REPLACEME with some key"
+        - name: device1-name
+          encryption: "REPLACEME"
 
     sensor:
       - platform: packet_transport
-        provider: some-device-name
+        provider: device1-name
         id: local_sensor_id
         remote_id: some_sensor_id
 
     binary_sensor:
       - platform: packet_transport
-        provider: unencrypted-device
+        provider: device2-name
         id: other_binary_sensor_id  # also used as remote_id
 
     udp:
