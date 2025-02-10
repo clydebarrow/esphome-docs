@@ -653,6 +653,7 @@ Core
     Home Assistant, components/binary_sensor/homeassistant, home-assistant.svg, dark-invert
     Status, components/binary_sensor/status, server-network.svg, dark-invert
     Switch, components/binary_sensor/switch, electric-switch.svg, dark-invert
+    Host SDL2, components/binary_sensor/sdl, sdl.png
 
 Capacitive Touch
 ****************
@@ -1053,6 +1054,7 @@ Speaker Components
 
     Speaker Core, components/speaker/index, speaker.svg, dark-invert
     I2S Speaker, components/speaker/i2s_audio, i2s_audio.svg
+    Mixer Speaker, components/speaker/mixer, mixer.svg
     Resampler Speaker, components/speaker/resampler, waveform.svg, dark-invert
 
 Switch Components
