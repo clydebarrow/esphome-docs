@@ -156,6 +156,7 @@ Hardware Peripheral Interfaces/Busses
     SPI Bus, components/spi, spi.svg
     UART, components/uart, uart.svg
     USB Host, components/usb_host, usb.svg
+    USB UART, components/usb_uart, usb.svg
 
 I/O Expanders/Multiplexers
 --------------------------
