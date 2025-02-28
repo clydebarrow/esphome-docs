@@ -79,6 +79,9 @@ Channel configuration options:
 - **dummy_receiver** (*Optional*, boolean): If set to true, the channel will consume any data received. This is useful for debugging purposes. Defaults to false.
 - **debug** (*Optional*, boolean): If set to true, the channel will log all data sent and received. Defaults to false.
 
+Device types
+************
+
 The ``cdc_acm`` type is a generic USB CDC ACM (Abstract Control Model) device. This is a common USB device class for serial communication.
 This driver does not strictly enforce the CDC-ACM configuration specification, so it may work with devices that do not properly implement that specification. It expects to find a single interrupt endpoint, a single bulk in endpoint, and a single bulk out endpoint.
 The ``cdc_acm``, ``esp_jtag`` and ``stm32_vcp`` types do not support changing baud rate, stop bits or number of data bits, as they implement a virtual channel not typically associated with a physical UART.
