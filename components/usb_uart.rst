@@ -13,37 +13,37 @@ Currently supported devices are listed in the table below:
 
 
 .. list-table:: Supported Devices
-   :widths: 20 10 10 40
-   :header-rows: 1
+    :widths: 20 10 10 40
+    :header-rows: 1
 
-   * - Name
-     - VID
-     - PID
-     - Description
-   * - CH34X
-     - 0x1A86
-     - 0x55D5
-     - USB to serial adapter, multi-channel (up to 3 channels)
-   * - CH340
-     - 0x1A86
-     - 0x7523
-     - USB to serial adapter, single channel
-   * - ESP\_JTAG
-     - 0x303A
-     - 0x1001
-     - ESP32 JTAG interface
-   * - STM32\_VCP
-     - 0x0483
-     - 0x5740
-     - STM32 Virtual COM Port
-   * - CDC\_ACM
-     - 0x0000
-     - 0x0000
-     - USB CDC ACM (Abstract Control Model)
-   * - CP210X
-     - 0x10C4
-     - 0xEA60
-     - Silicon Labs USB to UART Bridge
+    * - Name
+      - VID
+      - PID
+      - Description
+    * - CH34X
+      - 0x1A86
+      - 0x55D5
+      - USB to serial adapter, multi-channel (up to 3 channels)
+    * - CH340
+      - 0x1A86
+      - 0x7523
+      - USB to serial adapter, single channel
+    * - ESP\_JTAG
+      - 0x303A
+      - 0x1001
+      - ESP32 JTAG interface
+    * - STM32\_VCP
+      - 0x0483
+      - 0x5740
+      - STM32 Virtual COM Port
+    * - CDC\_ACM
+      - 0x0000
+      - 0x0000
+      - USB CDC ACM (Abstract Control Model)
+    * - CP210X
+      - 0x10C4
+      - 0xEA60
+      - Silicon Labs USB to UART Bridge
 
 .. code-block:: yaml
 
