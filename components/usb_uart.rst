@@ -6,7 +6,7 @@ USB UART Interface
     :description: Instructions for setting up a USB Host uart interface on an ESP32 in ESPHome
     :image: usb.svg
 
-This component allows and ESP32-S3 or ESP32-S2 to connect to USB-serial devices. It uses the :doc:`/components/usb_host`
+This component allows an ESP32-S3 or ESP32-S2 to connect to USB-serial devices. It uses the :doc:`/components/usb_host`
 component to connect to the device.
 
 Currently supported devices are listed in the table below:
@@ -60,7 +60,6 @@ Configuration variables:
 ************************
 
 - **id** (*Optional*, :ref:`config-id`): The id to use for this component.
-- **channels** (*Optional*, list): A list of devices to configure.
 - **type** (**Required**, string): The type of USB-serial device to connect to. One of ``ch34x``, ``ch340``, ``esp_jtag``, ``stm32_vcp``, ``cdc_acm``, ``cp210x``.
 - **channels** (**Required**, list): A list of channels to configure.
 - **vid** (*Optional*, int): The vendor ID of the device. Use 0 as a wildcard. Each type has a default VID which will be overridden if this is set.
