@@ -71,7 +71,7 @@ The ``esphome run <CONFIG>`` command is the most common command for ESPHome. It
 
 .. program:: esphome run
 
-.. option:: --device UPLOAD_PORT
+.. option:: -d|--device UPLOAD_PORT
 
     Manually specify the upload port/IP to use. For example ``/dev/cu.SLAB_USBtoUART``, or ``192.168.1.176``
     to perform an OTA.
@@ -100,6 +100,11 @@ The ``esphome run <CONFIG>`` command is the most common command for ESPHome. It
 
     Specify the host port to use for legacy Over the Air uploads.
 
+.. option:: -r|--reset
+
+    If set, reset the device before starting the logs. May also be configured with the environment variable
+    ``ESPHOME_SERIAL_LOGGING_RESET=true``.
+
 ``config`` Command
 ------------------
 
@@ -126,7 +131,7 @@ The ``esphome compile <CONFIG>`` validates the configuration and compiles the fi
 
 The ``esphome upload <CONFIG>`` validates the configuration and uploads the most recent firmware build.
 
-.. option:: --device UPLOAD_PORT
+.. option:: -d|--device UPLOAD_PORT
 
     Manually specify the upload port/IP address to use. For example ``/dev/cu.SLAB_USBtoUART``, or ``192.168.1.176``
     to perform an OTA.
@@ -247,9 +252,14 @@ The ``esphome logs <CONFIG>`` command validates the configuration and shows all 
 
     Manually set the client id.
 
-.. option:: --device SERIAL_PORT
+.. option:: -d|--device SERIAL_PORT
 
     Manually specify a serial port/IP to use. For example ``/dev/cu.SLAB_USBtoUART``.
+
+.. option:: -r|--reset
+
+    If set, reset the device before starting the logs. May also be configured with the environment variable
+    ``ESPHOME_SERIAL_LOGGING_RESET=true``.
 
 Using Bash or ZSH auto-completion
 ---------------------------------
@@ -263,4 +273,3 @@ You can register ESPHome for auto-completion by adding the following to your ~/.
     eval "$(register-python-argcomplete esphome)"
 
 For more information, see `argcomplete <https://kislyuk.github.io/argcomplete/>`__ documentation.
-
