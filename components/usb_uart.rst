@@ -3,7 +3,7 @@ USB UART Interface
 
 
 .. seo::
-    :description: Instructions for setting up a USB Host uart interface on an ESP32 in ESPHome
+    :description: Instructions for setting up a USB Host UART interface on an ESP32 in ESPHome
     :image: usb.svg
 
 This component allows an ESP32-S3 or ESP32-S2 to connect to USB-serial devices. It uses the :doc:`/components/usb_host`
@@ -70,7 +70,7 @@ Setting both ``vid`` and ``pid`` to 0 will match any device.
 Channel configuration options:
 ******************************
 
-- **id** (*Optional*, :ref:`config-id`): An id to assign to the channel. This id may be used anywhere a uart is required.
+- **id** (*Optional*, :ref:`config-id`): An id to assign to the channel. This id may be used anywhere a ``uart`` component is required.
 - **baud_rate** (**Required**, int): The baud rate to use for the channel. This is optional (and ignored) for the ``stm32_vcp``, ``esp_jtag`` and ``cdc_acm`` types.
 - **buffer_size** (*Optional*, int): The size of the buffer to use for the channel. Defaults to 256 bytes.
 - **stop_bits** (*Optional*, float): The number of stop bits to use. Defaults to 1. Other options are 1.5 and 2.
