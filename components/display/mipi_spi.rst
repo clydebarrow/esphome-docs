@@ -5,7 +5,7 @@ MIPI SPI Display Driver
     :description: Details for the MIPI SPI display driver component in ESPHome
     :image: ili9341.jpg
 
-.. _ili9xxx:
+.. _mipi_spi:
 
 Introduction
 ------------
