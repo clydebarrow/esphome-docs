@@ -41,22 +41,22 @@ Driver chips
 ^^^^^^^^^^^^
 
 .. csv-table::
-   :header: "Driver Chip", "Typical Dimensions"
-   :widths: 15, 20
+    :header: "Driver Chip", "Typical Dimensions"
+    :widths: 15, 20
 
-   "RM690B0", "320x240"
-   "ILI9341", "320x240"
-   "ILI9481", "320x480"
-   "ILI9486", "320x480"
-   "ILI9488", "320x480"
-   "ILI9488_A", "320x480"
-   "ST7796", "320x480"
-   "ST7789V", "240x320"
-   "GC9A01A", "240x240"
-   "GC9D01N", "240x240"
-   "AXS15231", "320x240"
-   "ST7735", "128x160"
-   "CUSTOM", "Customisable"
+    "RM690B0", "320x240"
+    "ILI9341", "320x240"
+    "ILI9481", "320x480"
+    "ILI9486", "320x480"
+    "ILI9488", "320x480"
+    "ILI9488_A", "320x480"
+    "ST7796", "320x480"
+    "ST7789V", "240x320"
+    "GC9A01A", "240x240"
+    "GC9D01N", "240x240"
+    "AXS15231", "320x240"
+    "ST7735", "128x160"
+    "CUSTOM", "Customisable"
 
 Boards with integrated displays
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
