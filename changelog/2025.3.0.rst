@@ -10,11 +10,11 @@ ESPHome 2025.3.0 - 19th March 2025
 .. imgtable::
     :columns: 3
 
-    LD2450, components/sensor/ld2450, ld2450.svg
-    CHSC6X, components/touchscreen/chsc6x, chsc6x.svg
-    MSA301/MSA311, components/sensor/msa3xx, msa3xx.png
+    LD2450, components/sensor/ld2450, ld2450.png
+    CHSC6X, components/touchscreen/chsc6x, chsc6x.png
+    MSA301/MSA311, components/sensor/msa3xx, msa301.jpg
 
-    Tormatic/Novoferm, components/cover/tormatic, tormatic.svg
+    Tormatic/Novoferm, components/cover/tormatic, tormatic.png
 
 Our second release of 2025 is a bit smaller -- Jesse is away, so we are a bit short-staffed. 😅
 
