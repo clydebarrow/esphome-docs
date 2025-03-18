@@ -54,6 +54,9 @@ Beta Changes
 - Bump tornado from 6.4 to 6.4.2 :esphomepr:`8398` by :ghuser:`dependabot[bot]`
 - [font] Fix issues with bitmap fonts :esphomepr:`8407` by :ghuser:`clydebarrow`
 - Added getters for graphs ymin and ymax :esphomepr:`8112` by :ghuser:`Duckle29`
+- [docker] Bump curl, git, openssh-client, libopenjp2-7, nginx-light :esphomepr:`8419` by :ghuser:`kbx81`
+- [docker] Bump libfreetype :esphomepr:`8426` by :ghuser:`kbx81`
+- [core] Handle mis-typed platform name more cleanly :esphomepr:`8424` by :ghuser:`clydebarrow`
 
 All changes
 ^^^^^^^^^^^
