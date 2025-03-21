@@ -71,10 +71,16 @@ The ``esphome run <CONFIG>`` command is the most common command for ESPHome. It
 
 .. program:: esphome run
 
-.. option:: -d|--device UPLOAD_PORT
+.. option:: --device UPLOAD_PORT
 
     Manually specify the upload port/IP to use. For example ``/dev/cu.SLAB_USBtoUART``, or ``192.168.1.176``
     to perform an OTA.
+
+.. option:: --upload_speed BAUD_RATE
+
+    The upload speed for serial flashing defaults to 460800 or as set with the environment variable ``ESPHOME_UPLOAD_SPEED``.
+    This can be overridden in the platformio options on a per-config
+    basis, or set with this option at the time of uploading.
 
 .. option:: --no-logs
 
@@ -100,7 +106,7 @@ The ``esphome run <CONFIG>`` command is the most common command for ESPHome. It
 
     Specify the host port to use for legacy Over the Air uploads.
 
-.. option:: -r|--reset
+.. option:: --reset
 
     If set, reset the device before starting the logs. May also be configured with the environment variable
     ``ESPHOME_SERIAL_LOGGING_RESET=true``.
@@ -131,10 +137,16 @@ The ``esphome compile <CONFIG>`` validates the configuration and compiles the fi
 
 The ``esphome upload <CONFIG>`` validates the configuration and uploads the most recent firmware build.
 
-.. option:: -d|--device UPLOAD_PORT
+.. option:: --device UPLOAD_PORT
 
     Manually specify the upload port/IP address to use. For example ``/dev/cu.SLAB_USBtoUART``, or ``192.168.1.176``
     to perform an OTA.
+
+.. option:: --upload_speed BAUD_RATE
+
+    The upload speed for serial flashing defaults to 460800 or as set with the environment variable ``ESPHOME_UPLOAD_SPEED``.
+    This can be overridden in the platformio options on a per-config
+    basis, or set with this option at the time of uploading.
 
 .. option:: --host-port HOST_PORT
 
@@ -252,11 +264,11 @@ The ``esphome logs <CONFIG>`` command validates the configuration and shows all 
 
     Manually set the client id.
 
-.. option:: -d|--device SERIAL_PORT
+.. option:: --device SERIAL_PORT
 
     Manually specify a serial port/IP to use. For example ``/dev/cu.SLAB_USBtoUART``.
 
-.. option:: -r|--reset
+.. option:: --reset
 
     If set, reset the device before starting the logs. May also be configured with the environment variable
     ``ESPHOME_SERIAL_LOGGING_RESET=true``.
