@@ -30,7 +30,7 @@ Restrictions
 * 120MHz is not available with octal mode.
 * If you choose the wrong mode for your board, the PSRAM will not work.
 * Configuring an unsupported speed will usually result in the PSRAM running at the default speed.
-* Typically on ESP32-S3 modules, a 2MB PSRAM will use quad mode, 8 or 16MB will use octal mode.
+* Typically on ESP32-S3 modules, a 2MB PSRAM will use quad mode, while 8 or 16MB will use octal mode.
 
 See Also
 --------
