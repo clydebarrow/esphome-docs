@@ -1962,6 +1962,14 @@ when the page becomes active or inactive respectively.
                 transition_length: 0ms
                 brightness: !lambda return x / 100;
 
+
+``on_boot``
+*************
+
+This :ref:`trigger <lvgl-automation-triggers>` is triggered after LVGL has been setup. It is available on the ``lvgl`` component and any widget and can be used to perform any LVGL related setup that is not possible with static configuration.
+When used on a widget, it does not act specifically on that widget but can be used to keep actions related to that widget together with its configuration.
+
+
 See Also
 --------
 
