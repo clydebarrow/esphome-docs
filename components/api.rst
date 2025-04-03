@@ -79,6 +79,9 @@ Configuration variables:
   connects to the API. See :ref:`api-on_client_connected_trigger`.
 - **on_client_disconnected** (*Optional*, :ref:`Action <config-action>`): An automation to perform when a client
   disconnects from the API. See :ref:`api-on_client_disconnected_trigger`.
+- **mac_address** (*Optional*, mac_address): Set the MAC address that will be used when communicating with
+  Home Assistant to identify the device. This will *not* change the MAC address used for
+  networking purposes. If not set, the device's base MAC address will be used.
 
 .. _api-actions:
 
