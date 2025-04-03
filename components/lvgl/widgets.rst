@@ -686,8 +686,8 @@ Where a list of points is required, this can be provided in the form of a list o
     - **color** (*Optional*, :ref:`color <lvgl-color>`): Line color.
     - **width** (*Optional*, int): Line width.
     - **opa** (*Optional*, :ref:`opacity <lvgl-opacity>`): Line opacity. Defaults to ``COVER``.
-    - **round_start ** (*Optional*, boolean): Round the start of the line.
-    - **round_end** (*Optional*, boolean): Round the end of the line.
+    - **round_start** (*Optional*, boolean): Round the start of the line. Defaults to ``false``.
+    - **round_end** (*Optional*, boolean): Round the end of the line. Defaults to ``false``.
 
 - ``lvgl.canvas.draw_arc`` draws an arc:
     - **id** (**Required**): The ID of the canvas widget.
