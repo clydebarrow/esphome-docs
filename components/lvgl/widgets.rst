@@ -648,6 +648,21 @@ Where a list of points is required, this can be provided in the form of a list o
     - **border_color** (*Optional*, :ref:`color <lvgl-color>`): Border color.
     - **border_width** (*Optional*, int): Border width.
     - **border_opa** (*Optional*, :ref:`opacity <lvgl-opacity>`): Border opacity. Defaults to ``COVER``.
+    - **outline_color** (*Optional*, :ref:`color <lvgl-color>`): Outline color.
+    - **outline_width** (*Optional*, int): Outline width.
+    - **outline_opa** (*Optional*, :ref:`opacity <lvgl-opacity>`): Opacity of the outline. Defaults to ``COVER``.
+    - **outline_pad** (*Optional*, int): Padding of the outline. Defaults to ``0``.
+    - **shadow_color** (*Optional*, :ref:`color <lvgl-color>`): Shadow color.
+    - **shadow_width** (*Optional*, int): Shadow width.
+    - **shadow_opa** (*Optional*, :ref:`opacity <lvgl-opacity>`): Opacity of the shadow. Defaults to ``COVER``.
+    - **shadow_offset_x** (*Optional*, int): Shadow offset X.
+    - **shadow_offset_y** (*Optional*, int): Shadow offset Y.
+    - **shadow_spread** (*Optional*, int): Shadow spread.
+
+- ``lvgl.canvas.draw_polygon`` draws a polygon:
+    - **id** (**Required**): The ID of the canvas widget.
+    - **points** (**Required**, list): List of points forming the polygon vertices.
+    - Other options as for ``lvgl.canvas.draw_rectangle``.
 
 - ``lvgl.canvas.draw_text`` draws text:
     - **id** (**Required**): The ID of the canvas widget.
@@ -671,12 +686,8 @@ Where a list of points is required, this can be provided in the form of a list o
     - **color** (*Optional*, :ref:`color <lvgl-color>`): Line color.
     - **width** (*Optional*, int): Line width.
     - **opa** (*Optional*, :ref:`opacity <lvgl-opacity>`): Line opacity. Defaults to ``COVER``.
-
-- ``lvgl.canvas.draw_polygon`` draws a polygon:
-    - **id** (**Required**): The ID of the canvas widget.
-    - **points** (**Required**, list): List of points forming the polygon vertices.
-    - **color** (*Optional*, :ref:`color <lvgl-color>`): Fill color.
-    - **opa** (*Optional*, :ref:`opacity <lvgl-opacity>`): Fill opacity. Defaults to ``COVER``.
+    - **round_start ** (*Optional*, boolean): Round the start of the line.
+    - **round_end** (*Optional*, boolean): Round the end of the line.
 
 - ``lvgl.canvas.draw_arc`` draws an arc:
     - **id** (**Required**): The ID of the canvas widget.
