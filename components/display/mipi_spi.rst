@@ -121,8 +121,8 @@ most of the configuration will be set by default, but can be overridden if neede
 - **enable_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): An optional pin to enable the display, if required. A list of pins can be provided for displays that require multiple enable pins. A full pin configuration may be provided
   to set the pin mode and inverted property. By default the pin will be driven high to enable the display.
 - **brightness** (*Optional*, int): The initial brightness of the display, for AMOLED displays only. This should be a value from 0 to 255, and defaults to 0xD0.
-- **color_order** (*Optional*): Should be one of ``bgr`` (default) or ``rgb``.
-- **dimensions** (*Optional*): Dimensions of the screen, specified either as *width* **x** *height* (e.g ``320x240``) or with separate config keys. If not provided the dimensions will be determined by the model selected.
+- **color_order** (*Optional*): Should be one of ``bgr`` (default) or ``rgb``. This specifies the order of the color channels in the display panel. The default is ``bgr`` for most displays, but some displays may require ``rgb``. It does not affect the color order of the display buffer, which is always RGB.
+- **dimensions** (*Optional*): Dimensions of the screen, specified either as *width* **x** *height* (e.g ``320x240``) or with separate config keys. If not provided the dimensions will be determined by the model selected. This is required for the ``CUSTOM`` model, and is optional for other models. The dimensions are specified in pixels, and the width and height must be greater than 0. The following keys are available:
 
     - **height** (**Required**, int): Specifies height of display in pixels.
     - **width** (**Required**, int): Specifies width of display.
@@ -130,20 +130,20 @@ most of the configuration will be set by default, but can be overridden if neede
     - **offset_height** (*Optional*, int): Specify an offset for the y-direction of the display. Default is 0.
 
 - **invert_colors** (*Optional*, boolean): Specifies whether the display colors should be inverted. Options are ``true`` or ``false``. Defaults to ``false``.
-- **rotation** (*Optional*): Rotate the display presentation in software. Choose one of ``0°``, ``90°``, ``180°``, or ``270°``. If the driver chip supports hardware rotation for the given orientation this will be translated to
-    the appropriate hardware command. If hardware rotation is not supported, the display will be rotated in software.
-- **transform** (*Optional*): If ``rotation`` is not sufficient, use this to transform the display. Options are:`
+- **rotation** (*Optional*): Rotate the display presentation in software. Choose one of ``0°``, ``90°``, ``180°``, or ``270°``. If the driver chip supports hardware rotation for the given orientation this will be translated to the appropriate hardware command. If hardware rotation is not supported, the display will be rotated in software.
+- **transform** (*Optional*): If ``rotation`` is not sufficient, use this to transform the display. If this option is specified, then the ``dimensions`` option must also be provided. Options are:`
 
    - **swap_xy** (**Required**, boolean): If true, exchange the x and y axes.
    - **mirror_x** (**Required**, boolean): If true, mirror the x axis.
    - **mirror_y** (**Required**, boolean): If true, mirror the y axis.
 
+- **color_depth** (*Optional*): The color depth of the display buffer, expressed in bits. Options are ``16`` (default) and ``8``. 8 bit depth will result in only 256 possible colors and should be used only if the microcontroller has limited memory. The driver will convert the 8 bit color to the display chip's required format.
 
 Advanced options
 ^^^^^^^^^^^^^^^^
 
 - **init_sequence** (*Optional*): Allows custom initialisation sequences to be added. See below for more information.
-- **pixel_mode** (*Optional*): Select the interface mode for the display driver. Options are ``16bit`` (default) and ``18bit``.
+- **pixel_mode** (*Optional*): Select the interface mode for the display driver. Options are ``16bit`` (default) and ``18bit``. Most displays require 16 bit mode, and it is preferred unless the display requires 18 bit mode.
 - **spi_16** (*Optional*): Set to ``true`` on boards where single bit SPI is used but drives the display in parallel via a 16 bit shift register.
 - **data_rate** (*Optional*): The SPI data rate. Defaults to 10MHz but board presets may override this.
 - **spi_mode** (*Optional*): The SPI mode. Options are ``MODE0``, ``MODE1``, ``MODE2``, and ``MODE3``. Defaults to ``MODE0`` for single bit SPI and ``MODE3`` for octal SPI (parallel bus.)
