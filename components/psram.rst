@@ -22,6 +22,9 @@ Configuration variables:
 
 - **mode** (*Optional*): Defines the operating mode the PSRAM should utilize. One of ``quad`` (default) or ``octal``.
 - **speed** (*Optional*, int): The speed at which the PSRAM should operate. One of ``40MHz`` (default), ``80MHz`` or ``120MHz``.
+- **enable_ecc** (*Optional*, bool): For octal mode, enable ECC (Error Correction Code) for the PSRAM (default is off.)
+  ECC is a method of detecting and correcting single-bit errors in memory. It will reduce the available PSRAM size and speed by
+  1/16th, but also increases the rated temperature range of some ESP32 modules.
 
 Restrictions
 ------------
