@@ -921,6 +921,12 @@ This :ref:`trigger <lvgl-automation-triggers>` is triggered when LVGL is paused.
 This :ref:`trigger <lvgl-automation-triggers>` is triggered when LVGL is resumed. This can be used to perform any desired actions when the screen is unlocked, such as turning on the display backlight.
 
 
+``on_boot``
+*************
+
+This :ref:`trigger <lvgl-automation-triggers>` is triggered after LVGL has been setup. It is also available on any widget, but the timing is the same.
+
+
 See Also
 --------
 
