@@ -642,6 +642,8 @@ Where a list of points is required, this can be provided in the form of a list o
     - **id** (**Required**): The ID of the canvas widget.
     - **x** (**Required**, int): X coordinate.
     - **y** (**Required**, int): Y coordinate.
+    - **width** (**Required**, int): Width in pixels
+    - **height** (**Required**, int): Height in pixels
     - **radius** (*Optional*, int): Corner radius.
     - **bg_color** (*Optional*, :ref:`color <lvgl-color>`): Background color.
     - **bg_opa** (*Optional*, :ref:`opacity <lvgl-opacity>`): Background opacity. Defaults to ``COVER``.
