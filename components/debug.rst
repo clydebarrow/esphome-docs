@@ -91,7 +91,7 @@ Configuration variables:
 
 - **psram** (*Optional*): Reports the free PSRAM in bytes. Only available on ESP32. All options from :ref:`Sensor <config-sensor>`.
 
-- **cpu_frequency** (*Optional*): Reports the CPU frequency in Hz. Only available on ESP32. All options from :ref:`Sensor <config-sensor>`.
+- **cpu_frequency** (*Optional*): Reports the CPU frequency in Hz. All options from :ref:`Sensor <config-sensor>`.
 
 See Also
 --------
