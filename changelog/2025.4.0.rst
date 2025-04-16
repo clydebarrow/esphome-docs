@@ -3,7 +3,7 @@ ESPHome 2025.4.0 - 16th April 2025
 
 .. seo::
     :description: Changelog for ESPHome 2025.4.0.
-    :image: /_static/changelog-2025.3.0.png
+    :image: /_static/changelog-2025.4.0.png
     :author: Jesse Hills
     :author_twitter: @jesserockz
 
