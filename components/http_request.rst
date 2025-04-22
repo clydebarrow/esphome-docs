@@ -67,6 +67,10 @@ Configuration variables:
 
     **We strongly recommend using hardware which properly supports TLS/SSL.**
 
+**For the host platform:**
+
+ - **ca_certificate_path** (*Optional*, file path): Path to a CA certificate bundle, without this SSL is not enabled. Not required on MacOS (the inbuilt CA bundle is used and SSL enabled by default).
+
 HTTP Request Actions
 --------------------
 
