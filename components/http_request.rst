@@ -69,7 +69,13 @@ Configuration variables:
 
 **For the host platform:**
 
- - **ca_certificate_path** (*Optional*, file path): Path to a CA certificate bundle, without this SSL is not enabled. Not required on MacOS (the inbuilt CA bundle is used and SSL enabled by default).
+ - **ca_certificate_path** (*Optional*, file path): Path to a CA certificate bundle. Not required on MacOS (the inbuilt CA bundle is used and SSL enabled by default).
+   On Linux this is required to enable SSL.
+
+    .. note::
+        To use SSL on Linux you must have the ``libssl-dev`` package installed (e.g. ``sudo apt install libssl-dev``).
+        A typical value on Linux for ``ca_certificate_path`` would be ``/etc/ssl/certs/ca-certificates.crt``.
+
 
 HTTP Request Actions
 --------------------
