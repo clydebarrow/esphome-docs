@@ -73,6 +73,7 @@ Configuration variables:
    On Linux this is required to enable SSL.
 
     .. note::
+
         To use SSL on Linux you must have the ``libssl-dev`` package installed (e.g. ``sudo apt install libssl-dev``).
         A typical value on Linux for ``ca_certificate_path`` would be ``/etc/ssl/certs/ca-certificates.crt``.
 
