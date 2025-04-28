@@ -1,5 +1,5 @@
 Syslog Component
-===============
+================
 
 .. seo::
     :description: Instructions for setting up a syslog component in ESPHome
