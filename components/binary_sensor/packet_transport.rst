@@ -14,13 +14,12 @@ It requires a ``packet_transport`` component to be configured.
     binary_sensor:
       - platform: packet_transport
         id: switch_status
-        provider: light-switch
+        provider: light-switc
         remote_id: light_switch
 
      packet_transport:
-       - platform: udp
+       - platform: ...
 
-     udp:
 
 Configuration variables
 -----------------------
