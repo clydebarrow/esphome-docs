@@ -5,8 +5,8 @@ Packet Transport Component
 
 .. seo::
     :description: Instructions for setting up a packet transport component on ESPHome
-    :image: udp.svg
-    :keywords: udp, packet, transport
+    :image: packet_transport.svg
+    :keywords: packet, transport
 
 The purpose of this component is to allow ESPHome nodes to directly communicate with each over a communication channel.
 It permits the state of sensors and binary sensors to be transmitted from one node to another, without the need for a
@@ -24,7 +24,7 @@ providers. A node may be both a provider and a consumer. Optional security is pr
 
     # Example configuration entry
     packet_transport:
-      platform: udp
+      platform: ...
       update_interval: 5s
       encryption: "REPLACEME"
       rolling_code_enable: true
@@ -50,7 +50,6 @@ providers. A node may be both a provider and a consumer. Optional security is pr
         provider: unencrypted-device
         id: other_binary_sensor_id  # also used as remote_id
 
-    udp:
 
 Configuration variables:
 ------------------------
@@ -156,7 +155,6 @@ the other to follow suit. In each case a template binary_sensor is used to mirro
     esphome:
       name: device-1
 
-    udp:
 
     packet_transport:
       binary_sensors:
@@ -190,7 +188,6 @@ the other to follow suit. In each case a template binary_sensor is used to mirro
       binary_sensors:
         - relay2_sensor
 
-    udp:
 
     switch:
       - platform: gpio
@@ -216,9 +213,6 @@ devices, one with encryption and ping-pong and one without. It also rebroadcasts
 encryption and a rolling code to a remote host.
 
 .. code-block:: yaml
-
-    udp:
-      addresses: ["10.87.135.110"]
 
     packet_transport:
       update_interval: 60s
