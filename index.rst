@@ -4,7 +4,7 @@
     :google-site-verification: Q5q5TFbCofxA8-cSa1Frv5Hj4RopF5zwEZf_zaNHqf4
 
 .. seo::
-    :description: ESPHome - Smart Home Made Simple. ESPHome turns ESP8266/ESP32 microcontrollers into fully-featured smart home devices with just a few lines of YAML configuration. No programming experience required.
+    :description: ESPHome - Smart Home Made Simple. ESPHome turns ESP8266 and ESP32 microcontrollers into fully-featured smart home devices with just a few lines of YAML configuration. No programming experience required.
     :image: logo.svg
 
 .. raw:: html
