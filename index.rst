@@ -117,6 +117,23 @@ ESPHome takes care of the complex parts of firmware development, allowing you to
         </div>
     </div>
 
+Ready to get started?
+=====================
+
+Join thousands of smart home enthusiasts building custom devices with ESPHome.
+
+.. raw:: html
+
+    <div class="cta-container">
+        <div class="cta-content">
+            <div class="cta-buttons">
+                <a href="/guides/getting_started_hassio.html" class="btn btn-primary">Installation Guide</a>
+                <a href="/components/index.html" class="btn btn-secondary">Browse Components</a>
+                <a href="https://devices.esphome.io/" class="btn btn-secondary">Device Database</a>
+            </div>
+        </div>
+    </div>
+
 .. _who-uses-esphome:
 
 Who Uses ESPHome?
@@ -312,45 +329,34 @@ Advanced Features
 * **Backup Integration**: Include ESPHome configurations in your Home Assistant backups
 * **Firmware Updates**: Update ESPHome devices directly from the Home Assistant interface
 
+Join the Community
+==================
+
 .. raw:: html
 
     <div class="cta-container">
         <div class="cta-content">
-            <h2>Ready to get started?</h2>
-            <p>Join thousands of smart home enthusiasts building custom devices with ESPHome</p>
             <div class="cta-buttons">
-                <a href="/guides/getting_started_hassio.html" class="btn btn-primary">Installation Guide</a>
-                <a href="/components/index.html" class="btn btn-secondary">Browse Components</a>
-                <a href="https://devices.esphome.io/" class="btn btn-secondary">Device Database</a>
-            </div>
-        </div>
-    </div>
-
-.. raw:: html
-
-    <h2>Join the Community</h2>
-    <div class="community-container">
-        <div class="community-links">
-            <a href="https://discord.gg/KhAMKrd" class="community-link" target="_blank"
-            rel="noopener noreferrer">
-                <i aria-hidden="true" class="fab fa-discord"></i>
-                <span>Discord</span>
-            </a>
-            <a href="https://github.com/esphome/esphome" class="community-link" target="_blank"
-            rel="noopener noreferrer">
-                <i aria-hidden="true" class="fab fa-github"></i>
-                <span>GitHub</span>
-            </a>
-            <a href="https://community.home-assistant.io/c/esphome/" class="community-link" target="_blank"
-            rel="noopener noreferrer">
-                <i aria-hidden="true" class="far fa-comments"></i>
-                <span>Forums</span>
-            </a>
-            <a href="https://twitter.com/esphome_" class="community-link" target="_blank"
-            rel="noopener noreferrer">
-                <i aria-hidden="true" class="fab fa-twitter"></i>
-                <span>Twitter</span>
-            </a>
+                <a href="https://discord.gg/KhAMKrd" class="btn btn-primary" target="_blank"
+                rel="noopener noreferrer">
+                    <i aria-hidden="true" class="fab fa-discord"></i>
+                    <span>Discord</span>
+                </a>
+                <a href="https://github.com/esphome/esphome" class="btn btn-primary" target="_blank"
+                rel="noopener noreferrer">
+                    <i aria-hidden="true" class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+                <a href="https://community.home-assistant.io/c/esphome/" class="btn btn-primary" target="_blank"
+                rel="noopener noreferrer">
+                    <i aria-hidden="true" class="far fa-comments"></i>
+                    <span>Forums</span>
+                </a>
+                <a href="https://twitter.com/esphome_" class="btn btn-primary" target="_blank"
+                rel="noopener noreferrer">
+                    <i aria-hidden="true" class="fab fa-twitter"></i>
+                    <span>Twitter</span>
+                </a>
         </div>
     </div>
 

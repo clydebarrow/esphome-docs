@@ -188,6 +188,9 @@
     display: flex;
     gap: 15px;
     margin-top: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 .cta-buttons .btn {
@@ -219,86 +222,6 @@
 .cta-buttons .btn-secondary:hover {
     background-color: rgba(3, 169, 244, 0.1);
     transform: translateY(-2px);
-}
-
-/* Community Container Styles */
-.community-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: flex-start;
-    margin: 40px 0;
-    max-width: 800px;
-}
-
-.community-card {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    padding: 25px;
-    width: 280px;
-    transition: transform 0.3s, box-shadow 0.3s;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-}
-
-.community-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-}
-
-.community-card img {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 15px;
-}
-
-.community-card h3 {
-    margin: 0 0 10px 0;
-    font-size: 20px;
-    color: #333;
-}
-
-.community-card p {
-    color: #666;
-    line-height: 1.5;
-    margin: 0;
-}
-
-.community-links {
-    display: flex;
-    gap: 10px;
-}
-
-.community-links a {
-    padding: 8px 16px;
-    border: none;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.community-links a i {
-    font-size: 16px;
-}
-
-.community-links a {
-    background-color: #03a9f4;
-    color: white;
-}
-
-.community-links a:hover {
-    background-color: #0288d1;
-}
-
-.community-links a:hover {
-    background-color: rgba(3, 169, 244, 0.1);
 }
 
 /* Feature Cards */
@@ -441,26 +364,6 @@ body {
         background-color: rgba(0, 191, 255, 0.1);
     }
 
-    .community-card {
-        background-color: #2a2a2a;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
-
-    .community-card h3 {
-        color: #ececec;
-    }
-
-    .community-card p {
-        color: #bbb;
-    }
-
-    .community-links a {
-        background-color: #00bfff;
-    }
-
-    .community-links a:hover {
-        background-color: #0099cc;
-    }
 }
 
 /* Responsive Adjustments */
@@ -486,16 +389,6 @@ body {
 
     .cta-buttons {
         flex-direction: column;
-    }
-
-    .community-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .community-card {
-        width: 100%;
-        max-width: 320px;
     }
 }
 
