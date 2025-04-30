@@ -288,22 +288,16 @@
     font-size: 16px;
 }
 
-.community-links a.primary {
+.community-links a {
     background-color: #03a9f4;
     color: white;
 }
 
-.community-links a.primary:hover {
+.community-links a:hover {
     background-color: #0288d1;
 }
 
-.community-links a.secondary {
-    background-color: transparent;
-    color: #03a9f4;
-    border: 1px solid #03a9f4;
-}
-
-.community-links a.secondary:hover {
+.community-links a:hover {
     background-color: rgba(3, 169, 244, 0.1);
 }
 
@@ -328,12 +322,12 @@
     box-shadow: 0 8px 24px rgba(0,0,0,0.12);
 }
 
-.feature-card h3 {
+.feature-text {
     margin-top: 0;
     margin-bottom: 10px;
     font-size: 20px;
     color: #333;
-    display: flex;
+    display: inline-flex;
     align-items: center;
 }
 
@@ -460,21 +454,12 @@ body {
         color: #bbb;
     }
 
-    .community-links a.primary {
+    .community-links a {
         background-color: #00bfff;
     }
 
-    .community-links a.primary:hover {
+    .community-links a:hover {
         background-color: #0099cc;
-    }
-
-    .community-links a.secondary {
-        color: #00bfff;
-        border-color: #00bfff;
-    }
-
-    .community-links a.secondary:hover {
-        background-color: rgba(0, 191, 255, 0.1);
     }
 }
 

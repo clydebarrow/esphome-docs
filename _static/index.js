@@ -98,12 +98,14 @@ document.addEventListener('DOMContentLoaded', function() {
             hamburger.setAttribute('aria-expanded', 'false');
         }
     });
-});
 
-// Hamburger menu toggle
 
-// Search functionality
-window.addEventListener('DOMContentLoaded', (event) => {
+    // Search functionality
+    if (typeof PagefindModularUI === 'undefined') {
+        console.error('PagefindModularUI library not loaded');
+        return;
+    }
+
     // Create search input and container
     const searchContainer = document.getElementById('nav-search-container');
 
@@ -114,28 +116,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
     searchInput.placeholder = 'Search...';
     searchInput.className = 'pagefind-ui__search-input';
     searchContainer.appendChild(searchInput);
-
-    // Create clear button
-    const clearButton = document.createElement('button');
-    clearButton.type = 'button';
-    clearButton.className = 'search-clear-button';
-    clearButton.innerHTML = '<i class="fas fa-times"></i>';
-    clearButton.style.display = 'none';
-    searchContainer.appendChild(clearButton);
-
-    // Show/hide clear button based on input content
-    searchInput.addEventListener('input', () => {
-        clearButton.style.display = searchInput.value.length > 0 ? 'flex' : 'none';
-    });
-
-    // Clear search when button is clicked
-    clearButton.addEventListener('click', () => {
-        searchInput.value = '';
-        clearButton.style.display = 'none';
-        instance.triggerSearch('');
-        resultsContainer.style.display = 'none';
-        searchInput.focus(); // Re-focus the search box after clearing
-    });
 
     // Create search results container
     const resultsContainer = document.getElementById('nav-search-results');
@@ -170,5 +150,27 @@ window.addEventListener('DOMContentLoaded', (event) => {
         } else {
             resultsContainer.style.display = 'none';
         }
+    });
+
+    // Create clear button
+    const clearButton = document.createElement('button');
+    clearButton.type = 'button';
+    clearButton.className = 'search-clear-button';
+    clearButton.innerHTML = '<i class="fas fa-times"></i>';
+    clearButton.style.display = 'none';
+    searchContainer.appendChild(clearButton);
+
+    // Show/hide clear button based on input content
+    searchInput.addEventListener('input', () => {
+        clearButton.style.display = searchInput.value.length > 0 ? 'flex' : 'none';
+    });
+
+    // Clear search when button is clicked
+    clearButton.addEventListener('click', () => {
+        searchInput.value = '';
+        clearButton.style.display = 'none';
+        instance.triggerSearch('');
+        resultsContainer.style.display = 'none';
+        searchInput.focus(); // Re-focus the search box after clearing
     });
 });

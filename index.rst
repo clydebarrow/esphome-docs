@@ -100,19 +100,19 @@ ESPHome takes care of the complex parts of firmware development, allowing you to
 
     <div class="feature-grid">
         <div class="feature-card">
-            <h3><div class="feature-icon"><i class="fas fa-code"></i></div>No Coding Required</h3>
+            <div class="feature-icon"><i class="fas fa-code"></i></div><div class="feature-text">No Coding Required</div>
             <p>Simple YAML configuration files instead of complex C++ code</p>
         </div>
         <div class="feature-card">
-            <h3><div class="feature-icon"><i class="fas fa-wifi"></i></div>Wireless Updates</h3>
+            <div class="feature-icon"><i class="fas fa-wifi"></i></div><div class="feature-text">Wireless Updates</div>
             <p>Update your devices over-the-air without physical access</p>
         </div>
         <div class="feature-card">
-            <h3><div class="feature-icon"><i class="fas fa-puzzle-piece"></i></div>Modular Design</h3>
+            <div class="feature-icon"><i class="fas fa-puzzle-piece"></i></div><div class="feature-text">Modular Design</div>
             <p>Support for hundreds of sensors, displays, and other components</p>
         </div>
         <div class="feature-card">
-            <h3><div class="feature-icon"><i class="fas fa-shield-alt"></i></div>Local Control</h3>
+            <div class="feature-icon"><i class="fas fa-shield-alt"></i></div><div class="feature-text">Local Control</div>
             <p>Devices work locally without cloud dependencies</p>
         </div>
     </div>
