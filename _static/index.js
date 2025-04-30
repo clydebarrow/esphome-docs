@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
             // Toggle this one
-            var expanded = button.getAttribute('aria-expanded') === 'true';
+            const expanded = button.getAttribute('aria-expanded') === 'true';
             button.setAttribute('aria-expanded', !expanded);
             if (button.nextElementSibling) {
                 button.nextElementSibling.style.display = expanded ? 'none' : 'block';
@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Toggle dropdown function
     function toggleDropdown(button) {
+        if (window.innerWidth > 768) return;
         const isExpanded = button.getAttribute('aria-expanded') === 'true';
         closeAllDropdowns();
 
@@ -70,15 +71,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
-    var hamburger = document.querySelector('.hamburger-button');
-    var navLinks = document.querySelector('.nav-links');
+    const hamburger = document.querySelector('.hamburger-button');
+    const navLinks = document.querySelector('.nav-links');
     if (!hamburger || !navLinks) return;
     hamburger.addEventListener('click', function(e) {
         e.preventDefault();
         e.stopPropagation();
         hamburger.classList.toggle('active');
         navLinks.classList.toggle('active');
-        var expanded = hamburger.getAttribute('aria-expanded') === 'true';
+        const expanded = hamburger.getAttribute('aria-expanded') === 'true';
         hamburger.setAttribute('aria-expanded', !expanded);
     });
     // Close menu on outside click (mobile only)

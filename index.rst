@@ -56,7 +56,7 @@
                     </div>
                 </div>
                 <div class="nav-search">
-                    <div id="nav-search-container" style="position: relative;"></div>
+                    <div id="nav-search-container"></div>
                     <div id="nav-search-results"></div>
                 </div>
             </div>
@@ -100,19 +100,19 @@ ESPHome takes care of the complex parts of firmware development, allowing you to
 
     <div class="feature-grid">
         <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-code"></i></div><div class="feature-text">No Coding Required</div>
+            <div class="feature-icon"><i aria-hidden="true" class="fas fa-code"></i></div><div class="feature-text">No Coding Required</div>
             <p>Simple YAML configuration files instead of complex C++ code</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-wifi"></i></div><div class="feature-text">Wireless Updates</div>
+            <div class="feature-icon"><i aria-hidden="true" class="fas fa-wifi"></i></div><div class="feature-text">Wireless Updates</div>
             <p>Update your devices over-the-air without physical access</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-puzzle-piece"></i></div><div class="feature-text">Modular Design</div>
+            <div class="feature-icon"><i aria-hidden="true" class="fas fa-puzzle-piece"></i></div><div class="feature-text">Modular Design</div>
             <p>Support for hundreds of sensors, displays, and other components</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-shield-alt"></i></div><div class="feature-text">Local Control</div>
+            <div class="feature-icon"><i aria-hidden="true" class="fas fa-shield-alt"></i></div><div class="feature-text">Local Control</div>
             <p>Devices work locally without cloud dependencies</p>
         </div>
     </div>
@@ -126,22 +126,22 @@ Who Uses ESPHome?
 
     <div class="feature-grid">
         <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-user-cog"></i></div>
+            <div class="feature-icon"><i aria-hidden="true" class="fas fa-user-cog"></i></div>
             <div class="feature-text">DIY Enthusiasts</div>
             <p>Create custom sensors, switches, and displays tailored to specific needs</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-home"></i></div>
+            <div class="feature-icon"><i aria-hidden="true" class="fas fa-home"></i></div>
             <div class="feature-text">Smart Home Hobbyists</div>
             <p>Extend their home automation systems with affordable custom devices</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-briefcase"></i></div>
+            <div class="feature-icon"><i aria-hidden="true" class="fas fa-briefcase"></i></div>
             <div class="feature-text">Professional Integrators</div>
             <p>Deploy reliable, locally-controlled smart devices for clients</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-industry"></i></div>
+            <div class="feature-icon"><i aria-hidden="true" class="fas fa-industry"></i></div>
             <div class="feature-text">Manufacturers</div>
             <p>Create <a href="/guides/made_for_esphome">Made for ESPHome</a> certified products with standardized firmware</p>
         </div>
@@ -155,22 +155,22 @@ Which microcontrollers does ESPHome support?
 
     <div class="feature-grid">
         <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-microchip"></i></div>
+            <div class="feature-icon"><i aria-hidden="true" class="fas fa-microchip"></i></div>
             <div class="feature-text">Espressif ESP8266/ESP32</div>
             <p>Wide support for ESP8266 and ESP32 microcontrollers, the heart of many IoT projects.</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon"><i class="fa-brands fa-raspberry-pi"></i></div>
+            <div class="feature-icon"><i aria-hidden="true" class="fa-brands fa-raspberry-pi"></i></div>
             <div class="feature-text">RP2040</div>
             <p>Support for Raspberry Pi’s RP2040 microcontroller.</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+            <div class="feature-icon"><i aria-hidden="true" class="fas fa-bolt"></i></div>
             <div class="feature-text">Tuya (RTL87xx/BK72xx)</div>
             <p>Selected Tuya devices using RTL87xx and BK72xx chips are supported.</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-computer"></i></div>
+            <div class="feature-icon"><i aria-hidden="true" class="fas fa-computer"></i></div>
             <div class="feature-text">Desktop</div>
             <p>Many ESPHome components can be run on a desktop computer using the <i>host</i> platform!</p>
         </div>
@@ -303,7 +303,7 @@ You can create powerful automations using ESPHome devices in Home Assistant:
 * Use sensor readings to trigger actions
 * Control ESPHome devices based on conditions
 * Include ESPHome devices in scenes and scripts
-* Create complex automations using multiple sensors and conditions.
+* Create complex automations using multiple sensors and conditions
 
 Advanced Features
 -----------------
@@ -333,22 +333,22 @@ Advanced Features
         <div class="community-links">
             <a href="https://discord.gg/KhAMKrd" class="community-link" target="_blank"
             rel="noopener noreferrer">
-                <i class="fab fa-discord"></i>
+                <i aria-hidden="true" class="fab fa-discord"></i>
                 <span>Discord</span>
             </a>
             <a href="https://github.com/esphome/esphome" class="community-link" target="_blank"
             rel="noopener noreferrer">
-                <i class="fab fa-github"></i>
+                <i aria-hidden="true" class="fab fa-github"></i>
                 <span>GitHub</span>
             </a>
             <a href="https://community.home-assistant.io/c/esphome/" class="community-link" target="_blank"
             rel="noopener noreferrer">
-                <i class="far fa-comments"></i>
+                <i aria-hidden="true" class="far fa-comments"></i>
                 <span>Forums</span>
             </a>
             <a href="https://twitter.com/esphome_" class="community-link" target="_blank"
             rel="noopener noreferrer">
-                <i class="fab fa-twitter"></i>
+                <i aria-hidden="true" class="fab fa-twitter"></i>
                 <span>Twitter</span>
             </a>
         </div>
