@@ -4,7 +4,7 @@
     :google-site-verification: Q5q5TFbCofxA8-cSa1Frv5Hj4RopF5zwEZf_zaNHqf4
 
 .. seo::
-    :description: ESPHome - Smart Home Made Simple. ESPHome turns ESP8266, ESP32, RP2040 and Tuya microcontrollers into fully-featured smart home devices.
+    :description: ESPHome - Smart Home Made Simple. ESPHome turns ESP8266, ESP32 and RP2040 microcontrollers into fully-featured smart home devices.
     :image: logo.svg
 
 .. raw:: html
@@ -74,7 +74,7 @@
     <div class="hero-container">
         <div class="hero-content">
             <h1>Smart Home Made Simple</h1>
-            <p>Turn your ESP8266, ESP32, RP2040 and Tuya boards into powerful smart home devices with simple YAML configuration</p>
+            <p>Turn your ESP8266, ESP32 or RP2040 boards into powerful smart home devices with simple YAML configuration</p>
         </div>
         <div class="hero-image">
             <img src="_images/hero.png" alt="ESPHome devices" />
@@ -166,8 +166,8 @@ Which microcontrollers does ESPHome support?
         </div>
         <div class="feature-card">
             <div class="feature-icon"><i aria-hidden="true" class="fas fa-bolt"></i></div>
-            <div class="feature-text">Tuya</div>
-            <p>Selected Tuya devices using RTL87xx and BK72xx chips are supported.</p>
+            <div class="feature-text">Others</div>
+            <p>Realtek RTL87xx and Beken BK72xx chips are supported.</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon"><i aria-hidden="true" class="fas fa-computer"></i></div>
