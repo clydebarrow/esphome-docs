@@ -532,7 +532,7 @@
     <div class="hero-container">
         <div class="hero-content">
             <h1>Smart Home Made Simple</h1>
-            <p>Turn your ESP8266/ESP32 or RP2040 boards into powerful smart home devices with simple YAML configuration</p>
+            <p>Turn your ESP8266, ESP32 or RP2040 boards into powerful smart home devices with simple YAML configuration</p>
         </div>
         <div class="hero-image">
             <img src="_images/hero.png" alt="ESPHome devices" />
@@ -550,7 +550,7 @@ ESPHome is an open-source firmware framework that simplifies the process of crea
 * **Integrate seamlessly with Home Assistant** for a unified smart home experience
 * **Control and monitor** your devices through multiple interfaces (web, API, MQTT)
 * **Automate your home** with powerful on-device automations
-* **Update your devices wirelessly** (OTA) without physical access
+* **Update your devices wirelessly** "Over The Air" (OTA) updates without physical access
 
 ESPHome takes care of the complex parts of firmware development, allowing you to focus on what matters - building your smart home exactly how you want it.
 
@@ -596,7 +596,7 @@ ESPHome is used by a diverse community of smart home enthusiasts, makers, and pr
     Deploy reliable, locally-controlled smart devices for clients
 
 **Manufacturers**
-    Create "Made for ESPHome" certified products with standardized firmware
+    Create :doc:`/guides/made_for_esphome` certified products with standardized firmware
 
 .. _getting-started:
 
@@ -615,7 +615,7 @@ Getting started with ESPHome is easy. Choose the method that works best for you:
                 <li>Open Home Assistant</li>
                 <li>Go to Settings → Add-ons → Add-on Store</li>
                 <li>Find and install the ESPHome add-on</li>
-                <li>Open the ESPHome dashboard and create your first device</li>
+                <li>Open the ESPHome Device Builder and create your first device</li>
             </ol>
             <a href="/guides/getting_started_hassio.html" class="btn btn-primary">Detailed Instructions</a>
         </div>
@@ -652,23 +652,21 @@ Here's a simple example of an ESPHome configuration file:
 
     # Basic configuration for an ESP32 device
     esphome:
-      name: living_room_sensor
+      name: living-room-sensor
       friendly_name: Living Room Sensor
 
     # Hardware configuration
     esp32:
       board: esp32dev
       framework:
-        type: arduino
+        type: esp-idf
 
     # Enable Home Assistant API
     api:
-      encryption:
-        key: "YOUR_ENCRYPTION_KEY"
 
     # Enable over-the-air updates
     ota:
-      password: "YOUR_OTA_PASSWORD"
+      platform: esphome
 
     # Connect to WiFi
     wifi:
@@ -677,8 +675,6 @@ Here's a simple example of an ESPHome configuration file:
       
       # Enable fallback hotspot if WiFi connection fails
       ap:
-        ssid: "Living Room Sensor Fallback"
-        password: "YOUR_FALLBACK_PASSWORD"
 
     # Enable web server
     web_server:
@@ -689,9 +685,9 @@ Here's a simple example of an ESPHome configuration file:
       - platform: dht
         pin: GPIO15
         temperature:
-          name: "Living Room Temperature"
+          name: "Temperature"
         humidity:
-          name: "Living Room Humidity"
+          name: "Humidity"
         update_interval: 60s
 
 .. _using-with-home-assistant:
@@ -735,7 +731,7 @@ You can create powerful automations using ESPHome devices in Home Assistant:
 Advanced Features
 -----------------
 
-* **ESPHome Dashboard Add-on**: Manage all your ESPHome devices directly from Home Assistant
+* **ESPHome Device Builder Add-on**: Manage all your ESPHome devices directly from Home Assistant
 * **YAML Synchronization**: Keep your configurations in sync with Home Assistant
 * **Backup Integration**: Include ESPHome configurations in your Home Assistant backups
 * **Firmware Updates**: Update ESPHome devices directly from the Home Assistant interface
