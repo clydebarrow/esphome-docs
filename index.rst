@@ -19,7 +19,7 @@
             </div>
             <div class="nav-links">
                 <div class="dropdown">
-                    <button type="button" class="dropbtn">Getting Started</button>
+                    <button type="button" class="dropbtn" aria-haspopup="true" aria-expanded="false">Getting Started</button>
                     <div class="dropdown-content">
                         <a href="/guides/getting_started_hassio.html">From Home Assistant</a>
                         <a href="/guides/getting_started_command_line.html">Using Command Line</a>
@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class="dropdown">
-                    <button type="button" class="dropbtn">Next Steps</button>
+                    <button type="button" class="dropbtn" aria-haspopup="true" aria-expanded="false">Next Steps</button>
                     <div class="dropdown-content">
                         <a href="/components/">Documentation</a>
                         <a href="/automations/">Automations</a>
@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <div class="dropdown">
-                    <button type="button" class="dropbtn">Keeping Up</button>
+                    <button type="button" class="dropbtn" aria-haspopup="true" aria-expanded="false">Keeping Up</button>
                     <div class="dropdown-content">
                         <a href="/changelog/">Changelog</a>
                         <a href="https://discord.gg/KhAMKrd">Discord</a>
@@ -60,6 +60,61 @@
 
     <script src="/pagefind/pagefind-modular-ui.js"></script>
     <script>
+        // Add keyboard support for dropdown menus
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownButtons = document.querySelectorAll('.dropbtn');
+            
+            dropdownButtons.forEach(button => {
+                // Handle Enter and Space key presses
+                button.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleDropdown(this);
+                    }
+                });
+                
+                // Handle click events
+                button.addEventListener('click', function() {
+                    toggleDropdown(this);
+                });
+            });
+            
+            // Close dropdowns when Escape key is pressed
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeAllDropdowns();
+                }
+            });
+            
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.matches('.dropbtn')) {
+                    closeAllDropdowns();
+                }
+            });
+            
+            // Toggle dropdown function
+            function toggleDropdown(button) {
+                const isExpanded = button.getAttribute('aria-expanded') === 'true';
+                closeAllDropdowns();
+                
+                if (!isExpanded) {
+                    button.setAttribute('aria-expanded', 'true');
+                    const dropdownContent = button.nextElementSibling;
+                    dropdownContent.style.display = 'block';
+                }
+            }
+            
+            // Close all dropdowns
+            function closeAllDropdowns() {
+                dropdownButtons.forEach(btn => {
+                    btn.setAttribute('aria-expanded', 'false');
+                    const dropdownContent = btn.nextElementSibling;
+                    dropdownContent.style.display = 'none';
+                });
+            }
+        });
+        
         window.addEventListener('DOMContentLoaded', (event) => {
             // Create search input and container
             const searchContainer = document.getElementById('nav-search-container');
