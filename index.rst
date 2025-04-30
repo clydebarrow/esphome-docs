@@ -4,7 +4,7 @@
     :google-site-verification: Q5q5TFbCofxA8-cSa1Frv5Hj4RopF5zwEZf_zaNHqf4
 
 .. seo::
-    :description: ESPHome - Smart Home Made Simple. ESPHome turns ESP8266 and ESP32 microcontrollers into fully-featured smart home devices with just a few lines of YAML configuration. No programming experience required.
+    :description: ESPHome - Smart Home Made Simple. ESPHome turns ESP8266, ESP32, RP2040 and Tuya microcontrollers into fully-featured smart home devices.
     :image: logo.svg
 
 .. raw:: html
@@ -74,7 +74,7 @@
     <div class="hero-container">
         <div class="hero-content">
             <h1>Smart Home Made Simple</h1>
-            <p>Turn your ESP8266, ESP32 or RP2040 boards into powerful smart home devices with simple YAML configuration</p>
+            <p>Turn your ESP8266, ESP32, RP2040 and Tuya boards into powerful smart home devices with simple YAML configuration</p>
         </div>
         <div class="hero-image">
             <img src="_images/hero.png" alt="ESPHome devices" />
@@ -144,6 +144,35 @@ Who Uses ESPHome?
             <div class="feature-icon"><i class="fas fa-industry"></i></div>
             <div class="feature-text">Manufacturers</div>
             <p>Create <a href="/guides/made_for_esphome">Made for ESPHome</a> certified products with standardized firmware</p>
+        </div>
+    </div>
+
+
+Which microcontrollers does ESPHome support?
+============================================
+
+.. raw:: html
+
+    <div class="feature-grid">
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-microchip"></i></div>
+            <div class="feature-text">Espressif ESP8266/ESP32</div>
+            <p>Wide support for ESP8266 and ESP32 microcontrollers, the heart of many IoT projects.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fa-brands fa-raspberry-pi"></i></div>
+            <div class="feature-text">RP2040</div>
+            <p>Support for Raspberry Pi’s RP2040 microcontroller.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+            <div class="feature-text">Tuya (RTL87xx/BK72xx)</div>
+            <p>Selected Tuya devices using RTL87xx and BK72xx chips are supported.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-computer"></i></div>
+            <div class="feature-text">Desktop</div>
+            <p>Many ESPHome components can be run on a desktop computer using the <i>host</i> platform!</p>
         </div>
     </div>
 
