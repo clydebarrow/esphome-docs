@@ -17,6 +17,11 @@
             <div class="nav-logo">
                 <a href="/"><img src="_images/logo.svg" alt="ESPHome Logo" height="30"></a>
             </div>
+            <button type="button" class="hamburger-button" aria-label="Open menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <div class="nav-links">
                 <div class="dropdown">
                     <button type="button" class="dropbtn" aria-haspopup="true" aria-expanded="false">Getting Started</button>
