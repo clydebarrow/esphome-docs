@@ -9,414 +9,9 @@
 
 .. raw:: html
 
-    <style>
-        /* Sticky Navigation Bar Styles */
-        .nav-container {
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .sticky-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            z-index: 1000;
-        }
-        
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            margin-bottom: -8px;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-        
-        /* Dropdown Menu Styles */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .dropbtn {
-            background-color: transparent;
-            color: #333;
-            padding: 10px;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            font-weight: 500;
-        }
-        
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #fff;
-            min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-            z-index: 1001;
-            border-radius: 4px;
-        }
-        
-        .dropdown-content a {
-            color: #333;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            transition: background-color 0.2s;
-        }
-        
-        .dropdown-content a:hover {
-            background-color: #f1f1f1;
-        }
-        
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-        
-        .dropdown:hover .dropbtn {
-            color: #03a9f4;
-        }
-        
-        /* Search Box Styles */
-        .nav-search {
-            margin-left: 20px;
-            position: relative;
-        }
-        
-        .nav-search .pagefind-ui__form {
-            margin: 0;
-        }
-        
-        .nav-search .pagefind-ui__search-input {
-            height: 36px;
-            padding: 0 12px;
-            border-radius: 18px;
-            border: 1px solid #ddd;
-            font-size: 14px;
-            width: 180px;
-            transition: width 0.3s;
-            background-color: #f5f5f5;
-        }
-        
-        .nav-search .pagefind-ui__search-input:focus {
-            width: 220px;
-            outline: none;
-            border-color: #03a9f4;
-        }
-        
-        .nav-search .pagefind-ui__search-clear {
-            width: 36px;
-            height: 36px;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: 14px;
-        }
-        
-        .nav-search .pagefind-ui__drawer {
-            position: absolute;
-            top: 50px;
-            right: 0;
-            width: 400px;
-            max-height: 80vh;
-            overflow-y: auto;
-            background: white;
-            border-radius: 4px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-            z-index: 1002;
-            padding: 15px;
-        }
-        
-        /* CTA Buttons Styles */
-        .cta-buttons {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .cta-buttons .btn {
-            padding: 12px 24px;
-            border-radius: 4px;
-            font-weight: 500;
-            text-decoration: none;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        
-        .cta-buttons .btn-primary {
-            background-color: #03a9f4;
-            color: white;
-            border: none;
-        }
-        
-        .cta-buttons .btn-primary:hover {
-            background-color: #0288d1;
-            transform: translateY(-2px);
-        }
-        
-        .cta-buttons .btn-secondary {
-            background-color: transparent;
-            color: #03a9f4;
-            border: 1px solid #03a9f4;
-        }
-        
-        .cta-buttons .btn-secondary:hover {
-            background-color: rgba(3, 169, 244, 0.1);
-            transform: translateY(-2px);
-        }
-        
-        /* Community Container Styles */
-        .community-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: flex-start;
-            margin: 40px 0;
-            max-width: 800px;
-        }
-        
-        .community-card {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            padding: 25px;
-            width: 280px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            text-align: left;
-        }
-        
-        .community-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-        }
-        
-        .community-card img {
-            width: 60px;
-            height: 60px;
-            margin-bottom: 15px;
-        }
-        
-        .community-card h3 {
-            margin: 0 0 10px 0;
-            font-size: 20px;
-            color: #333;
-        }
-        
-        .community-card p {
-            color: #666;
-            line-height: 1.5;
-            margin: 0;
-        }
-        
-        .community-links {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .community-links a {
-            padding: 8px 16px;
-            border: none;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .community-links a i {
-            font-size: 16px;
-        }
-        
-        .community-links a.primary {
-            background-color: #03a9f4;
-            color: white;
-        }
-        
-        .community-links a.primary:hover {
-            background-color: #0288d1;
-        }
-        
-        .community-links a.secondary {
-            background-color: transparent;
-            color: #03a9f4;
-            border: 1px solid #03a9f4;
-        }
-        
-        .community-links a.secondary:hover {
-            background-color: rgba(3, 169, 244, 0.1);
-        }
-        
-        /* Add spacing for the fixed navbar */
-        body {
-            padding-top: 60px;
-        }
-        
-        /* Dark mode support */
-        @media (prefers-color-scheme: dark) {
-            .nav-container {
-                background-color: #212121;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-            }
-            
-            .dropbtn {
-                color: #ececec;
-            }
-            
-            .dropdown-content {
-                background-color: #212121;
-            }
-            
-            .dropdown-content a {
-                color: #ececec;
-            }
-            
-            .dropdown-content a:hover {
-                background-color: #393939;
-            }
-            
-            .dropdown:hover .dropbtn {
-                color: #00bfff;
-            }
-            
-            .nav-search .pagefind-ui__search-input {
-                background-color: #333;
-                border-color: #444;
-                color: #ececec;
-            }
-            
-            .nav-search .pagefind-ui__search-input:focus {
-                border-color: #00bfff;
-            }
-            
-            .nav-search .pagefind-ui__drawer {
-                background-color: #212121;
-                color: #ececec;
-            }
-            
-            .cta-buttons .btn-primary {
-                background-color: #00bfff;
-            }
-            
-            .cta-buttons .btn-primary:hover {
-                background-color: #0099cc;
-            }
-            
-            .cta-buttons .btn-secondary {
-                color: #00bfff;
-                border-color: #00bfff;
-            }
-            
-            .cta-buttons .btn-secondary:hover {
-                background-color: rgba(0, 191, 255, 0.1);
-            }
-            
-            .community-card {
-                background-color: #2a2a2a;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            }
-            
-            .community-card h3 {
-                color: #ececec;
-            }
-            
-            .community-card p {
-                color: #bbb;
-            }
-            
-            .community-links a.primary {
-                background-color: #00bfff;
-            }
-            
-            .community-links a.primary:hover {
-                background-color: #0099cc;
-            }
-            
-            .community-links a.secondary {
-                color: #00bfff;
-                border-color: #00bfff;
-            }
-            
-            .community-links a.secondary:hover {
-                background-color: rgba(0, 191, 255, 0.1);
-            }
-        }
-        
-        /* Responsive Adjustments */
-        @media (max-width: 875px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .sticky-nav {
-                padding: 10px;
-            }
-            
-            .nav-search {
-                display: flex;
-                margin-left: 0;
-            }
-            
-            .nav-search .pagefind-ui__search-input {
-                width: 150px;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-            }
-            
-            .community-container {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .community-card {
-                width: 100%;
-                max-width: 320px;
-            }
-        }
-        
-        /* Search Results Styles */
-        #nav-search-results {
-            display: none;
-            position: absolute;
-            top: 50px;
-            right: 0;
-            width: 400px;
-            max-height: 80vh;
-            overflow-y: auto;
-            background: white;
-            border-radius: 4px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-            z-index: 1002;
-            padding: 15px;
-        }
-        
-        @media (prefers-color-scheme: dark) {
-            #nav-search-results {
-                background-color: #212121;
-                color: #ececec;
-            }
-        }
-    </style>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <link rel="stylesheet" href="_static/index.css">
+
     <div class="nav-container">
         <nav class="sticky-nav">
             <div class="nav-logo">
@@ -424,7 +19,7 @@
             </div>
             <div class="nav-links">
                 <div class="dropdown">
-                    <button class="dropbtn">Getting Started</button>
+                    <button type="button" class="dropbtn">Getting Started</button>
                     <div class="dropdown-content">
                         <a href="/guides/getting_started_hassio.html">From Home Assistant</a>
                         <a href="/guides/getting_started_command_line.html">Using Command Line</a>
@@ -434,7 +29,7 @@
                     </div>
                 </div>
                 <div class="dropdown">
-                    <button class="dropbtn">Next Steps</button>
+                    <button type="button" class="dropbtn">Next Steps</button>
                     <div class="dropdown-content">
                         <a href="/components/">Documentation</a>
                         <a href="/automations/">Automations</a>
@@ -446,7 +41,7 @@
                     </div>
                 </div>
                 <div class="dropdown">
-                    <button class="dropbtn">Keeping Up</button>
+                    <button type="button" class="dropbtn">Keeping Up</button>
                     <div class="dropdown-content">
                         <a href="/changelog/">Changelog</a>
                         <a href="https://discord.gg/KhAMKrd">Discord</a>
@@ -678,7 +273,6 @@ Here's a simple example of an ESPHome configuration file:
 
     # Enable web server
     web_server:
-      port: 80
 
     # Add a temperature sensor
     sensor:
@@ -755,19 +349,23 @@ Advanced Features
     <h2>Join the Community</h2>
     <div class="community-container">
         <div class="community-links">
-            <a href="https://discord.gg/KhAMKrd" class="community-link" target="_blank">
+            <a href="https://discord.gg/KhAMKrd" class="community-link" target="_blank"
+            rel="noopener noreferrer">
                 <i class="fab fa-discord"></i>
                 <span>Discord</span>
             </a>
-            <a href="https://github.com/esphome/esphome" class="community-link" target="_blank">
+            <a href="https://github.com/esphome/esphome" class="community-link" target="_blank"
+            rel="noopener noreferrer">
                 <i class="fab fa-github"></i>
                 <span>GitHub</span>
             </a>
-            <a href="https://community.home-assistant.io/c/esphome/" class="community-link" target="_blank">
+            <a href="https://community.home-assistant.io/c/esphome/" class="community-link" target="_blank"
+            rel="noopener noreferrer">
                 <i class="far fa-comments"></i>
                 <span>Forums</span>
             </a>
-            <a href="https://twitter.com/esphome_" class="community-link" target="_blank">
+            <a href="https://twitter.com/esphome_" class="community-link" target="_blank"
+            rel="noopener noreferrer">
                 <i class="fab fa-twitter"></i>
                 <span>Twitter</span>
             </a>
