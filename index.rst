@@ -598,27 +598,6 @@ ESPHome is used by a diverse community of smart home enthusiasts, makers, and pr
 **Manufacturers**
     Create "Made for ESPHome" certified products with standardized firmware
 
-.. raw:: html
-
-    <div class="community-container">
-        <div class="community-card">
-            <h3>Join Our Community</h3>
-            <p>Connect with other ESPHome users, get help with your projects, and share your creations.</p>
-            <div class="community-links">
-                <a href="https://discord.gg/KhAMKrd" class="primary"><i class="fab fa-discord"></i> Discord</a>
-                <a href="https://community.home-assistant.io/c/esphome/" class="secondary"><i class="far fa-comments"></i> Forums</a>
-            </div>
-        </div>
-        <div class="community-card">
-            <h3>Contribute to ESPHome</h3>
-            <p>Help improve ESPHome by contributing code, documentation, or helping other users.</p>
-            <div class="community-links">
-                <a href="https://github.com/esphome/esphome" class="primary"><i class="fab fa-github"></i> GitHub</a>
-                <a href="/guides/contributing.html" class="secondary"><i class="fas fa-book"></i> Guide</a>
-            </div>
-        </div>
-    </div>
-
 .. _getting-started:
 
 Getting Started
