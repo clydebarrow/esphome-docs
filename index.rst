@@ -166,7 +166,7 @@ Which microcontrollers does ESPHome support?
         </div>
         <div class="feature-card">
             <div class="feature-icon"><i aria-hidden="true" class="fas fa-bolt"></i></div>
-            <div class="feature-text">Tuya (RTL87xx/BK72xx)</div>
+            <div class="feature-text">Tuya</div>
             <p>Selected Tuya devices using RTL87xx and BK72xx chips are supported.</p>
         </div>
         <div class="feature-card">
