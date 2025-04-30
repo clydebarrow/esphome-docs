@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div class="nav-search">
-                    <div id="nav-search"></div>
+                    <div id="nav-search-container" style="position: relative;"></div>
                     <div id="nav-search-results"></div>
                 </div>
             </div>
@@ -61,14 +61,38 @@
     <script src="/pagefind/pagefind-modular-ui.js"></script>
     <script>
         window.addEventListener('DOMContentLoaded', (event) => {
+            // Create search input and container
+            const searchContainer = document.getElementById('nav-search-container');
+            
             // Create search input
-            const searchContainer = document.getElementById('nav-search');
             const searchInput = document.createElement('input');
             searchInput.type = 'text';
             searchInput.id = "frontpage-search";
             searchInput.placeholder = 'Search...';
             searchInput.className = 'pagefind-ui__search-input';
             searchContainer.appendChild(searchInput);
+            
+            // Create clear button
+            const clearButton = document.createElement('button');
+            clearButton.type = 'button';
+            clearButton.className = 'search-clear-button';
+            clearButton.innerHTML = '<i class="fas fa-times"></i>';
+            clearButton.style.display = 'none';
+            searchContainer.appendChild(clearButton);
+            
+            // Show/hide clear button based on input content
+            searchInput.addEventListener('input', () => {
+                clearButton.style.display = searchInput.value.length > 0 ? 'flex' : 'none';
+            });
+            
+            // Clear search when button is clicked
+            clearButton.addEventListener('click', () => {
+                searchInput.value = '';
+                clearButton.style.display = 'none';
+                instance.triggerSearch('');
+                resultsContainer.style.display = 'none';
+                searchInput.focus(); // Re-focus the search box after clearing
+            });
             
             // Create search results container
             const resultsContainer = document.getElementById('nav-search-results');
@@ -153,23 +177,19 @@ ESPHome takes care of the complex parts of firmware development, allowing you to
 
     <div class="feature-grid">
         <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-code"></i></div>
-            <h3>No Coding Required</h3>
+            <h3><div class="feature-icon"><i class="fas fa-code"></i></div>No Coding Required</h3>
             <p>Simple YAML configuration files instead of complex C++ code</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-wifi"></i></div>
-            <h3>Wireless Updates</h3>
+            <h3><div class="feature-icon"><i class="fas fa-wifi"></i></div>Wireless Updates</h3>
             <p>Update your devices over-the-air without physical access</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-puzzle-piece"></i></div>
-            <h3>Modular Design</h3>
+            <h3><div class="feature-icon"><i class="fas fa-puzzle-piece"></i></div>Modular Design</h3>
             <p>Support for hundreds of sensors, displays, and other components</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-            <h3>Local Control</h3>
+            <h3><div class="feature-icon"><i class="fas fa-shield-alt"></i></div>Local Control</h3>
             <p>Devices work locally without cloud dependencies</p>
         </div>
     </div>
@@ -320,7 +340,7 @@ You can create powerful automations using ESPHome devices in Home Assistant:
 * Use sensor readings to trigger actions
 * Control ESPHome devices based on conditions
 * Include ESPHome devices in scenes and scripts
-* Create complex multi-device automations
+* Create complex automations using multiple sensors and conditions.
 
 Advanced Features
 -----------------
