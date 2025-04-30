@@ -346,7 +346,6 @@ Advanced Features
 -----------------
 
 * **ESPHome Device Builder Add-on**: Manage all your ESPHome devices directly from Home Assistant
-* **YAML Synchronization**: Keep your configurations in sync with Home Assistant
 * **Backup Integration**: Include ESPHome configurations in your Home Assistant backups
 * **Firmware Updates**: Update ESPHome devices directly from the Home Assistant interface
 
