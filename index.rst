@@ -122,19 +122,30 @@ ESPHome takes care of the complex parts of firmware development, allowing you to
 Who Uses ESPHome?
 =================
 
-ESPHome is used by a diverse community of smart home enthusiasts, makers, and professionals:
+.. raw:: html
 
-**DIY Enthusiasts**
-    Create custom sensors, switches, and displays tailored to specific needs
-
-**Smart Home Hobbyists**
-    Extend their home automation systems with affordable custom devices
-
-**Professional Integrators**
-    Deploy reliable, locally-controlled smart devices for clients
-
-**Manufacturers**
-    Create :doc:`/guides/made_for_esphome` certified products with standardized firmware
+    <div class="feature-grid">
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-user-cog"></i></div>
+            <div class="feature-text">DIY Enthusiasts</div>
+            <p>Create custom sensors, switches, and displays tailored to specific needs</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-home"></i></div>
+            <div class="feature-text">Smart Home Hobbyists</div>
+            <p>Extend their home automation systems with affordable custom devices</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-briefcase"></i></div>
+            <div class="feature-text">Professional Integrators</div>
+            <p>Deploy reliable, locally-controlled smart devices for clients</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-industry"></i></div>
+            <div class="feature-text">Manufacturers</div>
+            <p>Create <a href="/guides/made_for_esphome">Made for ESPHome</a> certified products with standardized firmware</p>
+        </div>
+    </div>
 
 .. _getting-started:
 
