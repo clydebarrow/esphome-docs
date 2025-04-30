@@ -1,171 +1,803 @@
-.. title:: ESPHome
+.. title:: ESPHome - Smart Home Made Simple
 
 .. meta::
     :google-site-verification: Q5q5TFbCofxA8-cSa1Frv5Hj4RopF5zwEZf_zaNHqf4
 
 .. seo::
-    :description: ESPHome Homepage - Reimagining DIY Home Automation. ESPHome is a framework that
-      tries to provide the best possible use experience for using IoT microcontrollers
-      for Home Automation. Just write a simple YAML configuration file and get your own customized firmware.
+    :description: ESPHome - Smart Home Made Simple. ESPHome turns ESP8266 and ESP32 microcontrollers into fully-featured smart home devices with just a few lines of YAML configuration. No programming experience required.
     :image: logo.svg
-
-.. image:: images/logo-text.svg
-    :class: logo
-
-ESPHome is a system which allows you to turn common microcontrollers into smart home devices.
-
-.. image:: images/hero.png
-
-It uses `YAML <https://en.wikipedia.org/wiki/YAML>`__ configuration files and, based on the content of these file(s),
-it creates custom firmware which you can then install directly onto your device.
-
-Hardware defined in the configuration--such as sensors, switches, lights, and so on--will automatically appear in
-`Home Assistant's <http://home-assistant.io>`__ user interface or can be made available via a simple web user interface
-or MQTT.
 
 .. raw:: html
 
-    <div class="guide-container">
-        <div class="guide-card">
-            <h3 class="guide-card-title">Getting started</h3>
-            <ul>
-                <li>
-                    <a class="reference" href="/guides/getting_started_hassio.html">
-                        from Home Assistant
-                    </a>
-                </li>
-                <li>
-                    <a class="reference" href="/guides/getting_started_command_line.html">
-                        using the command line
-                    </a>
-                </li>
-                <li>
-                    <a class="reference" href="/projects/">
-                        install ready-made project
-                    </a>
-                </li>
-                <li>
-                    <a class="reference" href="/guides/migrate_sonoff_tasmota.html">
-                        by migrating from Tasmota
-                    </a>
-                </li>
-                <li>
-                    <a class="reference" href="/guides/faq.html">
-                        FAQ and Tips
-                    </a>
-                </li>
-            </ul>
-            <div class="example highlight">
-                <pre>
-                    <span class="nt">esphome</span><span class="p">:</span>
-                    <span class="w">&nbsp;&nbsp;</span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">awesome</span>
-                    <span class="nt">esp32</span><span class="p">:</span>
-                    <span class="w">&nbsp;&nbsp;</span><span class="nt">board</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nodemcu-32s</span>
-                </pre>
+    <style>
+        /* Sticky Navigation Bar Styles */
+        .nav-container {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .sticky-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            z-index: 1000;
+        }
+        
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: -8px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        /* Dropdown Menu Styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropbtn {
+            background-color: transparent;
+            color: #333;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 1001;
+            border-radius: 4px;
+        }
+        
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.2s;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .dropdown:hover .dropbtn {
+            color: #03a9f4;
+        }
+        
+        /* Search Box Styles */
+        .nav-search {
+            margin-left: 20px;
+            position: relative;
+        }
+        
+        .nav-search .pagefind-ui__form {
+            margin: 0;
+        }
+        
+        .nav-search .pagefind-ui__search-input {
+            height: 36px;
+            padding: 0 12px;
+            border-radius: 18px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+            width: 180px;
+            transition: width 0.3s;
+            background-color: #f5f5f5;
+        }
+        
+        .nav-search .pagefind-ui__search-input:focus {
+            width: 220px;
+            outline: none;
+            border-color: #03a9f4;
+        }
+        
+        .nav-search .pagefind-ui__search-clear {
+            width: 36px;
+            height: 36px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 14px;
+        }
+        
+        .nav-search .pagefind-ui__drawer {
+            position: absolute;
+            top: 50px;
+            right: 0;
+            width: 400px;
+            max-height: 80vh;
+            overflow-y: auto;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 1002;
+            padding: 15px;
+        }
+        
+        /* CTA Buttons Styles */
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .cta-buttons .btn {
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-weight: 500;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-buttons .btn-primary {
+            background-color: #03a9f4;
+            color: white;
+            border: none;
+        }
+        
+        .cta-buttons .btn-primary:hover {
+            background-color: #0288d1;
+            transform: translateY(-2px);
+        }
+        
+        .cta-buttons .btn-secondary {
+            background-color: transparent;
+            color: #03a9f4;
+            border: 1px solid #03a9f4;
+        }
+        
+        .cta-buttons .btn-secondary:hover {
+            background-color: rgba(3, 169, 244, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* Community Container Styles */
+        .community-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: flex-start;
+            margin: 40px 0;
+            max-width: 800px;
+        }
+        
+        .community-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            padding: 25px;
+            width: 280px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+        }
+        
+        .community-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+        
+        .community-card img {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 15px;
+        }
+        
+        .community-card h3 {
+            margin: 0 0 10px 0;
+            font-size: 20px;
+            color: #333;
+        }
+        
+        .community-card p {
+            color: #666;
+            line-height: 1.5;
+            margin: 0;
+        }
+        
+        .community-links {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .community-links a {
+            padding: 8px 16px;
+            border: none;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .community-links a i {
+            font-size: 16px;
+        }
+        
+        .community-links a.primary {
+            background-color: #03a9f4;
+            color: white;
+        }
+        
+        .community-links a.primary:hover {
+            background-color: #0288d1;
+        }
+        
+        .community-links a.secondary {
+            background-color: transparent;
+            color: #03a9f4;
+            border: 1px solid #03a9f4;
+        }
+        
+        .community-links a.secondary:hover {
+            background-color: rgba(3, 169, 244, 0.1);
+        }
+        
+        /* Add spacing for the fixed navbar */
+        body {
+            padding-top: 60px;
+        }
+        
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            .nav-container {
+                background-color: #212121;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            }
+            
+            .dropbtn {
+                color: #ececec;
+            }
+            
+            .dropdown-content {
+                background-color: #212121;
+            }
+            
+            .dropdown-content a {
+                color: #ececec;
+            }
+            
+            .dropdown-content a:hover {
+                background-color: #393939;
+            }
+            
+            .dropdown:hover .dropbtn {
+                color: #00bfff;
+            }
+            
+            .nav-search .pagefind-ui__search-input {
+                background-color: #333;
+                border-color: #444;
+                color: #ececec;
+            }
+            
+            .nav-search .pagefind-ui__search-input:focus {
+                border-color: #00bfff;
+            }
+            
+            .nav-search .pagefind-ui__drawer {
+                background-color: #212121;
+                color: #ececec;
+            }
+            
+            .cta-buttons .btn-primary {
+                background-color: #00bfff;
+            }
+            
+            .cta-buttons .btn-primary:hover {
+                background-color: #0099cc;
+            }
+            
+            .cta-buttons .btn-secondary {
+                color: #00bfff;
+                border-color: #00bfff;
+            }
+            
+            .cta-buttons .btn-secondary:hover {
+                background-color: rgba(0, 191, 255, 0.1);
+            }
+            
+            .community-card {
+                background-color: #2a2a2a;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            }
+            
+            .community-card h3 {
+                color: #ececec;
+            }
+            
+            .community-card p {
+                color: #bbb;
+            }
+            
+            .community-links a.primary {
+                background-color: #00bfff;
+            }
+            
+            .community-links a.primary:hover {
+                background-color: #0099cc;
+            }
+            
+            .community-links a.secondary {
+                color: #00bfff;
+                border-color: #00bfff;
+            }
+            
+            .community-links a.secondary:hover {
+                background-color: rgba(0, 191, 255, 0.1);
+            }
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 875px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .sticky-nav {
+                padding: 10px;
+            }
+            
+            .nav-search {
+                display: flex;
+                margin-left: 0;
+            }
+            
+            .nav-search .pagefind-ui__search-input {
+                width: 150px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .community-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .community-card {
+                width: 100%;
+                max-width: 320px;
+            }
+        }
+        
+        /* Search Results Styles */
+        #nav-search-results {
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 0;
+            width: 400px;
+            max-height: 80vh;
+            overflow-y: auto;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 1002;
+            padding: 15px;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            #nav-search-results {
+                background-color: #212121;
+                color: #ececec;
+            }
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <div class="nav-container">
+        <nav class="sticky-nav">
+            <div class="nav-logo">
+                <a href="/"><img src="_images/logo.svg" alt="ESPHome Logo" height="30"></a>
             </div>
+            <div class="nav-links">
+                <div class="dropdown">
+                    <button class="dropbtn">Getting Started</button>
+                    <div class="dropdown-content">
+                        <a href="/guides/getting_started_hassio.html">From Home Assistant</a>
+                        <a href="/guides/getting_started_command_line.html">Using Command Line</a>
+                        <a href="/projects/">Ready-Made Projects</a>
+                        <a href="/guides/migrate_sonoff_tasmota.html">Migrate from Tasmota</a>
+                        <a href="/guides/faq.html">FAQ and Tips</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">Next Steps</button>
+                    <div class="dropdown-content">
+                        <a href="/components/">Documentation</a>
+                        <a href="/automations/">Automations</a>
+                        <a href="/guides/configuration-types.html">Configuration Types</a>
+                        <a href="https://devices.esphome.io/">Device Examples</a>
+                        <a href="/guides/diy.html">DIY Examples</a>
+                        <a href="/guides/creators.html">Sharing ESPHome Devices</a>
+                        <a href="/guides/made_for_esphome.html">Made for ESPHome</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">Keeping Up</button>
+                    <div class="dropdown-content">
+                        <a href="/changelog/">Changelog</a>
+                        <a href="https://discord.gg/KhAMKrd">Discord</a>
+                        <a href="https://community.home-assistant.io/c/esphome/">Forums</a>
+                        <a href="/guides/contributing.html">Contributing</a>
+                        <a href="/guides/supporters.html">Supporters</a>
+                    </div>
+                </div>
+                <div class="nav-search">
+                    <div id="nav-search"></div>
+                    <div id="nav-search-results"></div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <script src="/pagefind/pagefind-modular-ui.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            // Create search input
+            const searchContainer = document.getElementById('nav-search');
+            const searchInput = document.createElement('input');
+            searchInput.type = 'text';
+            searchInput.id = "frontpage-search";
+            searchInput.placeholder = 'Search...';
+            searchInput.className = 'pagefind-ui__search-input';
+            searchContainer.appendChild(searchInput);
+            
+            // Create search results container
+            const resultsContainer = document.getElementById('nav-search-results');
+            
+            // Initialize PagefindModularUI
+            const instance = new PagefindModularUI.Instance({
+                showSubResults: true,
+                showImages: false,
+                resetStyles: true,
+                ranking: {
+                    pageLength: 0.0,
+                    termSaturation: 1.6,
+                    termFrequency: 0.4,
+                    termSimilarity: 6.0
+                }
+            });
+            
+            // Add input component
+            instance.add(new PagefindModularUI.Input({
+                inputElement: "#frontpage-search"
+            }));
+            
+            // Add results component
+            instance.add(new PagefindModularUI.ResultList({
+                containerElement: "#nav-search-results"
+            }));
+            
+            // Show/hide results
+            instance.on("results", (results) => {
+                if (results.results.length) {
+                    resultsContainer.style.display = 'block';
+                } else {
+                    resultsContainer.style.display = 'none';
+                }
+            });
+            
+            // Hide results when clicking outside
+            document.addEventListener('click', (event) => {
+                if (!event.target.closest('.nav-search')) {
+                    resultsContainer.style.display = 'none';
+                }
+            });
+            
+            // Focus input on click
+            searchInput.addEventListener('click', (event) => {
+                event.stopPropagation();
+            });
+        });
+    </script>
+
+.. raw:: html
+    :file: images/logo-text.svg
+
+.. raw:: html
+
+    <div class="hero-container">
+        <div class="hero-content">
+            <h1>Smart Home Made Simple</h1>
+            <p>Turn your ESP8266/ESP32 or RP2040 boards into powerful smart home devices with simple YAML configuration</p>
         </div>
-        <div class="guide-card">
-            <h3 class="guide-card-title">Next steps</h3>
-            <ul>
-                <li>
-                    <a class="reference" href="/components/index.html">
-                        Documentation
-                    </a>
-                </li>
-                <li>
-                    <a class="reference" href="/automations/index.html">
-                        Automations
-                    </a>
-                </li>
-                <li>
-                    <a class="reference" href="/guides/configuration-types.html">
-                        Configuration types
-                    </a>
-                </li>
-                <li>
-                    <a class="reference" href="https://devices.esphome.io/">
-                        Device configuration examples
-                    </a>
-                </li>
-                <li>
-                    <a class="reference" href="/guides/diy.html">
-                        DIY Examples
-                    </a>
-                </li>
-                <li>
-                    <a class="reference" href="/guides/creators.html">
-                        Sharing ESPHome devices
-                    </a>
-                </li>
-                <li>
-                    <a class="reference" href="/guides/made_for_esphome.html">
-                        Made for ESPHome program
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="guide-card">
-            <h3 class="guide-card-title">Keeping up</h3>
-            <ul>
-                <li>What's new?</li>
-                <ul>
-                    <li>
-                        <a class="reference" href="/changelog/index.html">
-                            Changelog
-                        </a>
-                    </li>
-                </ul>
-                <li>Community/Social</li>
-                <ul>
-                    <li>
-                        <a class="reference" href="https://discord.gg/KhAMKrd" target="_blank">
-                            Discord
-                        </a>
-                    </li>
-                    <li>
-                        <a class="reference" href="https://community.home-assistant.io/c/esphome/" target="_blank">
-                            Forums
-                        </a>
-                    </li>
-                </ul>
-                <li>Development</li>
-                <ul>
-                    <li>
-                        <a class="reference" href="/guides/contributing.html">
-                            Contributing
-                        </a>
-                    </li>
-                    <li>
-                        <a class="reference" href="/guides/supporters.html">
-                            Supporters
-                        </a>
-                    </li>
-                </ul>
-            </ul>
+        <div class="hero-image">
+            <img src="_images/hero.png" alt="ESPHome devices" />
         </div>
     </div>
 
-.. _device_database:
+.. _what-is-esphome:
 
-Device Database
----------------
+What is ESPHome?
+================
 
-You will find configurations for specific devices in our `ESPHome Devices <https://devices.esphome.io/>`__ database.
+ESPHome is an open-source firmware framework that simplifies the process of creating custom firmware for popular WiFi-enabled microcontrollers. With ESPHome, you can:
 
-.. _documentation:
+* **Create custom smart home devices** using simple YAML configuration files
+* **Integrate seamlessly with Home Assistant** for a unified smart home experience
+* **Control and monitor** your devices through multiple interfaces (web, API, MQTT)
+* **Automate your home** with powerful on-device automations
+* **Update your devices wirelessly** (OTA) without physical access
 
-Documentation
--------------
+ESPHome takes care of the complex parts of firmware development, allowing you to focus on what matters - building your smart home exactly how you want it.
 
-You will find all :doc:`ESPHome documentation here<components/index>`.
+.. raw:: html
 
-.. _contributing:
+    <div class="feature-grid">
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-code"></i></div>
+            <h3>No Coding Required</h3>
+            <p>Simple YAML configuration files instead of complex C++ code</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-wifi"></i></div>
+            <h3>Wireless Updates</h3>
+            <p>Update your devices over-the-air without physical access</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-puzzle-piece"></i></div>
+            <h3>Modular Design</h3>
+            <p>Support for hundreds of sensors, displays, and other components</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+            <h3>Local Control</h3>
+            <p>Devices work locally without cloud dependencies</p>
+        </div>
+    </div>
 
-Contributing
-------------
+.. _who-uses-esphome:
 
-ESPHome depends on and welcomes contributions from our community. If you'd like to contribute, please see
-:doc:`Contributing <guides/contributing>`.
+Who Uses ESPHome?
+=================
+
+ESPHome is used by a diverse community of smart home enthusiasts, makers, and professionals:
+
+**DIY Enthusiasts**
+    Create custom sensors, switches, and displays tailored to specific needs
+
+**Smart Home Hobbyists**
+    Extend their home automation systems with affordable custom devices
+
+**Professional Integrators**
+    Deploy reliable, locally-controlled smart devices for clients
+
+**Manufacturers**
+    Create "Made for ESPHome" certified products with standardized firmware
+
+.. raw:: html
+
+    <div class="community-container">
+        <div class="community-card">
+            <h3>Join Our Community</h3>
+            <p>Connect with other ESPHome users, get help with your projects, and share your creations.</p>
+            <div class="community-links">
+                <a href="https://discord.gg/KhAMKrd" class="primary"><i class="fab fa-discord"></i> Discord</a>
+                <a href="https://community.home-assistant.io/c/esphome/" class="secondary"><i class="far fa-comments"></i> Forums</a>
+            </div>
+        </div>
+        <div class="community-card">
+            <h3>Contribute to ESPHome</h3>
+            <p>Help improve ESPHome by contributing code, documentation, or helping other users.</p>
+            <div class="community-links">
+                <a href="https://github.com/esphome/esphome" class="primary"><i class="fab fa-github"></i> GitHub</a>
+                <a href="/guides/contributing.html" class="secondary"><i class="fas fa-book"></i> Guide</a>
+            </div>
+        </div>
+    </div>
+
+.. _getting-started:
+
+Getting Started
+===============
+
+Getting started with ESPHome is easy. Choose the method that works best for you:
+
+.. raw:: html
+
+    <div class="getting-started-grid">
+        <div class="getting-started-card">
+            <h3>From Home Assistant</h3>
+            <p>The easiest way to get started with ESPHome is through the Home Assistant add-on.</p>
+            <ol>
+                <li>Open Home Assistant</li>
+                <li>Go to Settings → Add-ons → Add-on Store</li>
+                <li>Find and install the ESPHome add-on</li>
+                <li>Open the ESPHome dashboard and create your first device</li>
+            </ol>
+            <a href="/guides/getting_started_hassio.html" class="btn btn-primary">Detailed Instructions</a>
+        </div>
+        <div class="getting-started-card">
+            <h3>Command Line</h3>
+            <p>For advanced users who prefer working with the command line.</p>
+            <ol>
+                <li>Install Python 3.11 or higher</li>
+                <li>Install ESPHome: <code>pip install esphome</code></li>
+                <li>Create a configuration file</li>
+                <li>Compile and upload: <code>esphome run my_config.yaml</code></li>
+            </ol>
+            <a href="/guides/getting_started_command_line.html" class="btn btn-primary">Detailed Instructions</a>
+        </div>
+        <div class="getting-started-card">
+            <h3>Ready-Made Projects</h3>
+            <p>Start with a pre-configured project for common use cases.</p>
+            <ol>
+                <li>Browse the project library</li>
+                <li>Select a project that matches your hardware</li>
+                <li>Follow the installation instructions</li>
+                <li>Customize as needed</li>
+            </ol>
+            <a href="/projects/" class="btn btn-primary">Browse Projects</a>
+        </div>
+    </div>
+
+Basic Configuration Example
+---------------------------
+
+Here's a simple example of an ESPHome configuration file:
+
+.. code-block:: yaml
+
+    # Basic configuration for an ESP32 device
+    esphome:
+      name: living_room_sensor
+      friendly_name: Living Room Sensor
+
+    # Hardware configuration
+    esp32:
+      board: esp32dev
+      framework:
+        type: arduino
+
+    # Enable Home Assistant API
+    api:
+      encryption:
+        key: "YOUR_ENCRYPTION_KEY"
+
+    # Enable over-the-air updates
+    ota:
+      password: "YOUR_OTA_PASSWORD"
+
+    # Connect to WiFi
+    wifi:
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
+      
+      # Enable fallback hotspot if WiFi connection fails
+      ap:
+        ssid: "Living Room Sensor Fallback"
+        password: "YOUR_FALLBACK_PASSWORD"
+
+    # Enable web server
+    web_server:
+      port: 80
+
+    # Add a temperature sensor
+    sensor:
+      - platform: dht
+        pin: GPIO15
+        temperature:
+          name: "Living Room Temperature"
+        humidity:
+          name: "Living Room Humidity"
+        update_interval: 60s
+
+.. _using-with-home-assistant:
+
+Using with Home Assistant
+=========================
+
+ESPHome and Home Assistant are designed to work together seamlessly, providing a powerful smart home ecosystem.
+
+Automatic Discovery
+-------------------
+
+Home Assistant automatically discovers ESPHome devices on your network. When you add a new ESPHome device:
+
+1. Make sure your device is connected to the same network as Home Assistant
+2. Home Assistant will show a notification when it discovers the new device
+3. Click "Configure" to add it to your system
+4. The device and all its entities will appear in your Home Assistant dashboard
+
+
+Dashboard Integration
+---------------------
+
+ESPHome entities appear in Home Assistant just like any other device:
+
+* **Sensors** show up in the appropriate cards and graphs
+* **Switches and lights** can be controlled directly
+* **Binary sensors** can trigger automations
+* **Climate devices** integrate with the thermostat controls
+
+Automations
+-----------
+
+You can create powerful automations using ESPHome devices in Home Assistant:
+
+* Use sensor readings to trigger actions
+* Control ESPHome devices based on conditions
+* Include ESPHome devices in scenes and scripts
+* Create complex multi-device automations
+
+Advanced Features
+-----------------
+
+* **ESPHome Dashboard Add-on**: Manage all your ESPHome devices directly from Home Assistant
+* **YAML Synchronization**: Keep your configurations in sync with Home Assistant
+* **Backup Integration**: Include ESPHome configurations in your Home Assistant backups
+* **Firmware Updates**: Update ESPHome devices directly from the Home Assistant interface
+
+.. raw:: html
+
+    <div class="cta-container">
+        <div class="cta-content">
+            <h2>Ready to get started?</h2>
+            <p>Join thousands of smart home enthusiasts building custom devices with ESPHome</p>
+            <div class="cta-buttons">
+                <a href="/guides/getting_started_hassio.html" class="btn btn-primary">Installation Guide</a>
+                <a href="/components/index.html" class="btn btn-secondary">Browse Components</a>
+                <a href="https://devices.esphome.io/" class="btn btn-secondary">Device Database</a>
+            </div>
+        </div>
+    </div>
+
+.. raw:: html
+
+    <h2>Join the Community</h2>
+    <div class="community-container">
+        <div class="community-links">
+            <a href="https://discord.gg/KhAMKrd" class="community-link" target="_blank">
+                <i class="fab fa-discord"></i>
+                <span>Discord</span>
+            </a>
+            <a href="https://github.com/esphome/esphome" class="community-link" target="_blank">
+                <i class="fab fa-github"></i>
+                <span>GitHub</span>
+            </a>
+            <a href="https://community.home-assistant.io/c/esphome/" class="community-link" target="_blank">
+                <i class="far fa-comments"></i>
+                <span>Forums</span>
+            </a>
+            <a href="https://twitter.com/esphome_" class="community-link" target="_blank">
+                <i class="fab fa-twitter"></i>
+                <span>Twitter</span>
+            </a>
+        </div>
+    </div>
 
 .. toctree::
     :hidden:
