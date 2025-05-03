@@ -115,7 +115,7 @@ A useful rule of thumb is that wherever there is a sequence item that ends with 
 Mappings
 --------
 
-A YAML mapping is a key-value pair, using `key: value` or `{ ... }`. Keys can be any valid YAML scalar (though usually they will be confined to strings from a predefined set), while values can be any valid YAML scalar, list, or mapping. A mapping can also be referred to as a dictionary, associative array or hashtable. The keys used in a single mapping must all be unique.
+A YAML mapping is a list of key-value pairs, using `key: value` or `{ ... }`. Keys can be any valid YAML scalar (though usually they will be confined to strings from a predefined set), while values can be any valid YAML scalar, list, or mapping. A mapping can also be referred to as a dictionary, associative array or hashtable. The keys used in a single mapping must be unique.
 
 Example:
 
