@@ -33,7 +33,7 @@ Strings are enclosed in double quotes (`"`) or single quotes (`'`). Standard esc
 
 Boolean values are `true` or `false`, case-insensitive. ESPHome also maps other strings to boolean values:
 
-- `yes`, `on` and  `enable` are mapped to `true`.
+- `yes`, `on` and `enable` are mapped to `true`.
 - `no`, `off` and `disable` are mapped to `false`.
 
 Numeric values are integers or floating point numbers. Within ESPHome in most situations where a number is expected, it can also be written
