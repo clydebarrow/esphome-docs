@@ -21,12 +21,12 @@ Standard YAML Features
 - **Multi-line Strings:** Use `|` or `>` for multi-line text.
 
 Comments
---------
+********
 
 A YAML comment is any text after a `#` symbol, extending to the end of the line. If you need to include a `#` character in a string, it must appear within quotes.
 
 Scalars
--------
+*******
 A YAML scalar is any value that doesn't contain a colon (`:`). It can be a string, number, boolean, or null.
 
 Strings are enclosed in double quotes (`"`) or single quotes (`'`). Standard escape sequences such as newline (`\\n`) and Unicode codepoints will be translated inside double quotes only. A string may also be an unquoted character sequence that is not a valid number or boolean, e.g. `23times` will be treated as a string even if not quoted. Strings may also be multi-line, using `|` or `>`.
@@ -51,7 +51,7 @@ Example:
       port: 80 # integer value
 
 Sequences
----------
+*********
 
 A YAML sequence is a list (or array) of items, using `-` or `[ ... ]`. Items can be scalars, sequences, or mappings. The `-` flag is used once per line for a sequence item, while the JSON style using `[ ... ]` can be on a single line, or spread across multiple lines.
 
@@ -113,7 +113,7 @@ A useful rule of thumb is that wherever there is a sequence item that ends with 
       text: "Temperature 1"  # Wrong! Should be indented. Will throw error "text is an invalid option for ..."
 
 Mappings
---------
+********
 
 A YAML mapping is a list of key-value pairs, using `key: value` or `{ ... }`. Keys can be any valid YAML scalar (though usually they will be confined to strings from a predefined set), while values can be any valid YAML scalar, list, or mapping. A mapping can also be referred to as a dictionary, associative array or hashtable. The keys used in a single mapping must be unique.
 
@@ -146,7 +146,7 @@ Note that the sequence marker `-` is *not* indented below the mapping key `widge
 
 
 Anchors, Aliases, and Overriding Values
----------------------------------------
+***************************************
 
 YAML anchors (`&anchor`) and aliases (`*alias`) allow you to define a block of configuration once and reuse it elsewhere. This is especially useful for repeating metadata fields.
 You can also override specific values when merging with `<<: *anchor`:
@@ -174,8 +174,8 @@ ESPHome YAML Extensions
 
 ESPHome adds several powerful features to standard YAML:
 
-Secrets and the secrets.yaml File
----------------------------------
+Secrets and the ``secrets.yaml``` File
+**************************************
 
 The `!secret` tag allows you to reference sensitive values (like passwords or API keys) stored in a separate `secrets.yaml` file.
 This is especially helpful when you want to be able to distribute your configuration files without revealing your secrets.
@@ -197,7 +197,7 @@ And in your `secrets.yaml` (not in version control):
     wifi_password: my_super_secret_password
 
 Substitutions
--------------
+*************
 
 The ``substitutions:`` feature allows you to define reusable values that can be referenced throughout your configuration. This is especially useful for:
 
@@ -237,7 +237,7 @@ The ``substitutions:`` feature allows you to define reusable values that can be 
 - Substitutions values must be strings. Numbers and booleans are not supported, but in most cases a number represented as a string will be automatically converted when substituted.
 
 !include
---------
+********
 
 - Insert the contents of another YAML file at this position.
 - Useful for splitting configurations into reusable parts.
@@ -262,7 +262,7 @@ Example:
             id: 2
 
 Packages
---------
+********
 
 The ``packages`` feature allows you to define reusable and potentially partial configurations that can be included in your main configuration. Including a package file will merge its contents with your main configuration in a non-destructive way.
 
@@ -287,12 +287,12 @@ Example:
 
 Note that the key in a packages line is just a placeholder - it must be unique within the `packages` mapping, and should ideally be chosen to indicate its purpose, but otherwise can be anything you like that is a valid key.
 
-Variable can be provided for substitutions when including a package file, just as for regular includes.
+Variables can be provided for substitutions when including a package file, just as for regular includes.
 
-The `packages:` key can only appear at the root level of the YAML file, i.e. it must start in column 1. Its location within the file is however not important. Files included under a `packages:` key will be inserted at the root level of the file, so the contents of the file should look like fragments of a standard configuration. This is in contrast to regular includes, which are inserted at the same level as the `!include` key.
+The `packages:` key can only appear at the root level of the YAML file, in other words it must start in column 1. Its location within the file is however not important. Files included under a `packages:` key will be inserted at the root level of the file, so the contents of the file should look like fragments of a standard configuration. This is in contrast to regular includes, which are inserted at the same level as the `!include` key.
 
 See Also
----------------
+--------
 
 - :doc:`/guides/configuration-types`
 - `YAML Official Site <https://yaml.org/>`_
