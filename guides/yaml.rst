@@ -174,8 +174,8 @@ ESPHome YAML Extensions
 
 ESPHome adds several powerful features to standard YAML:
 
-Secrets and the ``secrets.yaml``` File
-**************************************
+Secrets and the ``secrets.yaml`` File
+*************************************
 
 The `!secret` tag allows you to reference sensitive values (like passwords or API keys) stored in a separate `secrets.yaml` file.
 This is especially helpful when you want to be able to distribute your configuration files without revealing your secrets.
@@ -264,7 +264,7 @@ Example:
 Packages
 ********
 
-The ``packages`` feature allows you to define reusable and potentially partial configurations that can be included in your main configuration. Including a package file will merge its contents with your main configuration in a non-destructive way.
+The ``packages:`` feature allows you to define reusable and potentially partial configurations that can be included in your main configuration. Including a package file will merge its contents with your main configuration in a non-destructive way.
 
 Example:
 
@@ -285,7 +285,7 @@ Example:
       ssid: "MyWiFi"
       password: !secret wifi_password
 
-Note that the key in a packages line is just a placeholder - it must be unique within the `packages` mapping, and should ideally be chosen to indicate its purpose, but otherwise can be anything you like that is a valid key.
+Note that the key in a packages line is just a placeholder - it must be unique within the ``packages:`` mapping, and should ideally be chosen to indicate its purpose, but otherwise can be anything you like that is a valid key.
 
 Variables can be provided for substitutions when including a package file, just as for regular includes.
 
