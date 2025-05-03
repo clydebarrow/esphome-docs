@@ -707,6 +707,30 @@ This :ref:`action <actions-action>` redraws the entire screen, or optionally onl
         - lvgl.widget.redraw:
             lvgl_id: lvgl1  # optional when only one LVGL instance is configured
 
+
+.. _lvgl-refresh-action:
+
+``lvgl.widget.refresh``
+***********************
+
+This :ref:`action <actions-action>` re-evaluates any templated properties set on the specified widget.
+
+- **id** (**Required**): The ID of a widget configured in LVGL to refresh.
+
+Only templated properties are refreshed. A build-time error will be raised if the widget has no templated properties.
+
+.. code-block:: yaml
+
+    widgets:
+      - label:
+          id: label1
+          text: !lambda return id(text_sensor).state;
+
+    on_...:
+      then:
+        - lvgl.widget.refresh: label1 # will update the label text using the lambda.
+
+
 .. _lvgl-pause-action:
 
 ``lvgl.pause``
