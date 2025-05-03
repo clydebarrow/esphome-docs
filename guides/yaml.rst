@@ -243,9 +243,9 @@ The ``substitutions:`` feature allows you to define reusable values that can be 
 - Useful for splitting configurations into reusable parts.
 - Substitutions can be used in the included file to reference values passed to ``!include``. Such values will override any global substitutions, so global substitutions can be used to provide default values.
 
-  Example:
+Example:
 
-  .. code-block:: yaml
+.. code-block:: yaml
 
     binary_sensor:
       - platform: gpio
