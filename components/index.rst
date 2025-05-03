@@ -9,6 +9,11 @@
 
 This page is an index of all of the hardware components and platforms ESPHome currently supports.
 
+YAML Configuration
+------------------
+
+Configuration files in ESPHome are written in YAML, with extensions. See the :doc:`/guides/yaml` page for more information.
+
 .. _devices:
 
 Supported Microcontrollers
