@@ -1,7 +1,7 @@
 .. _yaml-configuration:
 
 YAML Configuration in ESPHome
-======================
+=============================
 
 Overview
 --------
