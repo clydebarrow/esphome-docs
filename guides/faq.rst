@@ -235,7 +235,7 @@ Tips for using ESPHome
               topic: ${device_name}/button${id}/status
               payload: double
 
-- You can use :doc:`/guides/substitutions` to build on the examples above and reduce repetition in your
+- You can use :doc:`/components/substitutions` to build on the examples above and reduce repetition in your
   configuration files.
 
 - If you want to see how ESPHome interprets your configuration, run:

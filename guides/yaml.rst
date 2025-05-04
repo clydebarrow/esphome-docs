@@ -275,7 +275,7 @@ Substitutions
 ^^^^^^^^^^^^^
 
 The ``substitutions:`` feature allows you to define reusable values that can be referenced throughout your configuration.
-For full details see :doc:`/guides/substitutions`
+For full details see :doc:`/components/substitutions`
 
 .. _yaml-include:
 
@@ -311,7 +311,7 @@ Packages
 The ``packages:`` feature allows you to define reusable and potentially partial configurations that can be included in your main configuration.
 The data is merged with the main configuration, with values in the main configuration taking precedence over values in the package data.
 
-See :doc:`/guides/packages` for more details.
+See :doc:`/components/packages` for more details.
 
 .. _yaml-hidden-items:
 
@@ -349,6 +349,6 @@ See :ref:`config-lambda` for more information.
 See Also
 --------
 
-- :doc:`/guides/packages`
+- :doc:`/components/packages`
 - :doc:`/guides/configuration-types`
 - `YAML Official Site <https://yaml.org/>`_

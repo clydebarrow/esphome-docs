@@ -19,8 +19,8 @@ information about ESPHome configuration files.
 .. imgtable::
 
     YAML Configuration, guides/yaml, description.svg, dark-invert
-    Packages, guides/packages, description.svg, dark-invert
-    Substitutions, guides/substitutions, description.svg, dark-invert
+    Packages, components/packages, description.svg, dark-invert
+    Substitutions, components/substitutions, description.svg, dark-invert
     External Components, components/external_components, external_components.svg, dark-invert
 
 .. _devices:

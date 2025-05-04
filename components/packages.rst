@@ -73,7 +73,7 @@ Remote/Git Packages
 -------------------
 
 Packages can also be loaded from a Git repository by utilizing the correct configuration syntax.
-:doc:`/guides/substitutions` can be used inside the remote packages which allows users to override
+:doc:`/components/substitutions` can be used inside the remote packages which allows users to override
 them locally with their own substitution value.
 
 .. note::
