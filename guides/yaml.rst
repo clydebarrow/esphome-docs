@@ -1,6 +1,6 @@
-.. _yaml-format:
+.. _yaml-configuration:
 
-YAML Format in ESPHome
+YAML Configuration in ESPHome
 ======================
 
 Overview
@@ -184,7 +184,7 @@ Multi-line Strings
 YAML supports multi-line strings in a few different flavors.
 
 Quoted Multi-Line Strings
-""""""""""""""""""""""""""""
+"""""""""""""""""""""""""
 
 Strings that are quoted with double quotes (``"``) or single quotes (``'``) may be broken across lines. Points to note:
 
@@ -284,7 +284,7 @@ For full details see :doc:`/guides/substitutions`
 
 - Insert the contents of another YAML file at this position.
 - May be used at any level of the configuration, and will be substituted at that level.
-- Unless used in conjuction with ``packages:`` (see below) the insertion is done literally.
+- Unless used in conjunction with ``packages:`` (see below) the insertion is done literally.
 - Substitutions can be used in the included file to reference values passed to ``!include``. Such values will override any global substitutions, so global substitutions can be used to provide default values.
 
 Example:
@@ -349,6 +349,6 @@ See :ref:`config-lambda` for more information.
 See Also
 --------
 
-- :doc:`/guides/packages`
-- :doc:`/guides/configuration-types`
+- :doc:`guides/packages`
+- :doc:`guides/configuration-types`
 - `YAML Official Site <https://yaml.org/>`_
