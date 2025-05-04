@@ -1076,7 +1076,7 @@ It's a shared configuration file that defines common settings used across all ha
 file like this minimizes duplication and ensures test consistency across all platforms.
 
 To use ``common.yaml`` in a test configuration, YAML substitutions and the insertion operator are used (see
-:doc:`/components/substitutions`). This allows the test YAML file to reference and include the shared configuration.
+:doc:`/guides/substitutions`). This allows the test YAML file to reference and include the shared configuration.
 For the ``dht12`` platform, one of the test files is named ``test.esp32-ard.yaml`` and it contains this:
 
 .. code-block:: yaml
