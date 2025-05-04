@@ -18,9 +18,7 @@ It requires a ``packet_transport`` component to be configured.
         remote_id: temp_id
 
      packet_transport:
-       - platform: udp
-
-     udp:
+       - platform: ...
 
 Configuration variables
 -----------------------
