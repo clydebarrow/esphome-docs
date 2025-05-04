@@ -349,6 +349,6 @@ See :ref:`config-lambda` for more information.
 See Also
 --------
 
-- :doc:`guides/packages`
-- :doc:`guides/configuration-types`
+- :doc:`/guides/packages`
+- :doc:`/guides/configuration-types`
 - `YAML Official Site <https://yaml.org/>`_
