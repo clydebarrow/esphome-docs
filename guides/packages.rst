@@ -19,8 +19,7 @@ override substitutions with the same name in a package.
 Dictionaries are merged key-by-key. Lists of components are merged by component ID (if specified). Other lists are
 merged by concatenation. All other configuration values are replaced with the later value.
 
-ESPHome uses ``!include`` to "bring in" packages; this is a syntax brought over from
-`Home Assistant's YAML configuration directives <https://www.home-assistant.io/docs/configuration/splitting_configuration/>`__.
+ESPHome uses ``!include`` to "bring in" packages from other files; this feature is described in :ref:`yaml-include`.
 
 Local Packages
 --------------

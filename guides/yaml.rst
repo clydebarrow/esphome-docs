@@ -1,3 +1,5 @@
+.. _yaml-format:
+
 YAML Format in ESPHome
 ======================
 
@@ -21,12 +23,14 @@ Standard YAML Features
 - **Multi-line Strings:** Use `|` or `>` for multi-line text.
 
 Comments
-********
+^^^^^^^^
 
 A YAML comment is any text after a `#` symbol, extending to the end of the line. If you need to include a `#` character in a string, it must appear within quotes.
 
+.. _yaml-scalars:
+
 Scalars
-*******
+^^^^^^^
 A YAML scalar is any value that doesn't contain a colon (`:`). It can be a string, number, boolean, or null.
 
 Strings are enclosed in double quotes (`"`) or single quotes (`'`). Standard escape sequences such as newline (`\\n`) and Unicode codepoints will be translated inside double quotes only. A string may also be an unquoted character sequence that is not a valid number or boolean, e.g. `23times` will be treated as a string even if not quoted. Strings may also be multi-line, using `|` or `>`.
@@ -50,8 +54,10 @@ Example:
     web_server:
       port: 80 # integer value
 
+.. _yaml-sequences:
+
 Sequences
-*********
+^^^^^^^^^
 
 A YAML sequence is a list (or array) of items, using `-` or `[ ... ]`. Items can be scalars, sequences, or mappings. The `-` flag is used once per line for a sequence item, while the JSON style using `[ ... ]` can be on a single line, or spread across multiple lines.
 
@@ -112,8 +118,10 @@ A useful rule of thumb is that wherever there is a sequence item that ends with 
     - label: # Will throw an error "expected a dictionary"
       text: "Temperature 1"  # Wrong! Should be indented. Will throw error "text is an invalid option for ..."
 
+.. _yaml-mappings:
+
 Mappings
-********
+^^^^^^^^
 
 A YAML mapping is a list of key-value pairs, using `key: value` or `{ ... }`. Keys can be any valid YAML scalar (though usually they will be confined to strings from a predefined set), while values can be any valid YAML scalar, list, or mapping. A mapping can also be referred to as a dictionary, associative array or hashtable. The keys used in a single mapping must be unique.
 
@@ -144,9 +152,10 @@ Where a mapping value is a sequence it should be indented after the key, but thi
 
 Note that the sequence marker `-` is *not* indented below the mapping key `widgets`. This technically incorrect, but will be interpreted correctly by the YAML parser. It is recommended that you stick to the correct format, but if you see this used in a YAML file, understand that it does work - and it can be useful when the depth of indentation gets deep.
 
+.. _yaml-anchors:
 
 Anchors, Aliases, and Overriding Values
-***************************************
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 YAML anchors (`&anchor`) and aliases (`*alias`) allow you to define a block of configuration once and reuse it elsewhere. This is especially useful for repeating metadata fields.
 You can also override specific values when merging with `<<: *anchor`:
@@ -169,13 +178,79 @@ You can also override specific values when merging with `<<: *anchor`:
 
 In this example, both sensors share the metadata from `common_adc`, but the second sensor overrides the `pin` and `name` values.
 
+Multi-line Strings
+^^^^^^^^^^^^^^^^^^^
+
+YAML supports multi-line strings in a few different flavors.
+
+Quoted Multi-Line Strings
+""""""""""""""""""""""""""""
+
+Strings that are quoted with double quotes (``"``) or single quotes (``'``) may be broken across lines. Points to note:
+
+- Leading white space on subsequent lines is ignored;
+- Newlines can be inserted by leaving a blank line;
+- Escape sequences like ``\n`` are translated inside double quotes only;
+
+Generally speaking block strings as described below are preferable to quoted multi-line strings.
+
+Example:
+
+.. code-block:: yaml
+
+    sensor:  # The name of this sensor will be "Sensor Name"
+      - platform: template
+        name: "Sensor
+               Name"
+
+
+Block Strings
+"""""""""""""
+
+Block strings are multi-line strings that are introduced with a special character sequence,
+and all subsequent lines with indentation greater than the key introducing the string are considered part of the string.
+There are three parts to a block string marker:
+
+
+- The block style indicator (``|`` or ``>``) (required)
+- The chomping indicator (``-`` or ``+``) (optional)
+- An indentation value (a number, optional)
+
+The block style controls how embedded newlines are handled - when using the ``|`` (literal) style,
+embedded newlines are kept, while when using the ``>`` (folded) style, embedded newlines are folded into a single space.
+
+The chomping indicator controls how the end of the string is treated:
+
+- No chomping indicator: end the string with a single newline
+- ``-``: remove all trailing newlines;
+- ``+``: keep all trailing newlines.
+
+The indentation value specifies how many spaces to insert at the beginning of each line. It is optional and
+the default indentation will be guessed from the first line of text so in general it should not be necessary to use this.
+
+Within ESPHome you will most often use the ``|-`` style which will keep internal newlines and remove trailing newlines.
+
+Example:
+
+.. code-block:: yaml
+
+    multiline_string: |-
+      This is a string that is
+      broken across multiple lines. Internal newlines
+      will be kept, and trailing newlines will be removed.
+    some_other_key: # This is not part of the string
+
+.. _yaml-extensions:
+
 ESPHome YAML Extensions
 -----------------------
 
-ESPHome adds several powerful features to standard YAML:
+ESPHome adds several non-standard but useful features to standard YAML:
+
+.. _yaml-secrets:
 
 Secrets and the ``secrets.yaml`` File
-*************************************
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The `!secret` tag allows you to reference sensitive values (like passwords or API keys) stored in a separate `secrets.yaml` file.
 This is especially helpful when you want to be able to distribute your configuration files without revealing your secrets.
@@ -197,50 +272,19 @@ And in your `secrets.yaml` (not in version control):
     wifi_password: my_super_secret_password
 
 Substitutions
-*************
+^^^^^^^^^^^^^
 
-The ``substitutions:`` feature allows you to define reusable values that can be referenced throughout your configuration. This is especially useful for:
+The ``substitutions:`` feature allows you to define reusable values that can be referenced throughout your configuration.
+For full details see :doc:`/guides/substitutions`
 
-- Making your configuration more readable and maintainable
-- Avoiding repetition of common values
-- Creating templates that can be reused across multiple devices
-
-**Basic Usage:**
-
-.. code-block:: yaml
-
-    substitutions:
-      device_name: living_room_light
-      friendly_name: Living Room Light
-      update_interval: 60s
-
-    esphome:
-      name: $device_name
-      friendly_name: $friendly_name
-
-    sensor:
-      - platform: dht
-        model: DHT22
-        pin: D2
-        temperature:
-          name: "${friendly_name} Temperature"
-          id: ${device_name}_temperature
-        humidity:
-          name: "${friendly_name} Humidity"
-        update_interval: ${update_interval}
-
-**Key Features:**
-
-- Values are referenced using ``$variable_name`` or ``${variable_name}`` syntax
-- The ``${variable_name}`` syntax is required when embedding within other text
-- Substitutions are processed before any other part of the configuration
-- Substitutions values must be strings. Numbers and booleans are not supported, but in most cases a number represented as a string will be automatically converted when substituted.
+.. _yaml-include:
 
 !include
-********
+^^^^^^^^
 
 - Insert the contents of another YAML file at this position.
-- Useful for splitting configurations into reusable parts.
+- May be used at any level of the configuration, and will be substituted at that level.
+- Unless used in conjuction with ``packages:`` (see below) the insertion is done literally.
 - Substitutions can be used in the included file to reference values passed to ``!include``. Such values will override any global substitutions, so global substitutions can be used to provide default values.
 
 Example:
@@ -262,37 +306,49 @@ Example:
             id: 2
 
 Packages
-********
+^^^^^^^^
 
-The ``packages:`` feature allows you to define reusable and potentially partial configurations that can be included in your main configuration. Including a package file will merge its contents with your main configuration in a non-destructive way.
+The ``packages:`` feature allows you to define reusable and potentially partial configurations that can be included in your main configuration.
+The data is merged with the main configuration, with values in the main configuration taking precedence over values in the package data.
 
-Example:
+See :doc:`/guides/packages` for more details.
+
+.. _yaml-hidden-items:
+
+Hidden items
+^^^^^^^^^^^^
+
+Any top-level configuration key that starts with a dot (``.``) will be ignored, and will not be included in the final configuration.
+This is mostly useful to define anchors that are not part of the configuration.
+
 
 .. code-block:: yaml
 
-    # main file contents
+    .number: &AnchorNumber # Define an anchor, but exclude it
+        optimistic: true
+        min_value: 0
+        max_value: 600
+        step: 1
+        initial_value: 0
 
-    packages:
-      wifi: !include common/wifi.yaml
-      living_room: !include common/packages/living_room.yaml
+    number:
+      - platform: template
+        <<: *AnchorDelay # Include the anchor previously defined
+        id: "SwitchMainDelay"
+        name: "Main Switch Delay"
 
-    wifi:
-      ssid: "MyActualWiFi" # overrides the value in common/wifi.yaml
+The hidden key name is not important, and indeed can be just a single dot, but using a more descriptive name is recommended.
 
-    # The contents of common/wifi.yaml
+Lambdas
+^^^^^^^^^
 
-    wifi:
-      ssid: "MyWiFi"
-      password: !secret wifi_password
-
-Note that the key in a packages line is just a placeholder - it must be unique within the ``packages:`` mapping, and should ideally be chosen to indicate its purpose, but otherwise can be anything you like that is a valid key.
-
-Variables can be provided for substitutions when including a package file, just as for regular includes.
-
-The `packages:` key can only appear at the root level of the YAML file, in other words it must start in column 1. Its location within the file is however not important. Files included under a `packages:` key will be inserted at the root level of the file, so the contents of the file should look like fragments of a standard configuration. This is in contrast to regular includes, which are inserted at the same level as the `!include` key.
+Within ESPHome configuration files it's possible to embed lambdas, which are blocks of C++ code that are evaluated at runtime,
+to provide dynamic values and implement logic not possible in YAML. A lambda is defined using the ``!lambda`` tag.
+See :ref:`config-lambda` for more information.
 
 See Also
 --------
 
+- :doc:`/guides/packages`
 - :doc:`/guides/configuration-types`
 - `YAML Official Site <https://yaml.org/>`_

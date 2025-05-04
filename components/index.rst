@@ -7,12 +7,21 @@
 .. raw:: html
     :file: ../images/logo-docs.svg
 
-This page is an index of all of the hardware components and platforms ESPHome currently supports.
+This is the top-level ESPHome documentation index. Browse the tables below, use the sidebar menu, or the search
+function to find the information you're looking for.
 
-YAML Configuration
-------------------
+ESPHome Configuration
+---------------------
 
-Configuration files in ESPHome are written in YAML, with extensions. See the :doc:`/guides/yaml` page for more information.
+ESPHome is configured in YAML files - use these links for basic and advanced
+information about ESPHome configuration files.
+
+.. imgtable::
+
+    YAML Configuration, guides/yaml, description.svg, dark-invert
+    Packages, guides/packages, description.svg, dark-invert
+    Substitutions, guides/substitutions, description.svg, dark-invert
+    External Components, components/external_components, external_components.svg, dark-invert
 
 .. _devices:
 
@@ -70,17 +79,6 @@ ESPHome-specific components or components supporting ESPHome device provisioning
     JSON, components/json, json.svg, dark-invert
     XXTEA, components/xxtea, xxtea.svg
     Script, components/script, description.svg, dark-invert
-
-ESPHome Configuration
----------------------
-
-Streamline your ESPHome configuration and/or use components provided by other contributors.
-
-.. imgtable::
-
-    External Components, components/external_components, external_components.svg, dark-invert
-    Packages, components/packages, description.svg, dark-invert
-    Substitutions, components/substitutions, description.svg, dark-invert
 
 Network Hardware
 ----------------
