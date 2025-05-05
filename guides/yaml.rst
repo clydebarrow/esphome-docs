@@ -109,7 +109,7 @@ Sequences in YAML format can be quite confusing at times - consider the followin
 
 It may seem odd that in the first case there is no additional indentation, while in the second case there is. The difference is that in the first case the sequence item is itself a mapping, with keys ``platform`` and ``name``, while in the second case the sequence item is a key ``label`` with a value of a mapping with key ``text`` and value ``"Temperature 1"``. Rewriting these in JSON format can make it clearer:
 
-.. code-block:: json
+.. code-block:: yaml
 
     - {
         "platform": "gpio",
