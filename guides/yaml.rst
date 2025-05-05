@@ -267,7 +267,7 @@ This is especially helpful when you want to be able to distribute your configura
 
 .. important::
 
-     In order to keep your secrets safe, the ``secrets.yaml`` file should NOT be checked into git or any other version control system.
+    In order to keep your secrets safe, the ``secrets.yaml`` file should NOT be checked into git or any other version control system.
 
 Example:
 
