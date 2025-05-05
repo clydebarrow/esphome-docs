@@ -265,7 +265,9 @@ Secrets and the ``secrets.yaml`` File
 The ``!secret`` tag allows you to reference sensitive values (like passwords or API keys) stored in a separate ``secrets.yaml`` file.
 This is especially helpful when you want to be able to distribute your configuration files without revealing your secrets.
 
-**Important:** Your ``secrets.yaml`` file should NOT be checked into git or any other version control system to keep your secrets safe.
+.. important::
+
+     In order to keep your secrets safe, the ``secrets.yaml`` file should NOT be checked into git or any other version control system.
 
 Example:
 
@@ -275,11 +277,13 @@ Example:
       ssid: "MyWiFi"
       password: !secret wifi_password
 
-And in your ``secrets.yaml`` (not in version control):
+And in your ``secrets.yaml``
 
 .. code-block:: yaml
 
     wifi_password: my_super_secret_password
+
+The secrets file must consist only of a flat mapping of keys to scalar values.
 
 Substitutions
 ^^^^^^^^^^^^^
