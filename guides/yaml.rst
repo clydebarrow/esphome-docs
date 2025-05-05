@@ -15,30 +15,40 @@ The order of configuration blocks within an ESPHome YAML file is generally unimp
 Standard YAML Features
 ----------------------
 
-- **Comments:** Any text after a `#` is a comment.
+- **Comments:** Any text after a ``#`` is a comment.
 - **Scalars:** Strings, numbers, booleans.
-- **Sequences:** Lists of items, using `-` or `[ ... ]`.
-- **Mappings:** Key-value pairs, using `key: value` or `{ ... }`.
-- **Anchors and Aliases:** Reuse blocks of YAML with `&anchor` and `*alias`.
-- **Multi-line Strings:** Use `|` or `>` for multi-line text.
+- **Sequences:** Lists of items, using ``-`` or ``[ ... ]``.
+- **Mappings:** Key-value pairs, using ``key: value`` or ``{ ... }``.
+- **Anchors and Aliases:** Reuse blocks of YAML with ``&anchor`` and ``*alias``.
+- **Multi-line Strings:** Use ``|`` or ``>`` for multi-line text.
 
 Comments
 ^^^^^^^^
 
-A YAML comment is any text after a `#` symbol, extending to the end of the line. If you need to include a `#` character in a string, it must appear within quotes.
+A YAML comment is any text after a ``#`` symbol, extending to the end of the line. If you need to include a ``#`` character in a string, it must appear within quotes.
+
+Example:
+
+.. code-block:: yaml
+
+    # this is a comment
+    foo:
+        bar: 3 # this is another comment
+        text: "# can be included in a string"
+
 
 .. _yaml-scalars:
 
 Scalars
 ^^^^^^^
-A YAML scalar is any value that doesn't contain a colon (`:`). It can be a string, number, boolean, or null.
+A YAML scalar is any value that doesn't contain a colon (``:``). It can be a string, number, boolean, or null.
 
-Strings are enclosed in double quotes (`"`) or single quotes (`'`). Standard escape sequences such as newline (`\\n`) and Unicode codepoints will be translated inside double quotes only. A string may also be an unquoted character sequence that is not a valid number or boolean, e.g. `23times` will be treated as a string even if not quoted. Strings may also be multi-line, using `|` or `>`.
+Strings are enclosed in double quotes (``"``) or single quotes (``'``). Standard escape sequences such as newline (``\\n``) and Unicode codepoints will be translated inside double quotes only. A string may also be an unquoted character sequence that is not a valid number or boolean, e.g. ``23times`` will be treated as a string even if not quoted. Strings may also be multi-line, using ``|`` or ``>``.
 
-Boolean values are `true` or `false`, case-insensitive. ESPHome also maps other strings to boolean values:
+Boolean values are ``true`` or ``false``, case-insensitive. ESPHome also maps other strings to boolean values:
 
-- `yes`, `on` and `enable` are mapped to `true`.
-- `no`, `off` and `disable` are mapped to `false`.
+- ``yes``, ``on`` and ``enable`` are mapped to ``true``.
+- ``no``, ``off`` and ``disable`` are mapped to ``false``.
 
 Numeric values are integers or floating point numbers. Within ESPHome in most situations where a number is expected, it can also be written
 as a string containing an integer or a floating point number which will be automatically converted.
@@ -59,7 +69,7 @@ Example:
 Sequences
 ^^^^^^^^^
 
-A YAML sequence is a list (or array) of items, using `-` or `[ ... ]`. Items can be scalars, sequences, or mappings. The `-` flag is used once per line for a sequence item, while the JSON style using `[ ... ]` can be on a single line, or spread across multiple lines.
+A YAML sequence is a list (or array) of items, using ``-`` or ``[ ... ]``. Items can be scalars, sequences, or mappings. The ``-`` flag is used once per line for a sequence item, while the JSON style using ``[ ... ]`` can be on a single line, or spread across multiple lines.
 
 Example:
 
@@ -97,7 +107,7 @@ Sequences in YAML format can be quite confusing at times - consider the followin
     - label:
         text: "Temperature 1"
 
-It may seem odd that in the first case there is no additional indentation, while in the second case there is. The difference is that in the first case the sequence item is itself a mapping, with keys `platform` and `name`, while in the second case the sequence item is a key `label` with a value of a mapping with key `text` and value `"Temperature 1"`. Rewriting these in JSON format can make it clearer:
+It may seem odd that in the first case there is no additional indentation, while in the second case there is. The difference is that in the first case the sequence item is itself a mapping, with keys ``platform`` and ``name``, while in the second case the sequence item is a key ``label`` with a value of a mapping with key ``text`` and value ``"Temperature 1"``. Rewriting these in JSON format can make it clearer:
 
 .. code-block:: json
 
@@ -123,7 +133,7 @@ A useful rule of thumb is that wherever there is a sequence item that ends with 
 Mappings
 ^^^^^^^^
 
-A YAML mapping is a list of key-value pairs, using `key: value` or `{ ... }`. Keys can be any valid YAML scalar (though usually they will be confined to strings from a predefined set), while values can be any valid YAML scalar, list, or mapping. A mapping can also be referred to as a dictionary, associative array or hashtable. The keys used in a single mapping must be unique.
+A YAML mapping is a list of key-value pairs, using ``key: value`` or ``{ ... }``. Keys can be any valid YAML scalar (though usually they will be confined to strings from a predefined set), while values can be any valid YAML scalar, list, or mapping. A mapping can also be referred to as a dictionary, associative array or hashtable. The keys used in a single mapping must be unique.
 
 Example:
 
@@ -138,7 +148,7 @@ Example:
       accuracy_decimals: 1
       state_class: measurement
 
-In the example above "sensor" is a key in a mapping, and its value is another mapping. The second mapping has keys `platform`, `pin`, `name`, `device_class`, `unit_of_measurement`, `accuracy_decimals` and `state_class`.
+In the example above "sensor" is a key in a mapping, and its value is another mapping. The second mapping has keys ``platform``, ``pin``, ``name``, ``device_class``, ``unit_of_measurement``, ``accuracy_decimals`` and ``state_class``.
 
 Where a mapping value is a sequence it should be indented after the key, but this is one of the few places that YAML is forgiving of incorrect indentation, e.g.
 
@@ -150,15 +160,15 @@ Where a mapping value is a sequence it should be indented after the key, but thi
     - label:
         text: Temperature 2
 
-Note that the sequence marker `-` is *not* indented below the mapping key `widgets`. This technically incorrect, but will be interpreted correctly by the YAML parser. It is recommended that you stick to the correct format, but if you see this used in a YAML file, understand that it does work - and it can be useful when the depth of indentation gets deep.
+Note that the sequence marker ``-`` is *not* indented below the mapping key ``widgets``. This technically incorrect, but will be interpreted correctly by the YAML parser. It is recommended that you stick to the correct format, but if you see this used in a YAML file, understand that it does work - and it can be useful when the depth of indentation gets deep.
 
 .. _yaml-anchors:
 
 Anchors, Aliases, and Overriding Values
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-YAML anchors (`&anchor`) and aliases (`*alias`) allow you to define a block of configuration once and reuse it elsewhere. This is especially useful for repeating metadata fields.
-You can also override specific values when merging with `<<: *anchor`:
+YAML anchors (``&anchor``) and aliases (``*alias``) allow you to define a block of configuration once and reuse it elsewhere. This is especially useful for repeating metadata fields.
+You can also override specific values when merging with ``<<: *anchor``:
 
 .. code-block:: yaml
 
@@ -176,7 +186,7 @@ You can also override specific values when merging with `<<: *anchor`:
         pin: GPIO33
         name: "Temperature 2"
 
-In this example, both sensors share the metadata from `common_adc`, but the second sensor overrides the `pin` and `name` values.
+In this example, both sensors share the metadata from ``common_adc``, but the second sensor overrides the ``pin`` and ``name`` values.
 
 Multi-line Strings
 ^^^^^^^^^^^^^^^^^^^
@@ -252,10 +262,10 @@ ESPHome adds several non-standard but useful features to standard YAML:
 Secrets and the ``secrets.yaml`` File
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The `!secret` tag allows you to reference sensitive values (like passwords or API keys) stored in a separate `secrets.yaml` file.
+The ``!secret`` tag allows you to reference sensitive values (like passwords or API keys) stored in a separate ``secrets.yaml`` file.
 This is especially helpful when you want to be able to distribute your configuration files without revealing your secrets.
 
-**Important:** Your `secrets.yaml` file should NOT be checked into git or any other version control system to keep your secrets safe.
+**Important:** Your ``secrets.yaml`` file should NOT be checked into git or any other version control system to keep your secrets safe.
 
 Example:
 
@@ -265,7 +275,7 @@ Example:
       ssid: "MyWiFi"
       password: !secret wifi_password
 
-And in your `secrets.yaml` (not in version control):
+And in your ``secrets.yaml`` (not in version control):
 
 .. code-block:: yaml
 
