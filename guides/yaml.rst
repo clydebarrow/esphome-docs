@@ -333,7 +333,7 @@ This is mostly useful to define anchors that are not part of the configuration.
 
     number:
       - platform: template
-        <<: *AnchorDelay # Include the anchor previously defined
+        <<: *AnchorNumber # Include the anchor previously defined
         id: "SwitchMainDelay"
         name: "Main Switch Delay"
 
