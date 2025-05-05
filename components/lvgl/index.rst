@@ -244,7 +244,7 @@ You may also use any of the `standard CSS color names <https://developer.mozilla
 When using a lambda to provide a color you should use the ``lv_color_hex`` function, for example:
 
 .. code-block:: yaml
-    
+
     label:
       text: 'Hello World!'
       color: !lambda return lv_color_hex(0xFF0000);
