@@ -340,7 +340,7 @@ floating point, instead uses scaled integers. Properties with the following nati
 - **opacity** LVGL opacity is an integer between 0 and 255.
 - **brightness** Similarly, an integer from 0 to 255.
 - **angle** LVGL angles are represented in 1/10 degree, so usually in the range 0 - 3600.
-- **color** LVGL uses an internal color type - to construct a colour in a lambda use ``lv_color_hex(0xRRGGBB)``.
+- **color** LVGL uses an internal color type - to construct a color in a lambda use ``lv_color_hex(0xRRGGBB)``.
 - **zoom** Zoom levels should be multiplied by 256 (valid range is 0 to 2560, corresponding to 0-10.0).
 - **percentage** To convert a fractional value to a percentage, use ``lv_pct(value * 100)``
 
