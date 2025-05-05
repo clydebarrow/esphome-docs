@@ -329,7 +329,25 @@ LVGL follows CSS's `border-box model <https://developer.mozilla.org/en-US/docs/W
 
 You can adjust the appearance of widgets by changing their foreground, background, border color and/or font. Some widgets allow for more complex styling, effectively changing all or part of their appearance.
 
-**Styling variables:**
+Using Lambdas for Styling
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Most LVGL style and widget properties can be set as either constant values or lambdas (which will be evaluated at run time).
+When using lambdas, the returned value must be of the type and within the range expected by the native LVGL library, which may not be the same
+as is used in YAML. This applies particularly to any value represented as a floating point number - the LVGL library does not use
+floating point, instead uses scaled integers. Properties with the following native types should be noted:
+
+- **opacity** LVGL opacity is an integer between 0 and 255.
+- **brightness** Similarly, an integer from 0 to 255.
+- **angle** LVGL angles are represented in 1/10 degree, so usually in the range 0 - 3600.
+- **color** LVGL uses an internal color type - to construct a colour in a lambda use ``lv_color_hex(0xRRGGBB)``.
+- **zoom** Zoom levels should be multiplied by 256 (valid range is 0 to 2560, corresponding to 0-10.0).
+- **percentage** To convert a fractional value to a percentage, use ``lv_pct(value * 100)``
+
+Style properties
+^^^^^^^^^^^^^^^^
+
+These style properties may be applied to any widget, though not all widgets use all of them.
 
 - **bg_color** (*Optional*, :ref:`color <lvgl-color>`): Color for the background of the widget. Defaults to ``0xFFFFFF`` (white).
 - **bg_grad** (*Optional*, :ref:`gradient <lvgl-gradients>`): A gradient to apply to the background.
@@ -389,9 +407,7 @@ You can adjust the appearance of widgets by changing their foreground, backgroun
 Themes
 ******
 
-The widgets support lots of :ref:`lvgl-styling` to customize their appearance and behavior.
-
-You can configure a global theme for all widgets at the top level with the ``theme`` configuration variable. In the example below, all the ``arc``, ``slider`` and ``button`` widgets will, by default, use the styles and properties defined here. A combination of styles and :ref:`states <lvgl-widgetproperty-state>` can be chosen for every widget.
+You can configure a global theme for all widgets of a given type at the top level with the ``theme:`` configuration variable. In the example below, all the ``arc``, ``slider`` and ``button`` widgets will, by default, use the styles and properties defined here. A combination of styles and :ref:`states <lvgl-widgetproperty-state>` can be chosen for every widget.
 
 .. code-block:: yaml
 
@@ -474,7 +490,7 @@ Feel free to experiment to discover inheritance and precedence of the styles bas
 This :ref:`action <actions-action>` allows changing/updating the properties of a style at run time. This can be used to
 implement dynamic themes, e.g. light/dark mode, or to change the appearance of widgets based on user interaction.
 
-The action takes a style ID and a dictionary of properties to update. The properties can be any of the style properties listed above, and the values are templatable.components
+The action takes a style ID and a dictionary of properties to update. The properties can be any of the style properties listed above, and can be constants or lambdas.
 
 .. code-block:: yaml
 
@@ -695,9 +711,10 @@ Several actions are available for the LVGL component itself, these are outlined 
 ``lvgl.widget.redraw``
 **********************
 
-This :ref:`action <actions-action>` redraws the entire screen, or optionally only a widget on it.
+This :ref:`action <actions-action>` redraws the entire screen, or optionally only selected widgets. It does not change
+any widget properties. It is mostly useful to redraw the screen after resuming LVGL from the paused state.
 
-- **id** (*Optional*): The ID of a widget configured in LVGL which you want to redraw; if omitted, the entire screen will be redrawn.
+- **id** (*Optional*): The ID (or a list of IDs) of a widget configured in LVGL which you want to redraw; if omitted, the entire screen will be redrawn.
 - **lvgl_id** (*Optional*): The ID of the LVGL instance to redraw.
 
 .. code-block:: yaml
@@ -713,11 +730,12 @@ This :ref:`action <actions-action>` redraws the entire screen, or optionally onl
 ``lvgl.widget.refresh``
 ***********************
 
-This :ref:`action <actions-action>` re-evaluates any templated properties set on the specified widget.
+This :ref:`action <actions-action>` re-evaluates all properties specified with lambdas in the specified widget's configuration. This offers
+an alternative technique to using the ``lvgl.widget.update`` action, which updates specified properties.
 
-- **id** (**Required**): The ID of a widget configured in LVGL to refresh.
+- **id** (**Required**): The ID of a widget configured in LVGL to refresh (may also be a list of widgets).
 
-Only templated properties are refreshed. A build-time error will be raised if the widget has no templated properties.
+Only properties with lambdas are refreshed. A build-time error will be raised if the widget has no lambda properties.
 
 .. code-block:: yaml
 
