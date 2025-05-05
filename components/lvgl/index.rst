@@ -241,12 +241,26 @@ Colors can be specified anywhere in the LVGL configuration either by referencing
 
 You may also use any of the `standard CSS color names <https://developer.mozilla.org/en-US/docs/Web/CSS/named-color>`__, e.g. ``springgreen``.
 
+When using a lambda to provide a color you should use the ``lv_color_hex`` function, for example:
+
+.. code_block:: yaml
+    label:
+      text: 'Hello World!'
+      color: !lambda return lv_color_hex(0xFF0000);
+
 .. _lvgl-opacity:
 
 Opacity
 *******
 
-Various parts of the widgets (like background, borders etc.) support opacity. It can be overridden with a string: ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or percentage between ``0%`` and ``100%``. Actual default values depend on widget specifics.
+Various parts of the widgets (like background, borders etc.) support opacity. It can be specified in one of several ways:
+
+- As a string:  ``TRANSP`` for fully transparent, ``COVER`` for fully opaque
+- As a floating point value in the range 0.0-1.0
+- As a percentage between ``0%`` and ``100%``.
+- From a lambda - return an integer in the range 0-255.
+
+Default values depend on widget specifics.
 
 .. _lvgl-fonts:
 
