@@ -43,7 +43,7 @@ Scalars
 ^^^^^^^
 A YAML scalar is any value that doesn't contain a colon (``:``). It can be a string, number, boolean, or null.
 
-Strings are enclosed in double quotes (``"``) or single quotes (``'``). Standard escape sequences such as newline (``\\n``) and Unicode codepoints will be translated inside double quotes only. A string may also be an unquoted character sequence that is not a valid number or boolean, e.g. ``23times`` will be treated as a string even if not quoted. Strings may also be multi-line, using ``|`` or ``>``.
+Strings are enclosed in double quotes (``"``) or single quotes (``'``). Standard escape sequences such as newline (``\\n``) and Unicode codepoints will be translated inside double quotes only. A string may also be an unquoted character sequence that is not a valid number or boolean, for example ``23times`` will be treated as a string even if not quoted. Strings may also be multi-line, using ``|`` or ``>``.
 
 Boolean values are ``true`` or ``false``, case-insensitive. ESPHome also maps other strings to boolean values:
 
@@ -150,7 +150,7 @@ Example:
 
 In the example above "sensor" is a key in a mapping, and its value is another mapping. The second mapping has keys ``platform``, ``pin``, ``name``, ``device_class``, ``unit_of_measurement``, ``accuracy_decimals`` and ``state_class``.
 
-Where a mapping value is a sequence it should be indented after the key, but this is one of the few places that YAML is forgiving of incorrect indentation, e.g.
+Where a mapping value is a sequence it should be indented after the key, but this is one of the few places that YAML is forgiving of incorrect indentation, for example:
 
 .. code-block:: yaml
 
