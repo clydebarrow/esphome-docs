@@ -131,7 +131,7 @@ most of the configuration will be set by default, but can be overridden if neede
 
 - **invert_colors** (*Optional*, boolean): Specifies whether the display colors should be inverted. Options are ``true`` or ``false``. Defaults to ``false``.
 - **rotation** (*Optional*): Rotate the display presentation in software. Choose one of ``0°``, ``90°``, ``180°``, or ``270°``. If the driver chip supports hardware rotation for the given orientation this will be translated to the appropriate hardware command. If hardware rotation is not supported, the display will be rotated in software.
-- **transform** (*Optional*): If ``rotation`` is not sufficient, use this to transform the display. If this option is specified, then the ``dimensions`` option must also be provided. Options are:`
+- **transform** (*Optional*): If ``rotation`` is not sufficient, use this to transform the display. If this option is specified, then the ``dimensions`` option must also be provided. Options are:
 
    - **swap_xy** (**Required**, boolean): If true, exchange the x and y axes.
    - **mirror_x** (**Required**, boolean): If true, mirror the x axis.
