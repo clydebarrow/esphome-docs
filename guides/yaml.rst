@@ -43,7 +43,7 @@ Scalars
 ^^^^^^^
 A YAML scalar is any value that doesn't contain a colon (``:``). It can be a string, number, boolean, or null.
 
-Strings are enclosed in double quotes (``"``) or single quotes (``'``). Standard escape sequences such as newline (``\\n``) and Unicode codepoints will be translated inside double quotes only. A string may also be an unquoted character sequence that is not a valid number or boolean, for example ``23times`` will be treated as a string even if not quoted. Strings may also be multi-line, using ``|`` or ``>``.
+Strings are enclosed in double quotes (``"``) or single quotes (``'``). Standard escape sequences such as newline (``\n``) and Unicode codepoints will be translated inside double quotes only. A string may also be an unquoted character sequence that is not a valid number or boolean, for example ``23times`` will be treated as a string even if not quoted. Strings may also be multi-line, using ``|`` or ``>``.
 
 Boolean values are ``true`` or ``false``, case-insensitive. ESPHome also maps other strings to boolean values:
 
@@ -121,7 +121,7 @@ It may seem odd that in the first case there is no additional indentation, while
         }
       }
 
-A useful rule of thumb is that wherever there is a sequence item that ends with a colon, it will require further indentation for the subsequent lines, so this example is wrong and will throw two errors:
+A useful rule of thumb is that wherever there is a sequence item that ends with a colon its value must be a mapping, not a scalar, so it will require further indentation for the subsequent lines, This example is wrong and will throw two errors:
 
 .. code-block:: yaml
 
@@ -160,7 +160,7 @@ Where a mapping value is a sequence it should be indented after the key, but thi
     - label:
         text: Temperature 2
 
-Note that the sequence marker ``-`` is *not* indented below the mapping key ``widgets``. This technically incorrect, but will be interpreted correctly by the YAML parser. It is recommended that you stick to the correct format, but if you see this used in a YAML file, understand that it does work - and it can be useful when the depth of indentation gets deep.
+Note that the sequence marker ``-`` is *not* indented below the mapping key ``widgets``. This technically incorrect, but will be interpreted correctly by the YAML parser. It is recommended that you stick to the correct format, but if you see this used in a YAML file, understand that it does work - and it can be useful to limit indentation depth with complex configurations.
 
 .. _yaml-anchors:
 
