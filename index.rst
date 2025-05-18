@@ -4,427 +4,27 @@
     :google-site-verification: Q5q5TFbCofxA8-cSa1Frv5Hj4RopF5zwEZf_zaNHqf4
 
 .. seo::
-    :description: ESPHome - Smart Home Made Simple. ESPHome turns ESP8266 and ESP32 microcontrollers into fully-featured smart home devices with just a few lines of YAML configuration. No programming experience required.
+    :description: ESPHome - Smart Home Made Simple. ESPHome turns ESP32, ESP8266, and RP2040 microcontrollers into fully-featured smart home devices.
     :image: logo.svg
 
 .. raw:: html
 
-    <style>
-        /* Sticky Navigation Bar Styles */
-        .nav-container {
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .sticky-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            z-index: 1000;
-        }
-        
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            margin-bottom: -8px;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-        
-        /* Dropdown Menu Styles */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .dropbtn {
-            background-color: transparent;
-            color: #333;
-            padding: 10px;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            font-weight: 500;
-        }
-        
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #fff;
-            min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-            z-index: 1001;
-            border-radius: 4px;
-        }
-        
-        .dropdown-content a {
-            color: #333;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            transition: background-color 0.2s;
-        }
-        
-        .dropdown-content a:hover {
-            background-color: #f1f1f1;
-        }
-        
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-        
-        .dropdown:hover .dropbtn {
-            color: #03a9f4;
-        }
-        
-        /* Search Box Styles */
-        .nav-search {
-            margin-left: 20px;
-            position: relative;
-        }
-        
-        .nav-search .pagefind-ui__form {
-            margin: 0;
-        }
-        
-        .nav-search .pagefind-ui__search-input {
-            height: 36px;
-            padding: 0 12px;
-            border-radius: 18px;
-            border: 1px solid #ddd;
-            font-size: 14px;
-            width: 180px;
-            transition: width 0.3s;
-            background-color: #f5f5f5;
-        }
-        
-        .nav-search .pagefind-ui__search-input:focus {
-            width: 220px;
-            outline: none;
-            border-color: #03a9f4;
-        }
-        
-        .nav-search .pagefind-ui__search-clear {
-            width: 36px;
-            height: 36px;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: 14px;
-        }
-        
-        .nav-search .pagefind-ui__drawer {
-            position: absolute;
-            top: 50px;
-            right: 0;
-            width: 400px;
-            max-height: 80vh;
-            overflow-y: auto;
-            background: white;
-            border-radius: 4px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-            z-index: 1002;
-            padding: 15px;
-        }
-        
-        /* CTA Buttons Styles */
-        .cta-buttons {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .cta-buttons .btn {
-            padding: 12px 24px;
-            border-radius: 4px;
-            font-weight: 500;
-            text-decoration: none;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        
-        .cta-buttons .btn-primary {
-            background-color: #03a9f4;
-            color: white;
-            border: none;
-        }
-        
-        .cta-buttons .btn-primary:hover {
-            background-color: #0288d1;
-            transform: translateY(-2px);
-        }
-        
-        .cta-buttons .btn-secondary {
-            background-color: transparent;
-            color: #03a9f4;
-            border: 1px solid #03a9f4;
-        }
-        
-        .cta-buttons .btn-secondary:hover {
-            background-color: rgba(3, 169, 244, 0.1);
-            transform: translateY(-2px);
-        }
-        
-        /* Community Container Styles */
-        .community-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: flex-start;
-            margin: 40px 0;
-            max-width: 800px;
-        }
-        
-        .community-card {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            padding: 25px;
-            width: 280px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            text-align: left;
-        }
-        
-        .community-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-        }
-        
-        .community-card img {
-            width: 60px;
-            height: 60px;
-            margin-bottom: 15px;
-        }
-        
-        .community-card h3 {
-            margin: 0 0 10px 0;
-            font-size: 20px;
-            color: #333;
-        }
-        
-        .community-card p {
-            color: #666;
-            line-height: 1.5;
-            margin: 0;
-        }
-        
-        .community-links {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .community-links a {
-            padding: 8px 16px;
-            border: none;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .community-links a i {
-            font-size: 16px;
-        }
-        
-        .community-links a.primary {
-            background-color: #03a9f4;
-            color: white;
-        }
-        
-        .community-links a.primary:hover {
-            background-color: #0288d1;
-        }
-        
-        .community-links a.secondary {
-            background-color: transparent;
-            color: #03a9f4;
-            border: 1px solid #03a9f4;
-        }
-        
-        .community-links a.secondary:hover {
-            background-color: rgba(3, 169, 244, 0.1);
-        }
-        
-        /* Add spacing for the fixed navbar */
-        body {
-            padding-top: 60px;
-        }
-        
-        /* Dark mode support */
-        @media (prefers-color-scheme: dark) {
-            .nav-container {
-                background-color: #212121;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-            }
-            
-            .dropbtn {
-                color: #ececec;
-            }
-            
-            .dropdown-content {
-                background-color: #212121;
-            }
-            
-            .dropdown-content a {
-                color: #ececec;
-            }
-            
-            .dropdown-content a:hover {
-                background-color: #393939;
-            }
-            
-            .dropdown:hover .dropbtn {
-                color: #00bfff;
-            }
-            
-            .nav-search .pagefind-ui__search-input {
-                background-color: #333;
-                border-color: #444;
-                color: #ececec;
-            }
-            
-            .nav-search .pagefind-ui__search-input:focus {
-                border-color: #00bfff;
-            }
-            
-            .nav-search .pagefind-ui__drawer {
-                background-color: #212121;
-                color: #ececec;
-            }
-            
-            .cta-buttons .btn-primary {
-                background-color: #00bfff;
-            }
-            
-            .cta-buttons .btn-primary:hover {
-                background-color: #0099cc;
-            }
-            
-            .cta-buttons .btn-secondary {
-                color: #00bfff;
-                border-color: #00bfff;
-            }
-            
-            .cta-buttons .btn-secondary:hover {
-                background-color: rgba(0, 191, 255, 0.1);
-            }
-            
-            .community-card {
-                background-color: #2a2a2a;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            }
-            
-            .community-card h3 {
-                color: #ececec;
-            }
-            
-            .community-card p {
-                color: #bbb;
-            }
-            
-            .community-links a.primary {
-                background-color: #00bfff;
-            }
-            
-            .community-links a.primary:hover {
-                background-color: #0099cc;
-            }
-            
-            .community-links a.secondary {
-                color: #00bfff;
-                border-color: #00bfff;
-            }
-            
-            .community-links a.secondary:hover {
-                background-color: rgba(0, 191, 255, 0.1);
-            }
-        }
-        
-        /* Responsive Adjustments */
-        @media (max-width: 875px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .sticky-nav {
-                padding: 10px;
-            }
-            
-            .nav-search {
-                display: flex;
-                margin-left: 0;
-            }
-            
-            .nav-search .pagefind-ui__search-input {
-                width: 150px;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-            }
-            
-            .community-container {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .community-card {
-                width: 100%;
-                max-width: 320px;
-            }
-        }
-        
-        /* Search Results Styles */
-        #nav-search-results {
-            display: none;
-            position: absolute;
-            top: 50px;
-            right: 0;
-            width: 400px;
-            max-height: 80vh;
-            overflow-y: auto;
-            background: white;
-            border-radius: 4px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-            z-index: 1002;
-            padding: 15px;
-        }
-        
-        @media (prefers-color-scheme: dark) {
-            #nav-search-results {
-                background-color: #212121;
-                color: #ececec;
-            }
-        }
-    </style>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <link rel="stylesheet" href="_static/index.css">
+
     <div class="nav-container">
         <nav class="sticky-nav">
             <div class="nav-logo">
                 <a href="/"><img src="_images/logo.svg" alt="ESPHome Logo" height="30"></a>
             </div>
+            <button type="button" class="hamburger-button" aria-label="Open menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <div class="nav-links">
                 <div class="dropdown">
-                    <button class="dropbtn">Getting Started</button>
+                    <button type="button" class="dropbtn" aria-haspopup="true" aria-expanded="false">Getting Started</button>
                     <div class="dropdown-content">
                         <a href="/guides/getting_started_hassio.html">From Home Assistant</a>
                         <a href="/guides/getting_started_command_line.html">Using Command Line</a>
@@ -434,7 +34,7 @@
                     </div>
                 </div>
                 <div class="dropdown">
-                    <button class="dropbtn">Next Steps</button>
+                    <button type="button" class="dropbtn" aria-haspopup="true" aria-expanded="false">Next Steps</button>
                     <div class="dropdown-content">
                         <a href="/components/">Documentation</a>
                         <a href="/automations/">Automations</a>
@@ -446,17 +46,17 @@
                     </div>
                 </div>
                 <div class="dropdown">
-                    <button class="dropbtn">Keeping Up</button>
+                    <button type="button" class="dropbtn" aria-haspopup="true" aria-expanded="false">Keeping Up</button>
                     <div class="dropdown-content">
                         <a href="/changelog/">Changelog</a>
                         <a href="https://discord.gg/KhAMKrd">Discord</a>
                         <a href="https://community.home-assistant.io/c/esphome/">Forums</a>
-                        <a href="/guides/contributing.html">Contributing</a>
+                        <a href="https://developers.esphome.io">Development</a>
                         <a href="/guides/supporters.html">Supporters</a>
                     </div>
                 </div>
                 <div class="nav-search">
-                    <div id="nav-search"></div>
+                    <div id="nav-search-container"></div>
                     <div id="nav-search-results"></div>
                 </div>
             </div>
@@ -464,65 +64,7 @@
     </div>
 
     <script src="/pagefind/pagefind-modular-ui.js"></script>
-    <script>
-        window.addEventListener('DOMContentLoaded', (event) => {
-            // Create search input
-            const searchContainer = document.getElementById('nav-search');
-            const searchInput = document.createElement('input');
-            searchInput.type = 'text';
-            searchInput.id = "frontpage-search";
-            searchInput.placeholder = 'Search...';
-            searchInput.className = 'pagefind-ui__search-input';
-            searchContainer.appendChild(searchInput);
-            
-            // Create search results container
-            const resultsContainer = document.getElementById('nav-search-results');
-            
-            // Initialize PagefindModularUI
-            const instance = new PagefindModularUI.Instance({
-                showSubResults: true,
-                showImages: false,
-                resetStyles: true,
-                ranking: {
-                    pageLength: 0.0,
-                    termSaturation: 1.6,
-                    termFrequency: 0.4,
-                    termSimilarity: 6.0
-                }
-            });
-            
-            // Add input component
-            instance.add(new PagefindModularUI.Input({
-                inputElement: "#frontpage-search"
-            }));
-            
-            // Add results component
-            instance.add(new PagefindModularUI.ResultList({
-                containerElement: "#nav-search-results"
-            }));
-            
-            // Show/hide results
-            instance.on("results", (results) => {
-                if (results.results.length) {
-                    resultsContainer.style.display = 'block';
-                } else {
-                    resultsContainer.style.display = 'none';
-                }
-            });
-            
-            // Hide results when clicking outside
-            document.addEventListener('click', (event) => {
-                if (!event.target.closest('.nav-search')) {
-                    resultsContainer.style.display = 'none';
-                }
-            });
-            
-            // Focus input on click
-            searchInput.addEventListener('click', (event) => {
-                event.stopPropagation();
-            });
-        });
-    </script>
+    <script src="/_static/index.js" defer></script>
 
 .. raw:: html
     :file: images/logo-text.svg
@@ -532,10 +74,25 @@
     <div class="hero-container">
         <div class="hero-content">
             <h1>Smart Home Made Simple</h1>
-            <p>Turn your ESP8266/ESP32 or RP2040 boards into powerful smart home devices with simple YAML configuration</p>
+            <p>Turn your ESP32, ESP8266, or RP2040 boards into powerful smart home devices with simple YAML configuration</p>
         </div>
         <div class="hero-image">
             <img src="_images/hero.png" alt="ESPHome devices" />
+        </div>
+    </div>
+
+Quick Links
+===========
+
+.. raw:: html
+
+    <div class="cta-container">
+        <div class="cta-content">
+            <div class="cta-buttons">
+                <a href="/guides/getting_started_hassio.html" class="btn btn-primary">Installation Guide</a>
+                <a href="/components/index.html" class="btn btn-secondary">Browse Components</a>
+                <a href="https://devices.esphome.io/" class="btn btn-secondary">Device Database</a>
+            </div>
         </div>
     </div>
 
@@ -550,7 +107,7 @@ ESPHome is an open-source firmware framework that simplifies the process of crea
 * **Integrate seamlessly with Home Assistant** for a unified smart home experience
 * **Control and monitor** your devices through multiple interfaces (web, API, MQTT)
 * **Automate your home** with powerful on-device automations
-* **Update your devices wirelessly** (OTA) without physical access
+* **Update your devices wirelessly** "Over The Air" (OTA) updates without physical access
 
 ESPHome takes care of the complex parts of firmware development, allowing you to focus on what matters - building your smart home exactly how you want it.
 
@@ -558,23 +115,19 @@ ESPHome takes care of the complex parts of firmware development, allowing you to
 
     <div class="feature-grid">
         <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-code"></i></div>
-            <h3>No Coding Required</h3>
+            <div class="feature-icon"><i aria-hidden="true" class="fas fa-code"></i></div><div class="feature-text">No Coding Required</div>
             <p>Simple YAML configuration files instead of complex C++ code</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-wifi"></i></div>
-            <h3>Wireless Updates</h3>
+            <div class="feature-icon"><i aria-hidden="true" class="fas fa-wifi"></i></div><div class="feature-text">Wireless Updates</div>
             <p>Update your devices over-the-air without physical access</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-puzzle-piece"></i></div>
-            <h3>Modular Design</h3>
+            <div class="feature-icon"><i aria-hidden="true" class="fas fa-puzzle-piece"></i></div><div class="feature-text">Modular Design</div>
             <p>Support for hundreds of sensors, displays, and other components</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-            <h3>Local Control</h3>
+            <div class="feature-icon"><i aria-hidden="true" class="fas fa-shield-alt"></i></div><div class="feature-text">Local Control</div>
             <p>Devices work locally without cloud dependencies</p>
         </div>
     </div>
@@ -584,19 +137,59 @@ ESPHome takes care of the complex parts of firmware development, allowing you to
 Who Uses ESPHome?
 =================
 
-ESPHome is used by a diverse community of smart home enthusiasts, makers, and professionals:
+.. raw:: html
 
-**DIY Enthusiasts**
-    Create custom sensors, switches, and displays tailored to specific needs
+    <div class="feature-grid">
+        <div class="feature-card">
+            <div class="feature-icon"><i aria-hidden="true" class="fas fa-user-cog"></i></div>
+            <div class="feature-text">DIY Enthusiasts</div>
+            <p>Create custom sensors, switches, and displays tailored to specific needs</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i aria-hidden="true" class="fas fa-home"></i></div>
+            <div class="feature-text">Smart Home Hobbyists</div>
+            <p>Extend their home automation systems with affordable custom devices</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i aria-hidden="true" class="fas fa-briefcase"></i></div>
+            <div class="feature-text">Professional Integrators</div>
+            <p>Deploy reliable, locally-controlled smart devices for clients</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i aria-hidden="true" class="fas fa-industry"></i></div>
+            <div class="feature-text">Manufacturers</div>
+            <p>Create <a href="/guides/made_for_esphome">Made for ESPHome</a> certified products with standardized firmware</p>
+        </div>
+    </div>
 
-**Smart Home Hobbyists**
-    Extend their home automation systems with affordable custom devices
 
-**Professional Integrators**
-    Deploy reliable, locally-controlled smart devices for clients
+Which microcontrollers does ESPHome support?
+============================================
 
-**Manufacturers**
-    Create "Made for ESPHome" certified products with standardized firmware
+.. raw:: html
+
+    <div class="feature-grid">
+        <div class="feature-card">
+            <div class="feature-icon"><i aria-hidden="true" class="fas fa-microchip"></i></div>
+            <div class="feature-text">Espressif ESP32 and ESP8266</div>
+            <p>Wide support for ESP32 and ESP8266 microcontrollers, the heart of many IoT projects.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i aria-hidden="true" class="fa-brands fa-raspberry-pi"></i></div>
+            <div class="feature-text">RP2040</div>
+            <p>Support for Raspberry Pi's RP2040 microcontroller.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i aria-hidden="true" class="fas fa-bolt"></i></div>
+            <div class="feature-text">Others</div>
+            <p>Realtek RTL87xx and Beken BK72xx chips are supported.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i aria-hidden="true" class="fas fa-computer"></i></div>
+            <div class="feature-text">Desktop</div>
+            <p>Many ESPHome components can be run on a desktop computer using the <i>host</i> platform!</p>
+        </div>
+    </div>
 
 .. _getting-started:
 
@@ -615,7 +208,7 @@ Getting started with ESPHome is easy. Choose the method that works best for you:
                 <li>Open Home Assistant</li>
                 <li>Go to Settings → Add-ons → Add-on Store</li>
                 <li>Find and install the ESPHome add-on</li>
-                <li>Open the ESPHome dashboard and create your first device</li>
+                <li>Open the ESPHome Device Builder and create your first device</li>
             </ol>
             <a href="/guides/getting_started_hassio.html" class="btn btn-primary">Detailed Instructions</a>
         </div>
@@ -652,46 +245,41 @@ Here's a simple example of an ESPHome configuration file:
 
     # Basic configuration for an ESP32 device
     esphome:
-      name: living_room_sensor
+      name: living-room-sensor
       friendly_name: Living Room Sensor
 
     # Hardware configuration
     esp32:
       board: esp32dev
       framework:
-        type: arduino
+        type: esp-idf
 
     # Enable Home Assistant API
     api:
-      encryption:
-        key: "YOUR_ENCRYPTION_KEY"
 
     # Enable over-the-air updates
     ota:
-      password: "YOUR_OTA_PASSWORD"
+      platform: esphome
 
     # Connect to WiFi
     wifi:
       ssid: !secret wifi_ssid
       password: !secret wifi_password
-      
+
       # Enable fallback hotspot if WiFi connection fails
       ap:
-        ssid: "Living Room Sensor Fallback"
-        password: "YOUR_FALLBACK_PASSWORD"
 
     # Enable web server
     web_server:
-      port: 80
 
     # Add a temperature sensor
     sensor:
       - platform: dht
         pin: GPIO15
         temperature:
-          name: "Living Room Temperature"
+          name: "Temperature"
         humidity:
-          name: "Living Room Humidity"
+          name: "Humidity"
         update_interval: 60s
 
 .. _using-with-home-assistant:
@@ -730,51 +318,60 @@ You can create powerful automations using ESPHome devices in Home Assistant:
 * Use sensor readings to trigger actions
 * Control ESPHome devices based on conditions
 * Include ESPHome devices in scenes and scripts
-* Create complex multi-device automations
+* Create complex automations using multiple sensors and conditions
 
 Advanced Features
 -----------------
 
-* **ESPHome Dashboard Add-on**: Manage all your ESPHome devices directly from Home Assistant
-* **YAML Synchronization**: Keep your configurations in sync with Home Assistant
+* **ESPHome Device Builder Add-on**: Manage all your ESPHome devices directly from Home Assistant
 * **Backup Integration**: Include ESPHome configurations in your Home Assistant backups
 * **Firmware Updates**: Update ESPHome devices directly from the Home Assistant interface
+
+Join the Community
+==================
 
 .. raw:: html
 
     <div class="cta-container">
         <div class="cta-content">
-            <h2>Ready to get started?</h2>
-            <p>Join thousands of smart home enthusiasts building custom devices with ESPHome</p>
+            <div class="cta-buttons">
+                <a href="https://discord.gg/KhAMKrd" class="btn btn-primary" target="_blank"
+                rel="noopener noreferrer">
+                    <i aria-hidden="true" class="fab fa-discord"></i>
+                    <span>Discord</span>
+                </a>
+                <a href="https://github.com/esphome/esphome" class="btn btn-primary" target="_blank"
+                rel="noopener noreferrer">
+                    <i aria-hidden="true" class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+                <a href="https://community.home-assistant.io/c/esphome/" class="btn btn-primary" target="_blank"
+                rel="noopener noreferrer">
+                    <i aria-hidden="true" class="far fa-comments"></i>
+                    <span>Forums</span>
+                </a>
+                <a href="https://twitter.com/esphome_" class="btn btn-primary" target="_blank"
+                rel="noopener noreferrer">
+                    <i aria-hidden="true" class="fab fa-twitter"></i>
+                    <span>Twitter</span>
+                </a>
+        </div>
+    </div>
+
+Ready to get started?
+=====================
+
+Join thousands of smart home enthusiasts building custom devices with ESPHome.
+
+.. raw:: html
+
+    <div class="cta-container">
+        <div class="cta-content">
             <div class="cta-buttons">
                 <a href="/guides/getting_started_hassio.html" class="btn btn-primary">Installation Guide</a>
                 <a href="/components/index.html" class="btn btn-secondary">Browse Components</a>
                 <a href="https://devices.esphome.io/" class="btn btn-secondary">Device Database</a>
             </div>
-        </div>
-    </div>
-
-.. raw:: html
-
-    <h2>Join the Community</h2>
-    <div class="community-container">
-        <div class="community-links">
-            <a href="https://discord.gg/KhAMKrd" class="community-link" target="_blank">
-                <i class="fab fa-discord"></i>
-                <span>Discord</span>
-            </a>
-            <a href="https://github.com/esphome/esphome" class="community-link" target="_blank">
-                <i class="fab fa-github"></i>
-                <span>GitHub</span>
-            </a>
-            <a href="https://community.home-assistant.io/c/esphome/" class="community-link" target="_blank">
-                <i class="far fa-comments"></i>
-                <span>Forums</span>
-            </a>
-            <a href="https://twitter.com/esphome_" class="community-link" target="_blank">
-                <i class="fab fa-twitter"></i>
-                <span>Twitter</span>
-            </a>
         </div>
     </div>
 
