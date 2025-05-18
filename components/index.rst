@@ -6,6 +6,7 @@
 
 .. raw:: html
     :file: ../images/logo-docs.svg
+    :class: hero-img
 
 This page is an index of all of the hardware components and platforms ESPHome currently supports.
 

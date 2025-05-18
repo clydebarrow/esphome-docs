@@ -22,8 +22,21 @@ div.document {
   margin-bottom: 50px;
 }
 
+img {
+  max-width: 600px;
+}
+.hero-img {
+  text-align: center;
+}
+svg,img.hero-img {
+  display: block;
+  width: 100%;
+  max-width: 800px;
+}
+
 div.body {
   min-width: initial;
+  max-width: 1500px;
 }
 
 div.sphinxsidebar {

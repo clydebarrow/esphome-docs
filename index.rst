@@ -68,6 +68,9 @@
 
 .. raw:: html
     :file: images/logo-text.svg
+    :class: dark-invert, hero-img
+
+
 
 .. raw:: html
 
@@ -76,7 +79,7 @@
             <h1>Smart Home Made Simple</h1>
             <p>Turn your ESP32, ESP8266, or RP2040 boards into powerful smart home devices with simple YAML configuration</p>
         </div>
-        <div class="hero-image">
+        <div class="hero-img">
             <img src="_images/hero.png" alt="ESPHome devices" />
         </div>
     </div>
