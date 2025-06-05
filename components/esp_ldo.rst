@@ -15,12 +15,35 @@ component allows those regulators to be configured and enabled.
       - channel: 3
         voltage: 2.5V
 
-Configuration variables:
-------------------------
+Configuration variables
+-----------------------
 
 - **channel** (**Required**, int): The channel number of the LDO regulator to configure. Only channels 3 and 4 are supported (1 and 2 are used internally by the chip.)
 - **voltage** (**Required**, voltage): The desired output voltage - must be in the range 0.5V to 2.7V.
-- **adjustable** (*Optional*, bool): If true, the output voltage can be adjusted at run-time.
+- **adjustable** (*Optional*, bool): If true, the output voltage can be adjusted at run-time. Defaults to false.
+
+``esp_ldo.voltage.adjust`` Action
+---------------------------------
+
+If the LDO is adjustable, the voltage can be updated at runtime:
+
+.. code-block:: yaml
+
+      on_...:
+        then:
+          - esp_ldo.voltage.adjust:
+              id: ldo_id
+              voltage: !lambda return 2.5;
+
+Configuration variables
+***********************
+
+- **id** (**Required**, :ref:`ID <config-id>`) The ID of the LDO to adjust.
+- **voltage** (**Required**, voltage): The desired output voltage - must be in the range 0.5V to 2.7V.
 
 
+See Also
+--------
+
+- :apiref:`esp_ldo/esp_ldo.h`
 - :ghedit:`Edit`
