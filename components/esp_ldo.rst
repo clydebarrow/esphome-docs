@@ -29,11 +29,11 @@ If the LDO is adjustable, the voltage can be updated at runtime:
 
 .. code-block:: yaml
 
-      on_...:
-        then:
-          - esp_ldo.voltage.adjust:
-              id: ldo_id
-              voltage: !lambda return 2.5;
+    on_...:
+      then:
+        - esp_ldo.voltage.adjust:
+            id: ldo_id
+            voltage: !lambda return 2.5;
 
 Configuration variables
 ***********************
