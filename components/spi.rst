@@ -27,6 +27,7 @@ It is also possible to configure a quad SPI interface using 4 output data lines,
 use with certain components.
 
 .. note::
+
     - Software mode supports only single-bit SPI.
     - Quad mode SPI is available only on on ESP32 devices (all variants).
     - Octal mode is available only on ESP32-S3, -S2 and -P4 variants.
