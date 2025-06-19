@@ -188,6 +188,7 @@ Breaking Changes
 - Optimize Component and Application state storage from uint32_t to uint8_t :esphomepr:`9082` by :ghuser:`bdraco` (breaking-change)
 - Reduce entity memory usage by eliminating field shadowing and bit-packing :esphomepr:`9076` by :ghuser:`bdraco` (breaking-change)
 - Optimize Application ``area_`` from ``std::string`` to ``const char*`` :esphomepr:`9085` by :ghuser:`bdraco` (breaking-change)
+- The default CPU frequency for ESP32 is now 160MHz for both ESP-IDF and Arduino (was 240MHz for Arduino) :esphomepr:`8542` by :ghuser:`clydebarrow` (breaking-change)
 
 Beta Changes
 ^^^^^^^^^^^^
