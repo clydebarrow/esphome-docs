@@ -151,6 +151,11 @@ focus on three key areas:
 These optimizations are part of an ongoing effort to make ESPHome more efficient and reliable. More performance
 improvements are planned for future releases.
 
+Arduino Platform Default CPU Frequency
+---------------------------------------------
+
+The default CPU frequency for ESP32 is now 160MHz for both ESP-IDF and Arduino (was 240MHz for Arduino). This can
+be configured in the ``esp32`` block using the ``cpu_frequency`` option. See :doc:`/components/esp32`.
 
 BME68x BSEC2 Arduino Independence
 ---------------------------------
