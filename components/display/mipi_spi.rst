@@ -1,11 +1,11 @@
-MIPI SPI Display Driver
-=======================
-
 .. seo::
     :description: Details for the MIPI SPI display driver component in ESPHome
     :image: ili9341.jpg
 
 .. _mipi_spi:
+
+MIPI SPI Display Driver
+=======================
 
 Introduction
 ------------
@@ -65,6 +65,8 @@ Boards with integrated displays
     :header: "Model", "Manufacturer", "Product Description"
     :widths: 30, 20, 30
 
+    "ADAFRUIT-S2-TFT-FEATHER", "Adafruit", "https://www.adafruit.com/product/6312"
+    "ADAFRUIT-FUNHOUSE", "Adafruit", "https://www.adafruit.com/product/4985"
     "M5CORE", "M5Stack", "https://docs.m5stack.com/en/core/BASIC%20v2.6"
     "S3BOX", "Espressif", "https://www.espressif.com/en/products/devkits/esp32-s3-box"
     "S3BOXLITE", "Espressif", "https://www.espressif.com/en/products/devkits/esp32-s3-box-lite"
