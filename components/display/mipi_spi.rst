@@ -164,7 +164,7 @@ Buffer Size
 
 The display driver writes data from a buffer to the display chip. When using :doc:`/components/lvgl/index` no buffer is required in the display driver itself, as LVGL will
 allocate and use its own buffer.
-When not using LVGL, i.e. using a lambda function to update the display, a buffer is required to be allocated by the display driver.
+When instead using a lambda function to update the display (and not LVGL), a buffer is required to be allocated by the display driver.
 The size of this buffer is determined by the ``buffer_size`` option. The default is ``100%`` when PSRAM is configured, and otherwise will be calculated to
 achieve a buffer size less than 20K bytes. For example a display of size 320x240 will have a buffer size of ``320 * 240 * 2`` bytes (for RGB565) = ``153600`` bytes.
 If the buffer size is set to ``50%``, then the buffer would occupy ``76800`` bytes. If 8 bit color depth is used, then each pixel occupies only 1 byte.
