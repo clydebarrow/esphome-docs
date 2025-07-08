@@ -174,7 +174,7 @@ Effect on Drawing Performance
 
 The buffer size is a trade-off between the size of the buffer and the performance of the display driver. A larger buffer size will provide better performance,
 but on boards with limited memory, a smaller buffer size may be required to avoid running out of memory. When using a buffer less than 100%, the driver will
-call the drawing lambda multiple times to draw each chunk of the display, e.g. with 25% buffer size, the driver will call the drawing lambda 4 times to draw the display.
+call the drawing lambda multiple times to draw each chunk of the display. For example, with a 25% buffer size, the driver will call the drawing lambda four times to draw the display.
 This has an effect on performance, and should be considered when setting the buffer size, but it is also important that the drawing lambda does not have
 side effects - this should be avoided in any case, but becomes more critical when using a buffer less than 100%.
 
