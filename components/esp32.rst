@@ -24,7 +24,7 @@ Configuration variables:
   to the name can be used to copy the board ID). *This only affects pin aliases and some internal settings*;
   This setting is no longer recommended, ``variant`` should be used instead.
 
-    .. note::
+.. note::
 
     At least one of ``board`` or ``variant`` must be specified. If ``variant`` alone is specified (the recommended practice),
     the board configuration will be automatically filled using a standard Espressif devkit board
