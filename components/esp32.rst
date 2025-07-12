@@ -16,14 +16,15 @@ This component contains platform-specific options for the ESP32 platform.
 Configuration variables:
 ------------------------
 
-- **variant** (*Optional*, string): The variant of the ESP32 that is used on this board. One of ``esp32``,
+- **variant** (*Optional*, string): The ESP32 mcu/chip to use for this device configuration. One of ``esp32``,
   ``esp32s2``, ``esp32s3``, ``esp32c2``, ``esp32c3``, ``esp32c5``, ``esp32c6``, ``esp32h2`` or ``esp32p4``.
+  This must match the hardware in use, or it will fail to flash.
 - **board** (*Optional*, string): The PlatformIO board ID that should be used. Choose the appropriate board from
   `this list <https://registry.platformio.org/platforms/platformio/espressif32/boards?version=5.3.0>`__ (the icon next
   to the name can be used to copy the board ID). *This only affects pin aliases and some internal settings*;
   This setting is no longer recommended, ``variant`` should be used instead.
 
-  .. note::
+    .. note::
 
     At least one of ``board`` or ``variant`` must be specified. If ``variant`` alone is specified (the recommended practice),
     the board configuration will be automatically filled using a standard Espressif devkit board
