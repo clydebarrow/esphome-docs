@@ -118,7 +118,7 @@ that sensor's state. In the example below, the red and green values generate ide
 
     The simplified syntax is only available for ``sensor`` and ``binary_sensor``. It does
     not work where a text value is expected (e.g. for ``text_sensor``), since there is no way to distinguish between
-    a string literal and the simplified syntax.
+    a string literal and the simplified syntax, thus for text sensors, you will have to use the full lambda syntax.
 
 All Lambda Calls
 ----------------
