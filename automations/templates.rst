@@ -97,6 +97,29 @@ want to set it to a pre-defined color when a button is pressed, you can do this:
 When you see the label "templatable" in the documentation for a given action, it can be templated as in this example,
 using the lambda syntax as described/shown above.
 
+Simplified Lambda Syntax for Sensor States
+------------------------------------------
+
+For the common case of just returning the state of a ``sensor`` or ``binary_sensor``, you can use a simplified syntax
+wherever a lambda is expected -  a string of the form ``sensor_id.state`` is automatically converted to a lambda returning
+that sensor's state. In the example below, the red and green values generate identical lambda code.
+
+.. code-block:: yaml
+
+    on_press:
+      then:
+        - light.turn_on:
+            id: some_light_id
+            red: brightness_sensor.state # Simpler syntax - identical to the lambda below
+            green: !lambda return id(brightness_sensor).state; # Regular lambda syntax
+            blue: 1.0
+
+.. note::
+
+    The simplified syntax is only available for ``sensor`` and ``binary_sensor``. It does
+    not work where a text value is expected (e.g. for ``text_sensor``), since there is no way to distinguish between
+    a string literal and the simplified syntax.
+
 All Lambda Calls
 ----------------
 
