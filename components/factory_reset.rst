@@ -44,6 +44,11 @@ Configuration variables:
 - **reset_after_fast_power_cycles** (*Optional*, integer): The number of power cycles after which the device will be reset.
   No default, if not configured the power cycle reset feature will be disabled
 - **max_delay_between_power_cycles** (*Optional*, :ref:`Time <config-time>`): The maximum delay between power cycles. Default: 10s
+- **count_external_resets** (*Optional*, integer): If true, the reset count will be incremented by 1 for each external reset,
+
+  such as pressing the reset button, as well as actual power cycles.
+  Default: false. On some boards, power cycling by removing and reinserting a USB
+  cable does not result in a power cycle reset, but an external reset.
 
 ``on_increment`` Trigger
 ^^^^^^^^^^^^^^^^^^^^^^^^
