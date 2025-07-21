@@ -22,16 +22,16 @@ After reboot all states, parameters and variables will be reinitialized with the
 Reset by Fast Power Cycling
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``factory_reset`` component can be configured to reset by fast power cycling or pressing the reset button,
-which can be useful to reset devices that can't be
+The ``factory_reset`` component can be configured to clear stored preferences by repeatedly pressing the reset button or power cycling,
+which can be useful to clear the data stored in non-volatile memory on devices that can't be
 connected with a serial cable. The required number of power cycles and the maximum delay between them can be configured in the
 ``factory_reset`` component configuration. Points to note:
 
 - The maximum delay affects only the time when the device is powered on,
-  not the time when it is powered off.
+  not the time when it is powered off (this can't be measured).
 - The reset count will be cleared to zero when any other kind of reset occurs,
-  or if the device remains powered on for longer than the maximum delay.
-- Not available on RP2040 and RP2350 as the reset cause is indeterminate.
+  or if the device remains powered on and running for longer than the maximum delay.
+- Not available on RP2040 and RP2350 as the reset cause is not able to be determined.
 
 .. code-block:: yaml
 
