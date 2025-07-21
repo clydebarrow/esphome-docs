@@ -22,7 +22,8 @@ After reboot all states, parameters and variables will be reinitialized with the
 Reset by Fast Power Cycling
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``factory_reset`` component can be configured to reset by fast power cycling, which can be useful to reset devices that can't be
+The ``factory_reset`` component can be configured to reset by fast power cycling or pressing the reset button,
+which can be useful to reset devices that can't be
 connected with a serial cable. The required number of power cycles and the maximum delay between them can be configured in the
 ``factory_reset`` component configuration. Notes:
 
@@ -30,25 +31,20 @@ connected with a serial cable. The required number of power cycles and the maxim
   not the time when it is powered off.
 - The reset count will be cleared to zero when any other kind of reset occurs,
   or if the device remains powered on for longer than the maximum delay.
-- Not available on RP2040 and RP2350.
+- Not available on RP2040 and RP2350 as the reset cause is indeterminate.
 
 .. code-block:: yaml
 
     factory_reset:
-      reset_after_fast_power_cycles: 5
-      max_delay_between_power_cycles: 10s
+      resets_required: 5
+      max_delay: 10s
 
 Configuration variables:
 ------------------------
 
-- **reset_after_fast_power_cycles** (*Optional*, integer): The number of power cycles after which the device will be reset.
+- **resets_required** (*Optional*, integer): The number of power cycles after which the device will be reset.
   No default, if not configured the power cycle reset feature will be disabled
-- **max_delay_between_power_cycles** (*Optional*, :ref:`Time <config-time>`): The maximum delay between power cycles. Default: 10s
-- **count_external_resets** (*Optional*, integer): If true, the reset count will be incremented by 1 for each external reset,
-
-  such as pressing the reset button, as well as actual power cycles.
-  Default: false. On some boards, power cycling by removing and reinserting a USB
-  cable does not result in a power cycle reset, but an external reset.
+- **max_delay** (*Optional*, :ref:`Time <config-time>`): The maximum delay between power cycles. Default: 10s
 
 ``on_increment`` Trigger
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -63,8 +59,8 @@ cycle count is cleared to zero by timeout or a different type of reset. Argument
 .. code-block:: yaml
 
     factory_reset:
-      reset_after_fast_power_cycles: 5
-      max_delay_between_power_cycles: 10s
+      resets_required: 5
+      max_delay: 10s
       on_increment:
         - logger.log:
             format: "Fast power cycle count now %u, target %u"
