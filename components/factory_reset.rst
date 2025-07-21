@@ -32,6 +32,7 @@ connected with a serial cable. The required number of power cycles and the maxim
 - The reset count will be cleared to zero when any other kind of reset occurs,
   or if the device remains powered on and running for longer than the maximum delay.
 - Not available on RP2040 and RP2350 as the reset cause is not able to be determined.
+- On ESP8266 this feature requires the ``restore_from_flash`` feature to be enabled in the :doc:`ESP8266 platform </components/esp8266>`.
 
 .. code-block:: yaml
 
