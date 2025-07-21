@@ -25,7 +25,7 @@ Reset by Fast Power Cycling
 The ``factory_reset`` component can be configured to reset by fast power cycling or pressing the reset button,
 which can be useful to reset devices that can't be
 connected with a serial cable. The required number of power cycles and the maximum delay between them can be configured in the
-``factory_reset`` component configuration. Notes:
+``factory_reset`` component configuration. Points to note:
 
 - The maximum delay affects only the time when the device is powered on,
   not the time when it is powered off.
