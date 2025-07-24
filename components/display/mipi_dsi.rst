@@ -161,8 +161,10 @@ LCD Backlights
 --------------
 
 Many displays have an integrated backlight, which may need to be turned on for the display to show. This backlight is not controlled
-by the driver, but can be controlled by a separate GPIO pin. Depending on the display, the backlight may be active high or active low, and may
+by the driver, but can be controlled by a separate GPIO pin or i2c device. Depending on the display, the backlight may be active high or active low, and may
 be able to be dimmed using a :doc:`/components/light/monochromatic` with a :doc:`/components/output/ledc`.
+
+Many DSI display panels have an integrated backlight, which may need to be turned on for the display to show. See :doc:`/components/light/mipi_dsi` for more information.
 
 Touchscreens
 ------------
@@ -174,5 +176,6 @@ See Also
 
 - :doc:`index`
 - :doc:`/components/lvgl/index`
+- :doc:`/components/light/mipi_dsi`
 - :apiref:`mipi_dsi/mipi_dsi.h`
 - :ghedit:`Edit`
