@@ -31,7 +31,7 @@ boards and chips, but the driver is also designed to be customisable in YAML for
 Supported boards and driver chips
 ---------------------------------
 
-There are specific configurations for several ESP32 boards with integrated displays. For tbose boards
+There are specific configurations for several ESP32 boards with integrated displays. For those boards
 the predefined configuration will set the correct pins and dimensions for the display.
 
 For custom displays, the driver can be configured with the correct pins and dimensions, and the driver chip can be
@@ -118,8 +118,8 @@ Advanced options
   using 16 bit color depth. The default is appropriate for the majority of displays.
 
 
-Additional inititialisation sequences
---------------------------------------
+Additional initialisation sequences
+-----------------------------------
 
 The ``init_sequence`` option allows additional configuration of the driver chip. Provided commands will be sent to the
 driver chip in addition to, and after the chosen model's pre-defined commands. It requires a list of byte sequences:
@@ -137,7 +137,7 @@ If converting from other code, make sure the length byte, if present, is not cop
 CUSTOM model
 ------------
 
-The ``CUSTOM`` model selection is provided for otherwise unsupported displays, and requires both ``dimensions:`` and ``init_sequence:`` to be specfied. There is no pre-defined init sequence.
+The ``CUSTOM`` model selection is provided for otherwise unsupported displays, and requires both ``dimensions:`` and ``init_sequence:`` to be specified. There is no pre-defined init sequence.
 
 Using the ``transform`` options
 -------------------------------
