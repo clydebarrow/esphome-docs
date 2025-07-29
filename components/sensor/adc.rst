@@ -114,7 +114,7 @@ ESP32 pins and Hardware Details
     * - ESP32-S3
       - GPIO1 - GPIO10
       - GPIO11 - GPIO20
-    * - ESP32-P3
+    * - ESP32-P4
       - GPIO16 - GPIO23
       - GPIO49 - GPIO54
 
