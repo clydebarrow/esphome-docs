@@ -495,7 +495,7 @@ No programming or other software required.
       <li>
         <a
           href="https://www.tubeszb.com/product/wt32-eth01-bluetooth-proxy-kit/53"
-          >TubesZB - Kit with enlosure and USB-C</a
+          >TubesZB - Kit with enclosure and USB-C</a
         >
       </li>
     </ul>
