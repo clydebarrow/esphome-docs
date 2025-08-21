@@ -1373,7 +1373,7 @@ details {
     padding: 1em;
 }
 
->@media (prefers-reduced-motion) {
+@media (prefers-reduced-motion) {
     /* styles to apply if a user's device settings are set to reduced motion */
 
     details::details-content {
