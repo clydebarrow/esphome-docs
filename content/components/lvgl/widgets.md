@@ -25,8 +25,8 @@ The properties below are common to all widgets.
 By default, the `x`   and `y`   coordinates are measured from the *top left corner* of the parent's content area. [Important](#lvgl-styling): content area starts *after the padding* thus if the parent has a non-zero padding value, position will be shifted with that. Percentage values are calculated from the parent's content area size.
 
 If specifying `align`  , `x`   and `y`   can be used as an offset to the calculated position (can also be negative). They are ignored if [Layouts](#lvgl-layouts) are used on the parent.
-
 {{< /note >}}
+
 - **height** (*Optional*): Height of the widget in pixels or a percentage, or `SIZE_CONTENT`  .
 - **width** (*Optional*): Width of the widget in pixels or a percentage, or `SIZE_CONTENT`  .
 
@@ -34,8 +34,8 @@ If specifying `align`  , `x`   and `y`   can be used as an offset to the calcula
 The size settings support a special value: `SIZE_CONTENT`  . It means the widget's size in the respective direction will be set to the size of its children. Note that only children on the right and bottom sides will be considered and children on the top and left remain cropped. This limitation makes the behavior more predictable. Widgets with `hidden`   or `floating`   flags will be ignored by the `SIZE_CONTENT`   calculation.
 
 Similarly to CSS, LVGL also supports `min_width`  , `max_width`  , `min_height`   and `max_height`  . These are limits preventing a widget's size from becoming smaller/larger than these values. They are especially useful if the size is set by percentage or `SIZE_CONTENT`  .
-
 {{< /note >}}
+
 - **min_width**, **max_width**, **min_height**, **max_height** (*Optional*, int16 or percentage): Sets a minimal/maximal width or a minimal/maximal height. Pixel and percentage values can be used. Percentage values are relative to the dimensions of the parent's content area. Defaults to `0%`  .
 - **scrollbar_mode** (*Optional*, string): If a child widget is outside its parent content area (the size without padding), the parent can become scrollable (see the `scrollable`   [flag](#lvgl-widget-flags)). The widget can either be scrolled horizontally or vertically in one stroke. Scroll bars can appear depending on the setting:
     - `"OFF"`  : Never show the scroll bars (use the double quotes!).
@@ -117,8 +117,8 @@ In addition to visual styling, each widget supports some boolean **flags** to in
 
 {{< note >}}
 LVGL only supports **integers** for numeric `value`  . Visualizer widgets can't display floats directly, but they allow scaling by 10s. Some examples in the {{< docref "/cookbook/lvgl" "Cookbook" >}} cover how to do that.
-
 {{< /note >}}
+
 {{< anchor "lvgl-widget-parts" >}}
 
 ## Widget parts
@@ -1578,13 +1578,14 @@ The spinbox contains a numeric value (as text) which can be increased or decreas
 - **range_from** (*Optional*, float): The minimum value allowed to set the spinbox to. Defaults to `0`  .
 - **range_to** (*Optional*, float): The maximum value allowed to set the spinbox to. Defaults to `100`  .
 - **rollover** (*Optional*, boolean): While increasing or decreasing the value, if either the minimum or maximum value is reached with this option enabled, the value will change to the other limit. If disabled, the value will remain at the minimum or maximum value. Defaults to `false`  .
-- **step** (*Optional*, float): The granularity with which the value can be set. Defaults to `1.0`  .
-- **value** (*Optional*, float): Actual value to be shown by the spinbox at start. Defaults to `0`  .
+- **selected_digit** (*Optional*, int): The ordinal number of the digit to be initially focused. Defaults to `0`. This digit will
+  be incremented or decremented by one when `increment` or `decrement` actions are called. 
+- **value** (*Optional*, float): Actual value to be shown by the spinbox at start. Defaults to `0`.
 
 {{< note >}}
 The sign character will only be shown if the set range contains negatives.
-
 {{< /note >}}
+
 **Actions:**
 
 - `lvgl.spinbox.update`   [action](#actions-action) updates the widget styles and properties from the specific options above, just like the [lvgl.widget.update](#lvgl-automation-actions) action is used for the common styles, states or flags.
@@ -1999,6 +2000,7 @@ on_...:
         - id: [my_button_1, my_button_2]
 
 ```
+
 #### `lvgl.widget.disable`  , `lvgl.widget.enable`
 
 These [actions](#actions-action) are shorthands for toggling the `disabled`   state of any widget (which controls the appearance of the corresponding *disabled* style set of the theme):
@@ -2080,7 +2082,6 @@ when the page becomes active or inactive respectively.
 
 This [trigger](#lvgl-automation-triggers) is triggered after LVGL has been setup. It is available on the `lvgl`   component and any widget and can be used to perform any LVGL related setup that is not possible with static configuration.
 When used on a widget, it does not act specifically on that widget but can be used to keep actions related to that widget together with its configuration.
-
 
 ## See Also
 
