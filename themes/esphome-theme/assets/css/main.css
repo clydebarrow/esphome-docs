@@ -779,7 +779,7 @@ img.align-right, figure.align-right, .figure.align-right, object.align-right {
 
 .getting-started-heading, .footer-heading {
   font-size: 1.5em;
-  color: white;
+  color: var(--feature-card-text) !important;
 }
 
 .page-container {
@@ -1233,6 +1233,12 @@ figcaption {
     display: none;
   }
 }
+
+@media (max-width: 700px) {
+    .desktop-only {
+        display: none;
+    }
+}
 /* Responsive */
 /* @media (max-width: var(--mobile-width-stop)) {  // sadly does not work */
 @media (max-width: 1000px) {
@@ -1434,7 +1440,7 @@ details {
 .build-info {
   position: absolute;
   text-align: left;
-  bottom: 0.5rem;
+  top: 0.5rem;
   left: 0.5rem;
 }
 
