@@ -12,6 +12,15 @@ params:
 This is the top-level ESPHome documentation index. Browse the tables below, use the sidebar menu, or the search
 function to find the information you're looking for.
 
+### Help improve this documentation
+
+If you find any errors in this site, corrections are welcome. You can submit a _Pull Request_ (PR) in the
+[GitHub repo](https://github.com/esphome/esphome-docs) with corrections. If you don't know how to create a PR you
+can just use the "Edit this page on GitHub" link on the page in question which will take you to the source file
+for that page.
+
+Alternatively, post in the _Documentation_ channel in the [Discord](https://discord.gg/KhAMKrd) server.
+
 ## ESPHome Configuration
 
 ESPHome is configured in YAML files - use these links for basic and advanced
@@ -471,7 +480,7 @@ Sensors are organized into categories; if a given sensor fits into more than one
 "Havells Solar","components/sensor/havells_solar","havellsgti5000d_s.jpg","Solar rooftop"
 "Integration","components/sensor/integration","sigma.svg","dark-invert"
 "Kuntze pool sensor","components/sensor/kuntze","kuntze.jpg",""
-"LC709203F","components/sensor/lc709203f","lc709203f.jpg","Battery level", "Thermistor"
+"LC709203F","components/sensor/lc709203f","lc709203f.jpg","Battery level & Thermistor"
 "LVGL widget","components/sensor/lvgl","lvgl_c_num.png",""
 "M5Stack Unit 8 Angle","components/sensor/m5stack_8angle","m5stack_8angle.png",""
 "MAX17043","components/sensor/max17043","max17043.jpg","Battery level"
