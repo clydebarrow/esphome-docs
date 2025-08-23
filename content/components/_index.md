@@ -14,12 +14,12 @@ function to find the information you're looking for.
 
 ### Help improve this documentation
 
-If you find any errors in this site, corrections are welcome. You can submit a _Pull Request_ (PR) in the
+If you find any errors in this site, corrections are welcome. You can submit a *Pull Request* (PR) in the
 [GitHub repo](https://github.com/esphome/esphome-docs) with corrections. If you don't know how to create a PR you
 can just use the "Edit this page on GitHub" link on the page in question which will take you to the source file
 for that page.
 
-Alternatively, post in the _Documentation_ channel in the [Discord](https://discord.gg/KhAMKrd) server.
+Alternatively, post in the *Documentation* channel in the [Discord](https://discord.gg/KhAMKrd) server.
 
 ## ESPHome Configuration
 
