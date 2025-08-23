@@ -9,6 +9,7 @@ params:
 
 {{< html_file file="images/logo-docs.svg" >}}
 
+
 This is the top-level ESPHome documentation index. Browse the tables below, use the sidebar menu, or the search
 function to find the information you're looking for.
 
