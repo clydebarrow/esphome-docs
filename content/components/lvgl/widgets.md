@@ -1578,7 +1578,7 @@ The spinbox contains a numeric value (as text) which can be increased or decreas
 - **rollover** (*Optional*, boolean): While increasing or decreasing the value, if either the minimum or maximum value is reached with this option enabled, the value will change to the other limit. If disabled, the value will remain at the minimum or maximum value. Defaults to `false`.
 - **selected_digit** (*Optional*, int): The ordinal number of the digit to be initially focused. Defaults to `0` which
   represents the least significant digit. This digit will
-  be incremented or decremented by one when `increment` or `decrement` actions are called. 
+  be incremented or decremented by one when `increment` or `decrement` actions are called.
 - **value** (*Optional*, float): Actual value to be shown by the spinbox at start. Defaults to `0`.
 
 {{< note >}}
