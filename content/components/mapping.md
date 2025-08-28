@@ -44,7 +44,6 @@ You can also map to a class. This is useful when you want to map to a more compl
 - `color`  : Maps to a predefined [Color](#config-color). The values should each be a color ID.
 - The name of a C++ class defined by ESPHome, e.g. `Component`. The values should each be a ID of that class.
 
-
 ## Using a mapping
 
 A mapping defined in this component can be used in lambdas in other components. The mapping can be accessed using
