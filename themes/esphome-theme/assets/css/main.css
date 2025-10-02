@@ -1343,7 +1343,7 @@ figcaption {
 
   .dropdown-content {
     position: absolute;
-    top: -50px;
+    top: 0;
     right: 200px;
     box-shadow: none;
     margin-top: 0.5em;
