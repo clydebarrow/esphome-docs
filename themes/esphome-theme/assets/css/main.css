@@ -538,10 +538,6 @@ img.align-right, figure.align-right, .figure.align-right, object.align-right {
   color: var(--nav-text);
 }
 
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
 /* Search Box Styles */
 .nav-search {
   margin-left: 20px;
@@ -1250,13 +1246,11 @@ figcaption {
   .overlay.show, .sidebar-mobile {
     display: none;
   }
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
 }
 
-@media (max-width: 700px) {
-    .desktop-only {
-        display: none;
-    }
-}
 /* Responsive */
 /* @media (max-width: var(--mobile-width-stop)) {  // sadly does not work */
 @media (max-width: 1000px) {
@@ -1304,6 +1298,8 @@ figcaption {
     z-index: 0;
     display: none;
     height: 0;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
   }
 
   .nav-links.active {
@@ -1311,10 +1307,12 @@ figcaption {
     opacity: 100%;
     z-index: 1000;
     height: fit-content;
+    max-height: 100vh;
     transition: height 0.3s ease, opacity 0.3s ease;
   }
 
   .dropdown {
+    position: relative;
     margin-right: 0;
     margin-bottom: 1em;
     width: 100%;
@@ -1329,7 +1327,7 @@ figcaption {
 
   .dropdown-content {
     position: absolute;
-    top: 0;
+    top: -50px;
     right: 200px;
     box-shadow: none;
     margin-top: 0.5em;
@@ -1376,6 +1374,21 @@ figcaption {
   .sidebar.open {
     left: 0;
     z-index: 1;
+  }
+}
+
+@media (max-width: 700px) {
+  .desktop-only {
+    display: none;
+  }
+  .dropdown-content {
+    position: relative;
+    width: 100%;
+    top: 0;
+    right: 0;
+  }
+  .nav-links.active {
+    overflow-y: auto;
   }
 }
 
