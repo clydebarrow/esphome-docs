@@ -18,7 +18,6 @@ configuration.
 The driver supports a number of displays and there are also specific configurations for ESP32 boards with integrated displays.
 For tbose boards the predefined configuration will set the correct pins and dimensions for the display.
 
-
 ```yaml
 display:
   - platform: epaper_spi
@@ -29,15 +28,14 @@ display:
 
 ## Supported displays
 
-| Model name             | Manufacturer | Product Description                                        | 
+| Model name             | Manufacturer | Product Description                                        |
 |------------------------|--------------|------------------------------------------------------------|
 | Spectra-E6             | Eink         | <https://www.eink.com/brand/detail/Spectra6>               |
 | Seeed-reTerminal-E1002 | Seeed Studio | <https://www.seeedstudio.com/reTerminal-E1002-p-6533.html> |
 
-
 ## Configuration variables
 
-When using an model defining an integrated ESP32 display board most of the configuration such as the pins and dimensions will be set by default,
+When using a model defining an integrated ESP32 display board most of the configuration such as the pins and dimensions will be set by default,
 but can be overridden if needed.
 
 - **model** (**Required**): The model of the ePaper display. See the table above for options.
