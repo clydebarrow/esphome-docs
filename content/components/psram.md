@@ -8,9 +8,10 @@ params:
 ---
 
 This component enables and configures PSRAM if/when available on ESP32 modules/boards.
-It is automatically loaded and enabled by components that require it.
+Some components require PSRAM, while others may use it for optional features. In any case
+it is required to explicitly configured - this is a change from previous versions of ESPHome.
 
-PSRAM is only available on the ESP32.
+PSRAM is not available with platforms other than ESP32.
 
 ```yaml
 # Example configuration entry
