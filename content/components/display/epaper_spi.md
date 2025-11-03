@@ -16,7 +16,7 @@ The communication method uses 4-wire [SPI](#spi), so you need to have an `spi:` 
 configuration.
 
 The driver supports a number of displays and there are also specific configurations for ESP32 boards with integrated displays.
-For tbose boards the predefined configuration will set the correct pins and dimensions for the display.
+For those boards the predefined configuration will set the correct pins and dimensions for the display.
 
 ```yaml
 display:
