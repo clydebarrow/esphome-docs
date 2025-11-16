@@ -49,8 +49,7 @@ but can be overridden if needed.
 
 - **rotation** (*Optional*): Set the rotation of the display. Everything you draw in `lambda:` will be rotated
   by this option. One of `0°` (default), `90°`, `180°`, `270°`.
-- **transform** (*Optional*): If `rotation` is not sufficient, use this to transform the display.
-  If this option is specified, then the `dimensions` option must also be provided. Options are:
+- **transform** (*Optional*): If `rotation` is not sufficient, use this to transform the display. Options are:
     - **mirror_x** (**Required**, boolean): If true, mirror the x axis.
     - **mirror_y** (**Required**, boolean): If true, mirror the y axis.
 
