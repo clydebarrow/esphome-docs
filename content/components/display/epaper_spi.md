@@ -28,10 +28,12 @@ display:
 
 ## Supported displays
 
-| Model name             | Manufacturer | Product Description                                        |
-| ---------------------- | ------------ | ---------------------------------------------------------- |
-| Spectra-E6             | Eink         | <https://www.eink.com/brand/detail/Spectra6>               |
-| Seeed-reTerminal-E1002 | Seeed Studio | <https://www.seeedstudio.com/reTerminal-E1002-p-6533.html> |
+| Model name             | Manufacturer | Product Description                                                                                                        |
+| ---------------------- |--------------|----------------------------------------------------------------------------------------------------------------------------|
+| Spectra-E6             | Eink         | <https://www.eink.com/brand/detail/Spectra6>                                                                               |
+| Seeed-reTerminal-E1002 | Seeed Studio | <https://www.seeedstudio.com/reTerminal-E1002-p-6533.html>                                                                 |
+| ssd1677                | Solomon      | <https://www.solomon-systech.com/product/ssd1677/>                                                                         |
+| seeed-ee04-mono-4.26   | Seeed Studio | Seeed EE04 board with Waveshare 4.26" mono epaper.<https://www.seeedstudio.com/XIAO-ePaper-Display-Board-EE04-p-6560.html> |
 
 ## Configuration variables
 
@@ -47,15 +49,19 @@ but can be overridden if needed.
 
 - **rotation** (*Optional*): Set the rotation of the display. Everything you draw in `lambda:` will be rotated
   by this option. One of `0°` (default), `90°`, `180°`, `270°`.
+- **transform** (*Optional*): If `rotation` is not sufficient, use this to transform the display.
+  If this option is specified, then the `dimensions` option must also be provided. Options are:
+    - **mirror_x** (**Required**, boolean): If true, mirror the x axis.
+    - **mirror_y** (**Required**, boolean): If true, mirror the y axis.
 
 - **reset_duration** (*Optional*, [Time](/guides/configuration-types#time)): Duration for the display reset operation. Defaults to `200ms`.
-
 - **lambda** (*Optional*, [lambda](/automations/templates#config-lambda)): The lambda to use for rendering the content on the display.
   See [Display Rendering Engine](/components/display#display-engine) for more information.
 - **pages** (*Optional*, list): Show pages instead of a single lambda. See [Display Pages](/components/display#display-pages).
-
 - **update_interval** (*Optional*, [Time](/guides/configuration-types#time)): The interval to re-draw the screen. Defaults to `60s`,
   use `never` to only manually update the screen via `component.update`.
+- **full_update_every** (*Optional*, int): On screens that support partial updates, this sets the number of updates
+  before a full update is forced. Defaults to `1` which will make every update a full update.
 - **spi_id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID of the [SPI Component](/components/spi) if you want
   to use multiple SPI buses.
 - **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID used for code generation.
