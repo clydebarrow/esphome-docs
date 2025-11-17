@@ -32,15 +32,15 @@ display:
 | ---------------------- |--------------|----------------------------------------------------------------------------------------------------------------------------|
 | Spectra-E6             | Eink         | <https://www.eink.com/brand/detail/Spectra6>                                                                               |
 | Seeed-reTerminal-E1002 | Seeed Studio | <https://www.seeedstudio.com/reTerminal-E1002-p-6533.html>                                                                 |
-| ssd1677                | Solomon      | <https://www.solomon-systech.com/product/ssd1677/>                                                                         |
-| seeed-ee04-mono-4.26   | Seeed Studio | Seeed EE04 board with Waveshare 4.26" mono epaper. <https://www.seeedstudio.com/XIAO-ePaper-Display-Board-EE04-p-6560.html> |
+| SSD1677                | Solomon      | <https://www.solomon-systech.com/product/ssd1677/>                                                                         |
+| Seeed-ee04-mono-4.26   | Seeed Studio | Seeed EE04 board with Waveshare 4.26" mono epaper. <https://www.seeedstudio.com/XIAO-ePaper-Display-Board-EE04-p-6560.html> |
 
 ## Configuration variables
 
 When using a model defining an integrated ESP32 display board most of the configuration such as the pins and dimensions will be set by default,
 but can be overridden if needed.
 
-- **model** (**Required**): The model of the ePaper display. See the table above for options.
+- **model** (**Required**): The model of the ePaper display. See the table above for options (case is not significant).
 - **cs_pin** (**Required**, [Pin Schema](/guides/configuration-types#pin-schema)): The CS pin. Predefined for integrated boards.
 - **dc_pin** (**Required**, [Pin Schema](/guides/configuration-types#pin-schema)): The DC pin. Predefined for integrated boards.
 - **busy_pin** (*Optional*, [Pin Schema](/guides/configuration-types#pin-schema)): The BUSY pin, if used.
