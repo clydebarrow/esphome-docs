@@ -2229,7 +2229,7 @@ number:
     restore_value: true
     min_value: 10
     max_value: 180
-    selected_digit: 1
+    step: 5
     mode: box
 ```
 
