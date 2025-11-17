@@ -523,7 +523,7 @@ lvgl:
                     width: 50
                     range_from: 15
                     range_to: 35
-                    step: 0.5
+                    selected_digit: 0
                     rollover: false
                     digits: 3
                     decimal_places: 1
@@ -2229,7 +2229,7 @@ number:
     restore_value: true
     min_value: 10
     max_value: 180
-    step: 5
+    selected_digit: 1
     mode: box
 ```
 
