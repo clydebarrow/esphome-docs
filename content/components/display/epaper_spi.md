@@ -33,7 +33,7 @@ display:
 | Spectra-E6             | Eink         | <https://www.eink.com/brand/detail/Spectra6>                                                                               |
 | Seeed-reTerminal-E1002 | Seeed Studio | <https://www.seeedstudio.com/reTerminal-E1002-p-6533.html>                                                                 |
 | ssd1677                | Solomon      | <https://www.solomon-systech.com/product/ssd1677/>                                                                         |
-| seeed-ee04-mono-4.26   | Seeed Studio | Seeed EE04 board with Waveshare 4.26" mono epaper.<https://www.seeedstudio.com/XIAO-ePaper-Display-Board-EE04-p-6560.html> |
+| seeed-ee04-mono-4.26   | Seeed Studio | Seeed EE04 board with Waveshare 4.26" mono epaper. <https://www.seeedstudio.com/XIAO-ePaper-Display-Board-EE04-p-6560.html> |
 
 ## Configuration variables
 
