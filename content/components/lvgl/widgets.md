@@ -478,9 +478,13 @@ See [Remote light button](/cookbook/lvgl#lvgl-cookbook-binent) for an example wh
 **Actions:**
 
 - `lvgl.button.update` [action](/automations/actions#actions-action) may be used to update the button styles at runtime. If
-  the button has a `text:` option then it may also be updated with this action. Where other widgets are added as
-  children, they must be updated directly.
+  the button has a `text:` option then it may also be updated with this action.
+  - **id** (**Required**): The ID or a list of IDs of button widgets to be updated.
+  - **text** (*Optional*, string): Update the button's text (only if the button was configured with the `text:` option).
+  - Style options from [Style properties](/components/lvgl#lvgl-styling) for the background of the button.
 
+  > [!NOTE]
+  > Where other widgets are added as children, they must be updated directly.
 ```yaml
 # Example widget:
 - button:
