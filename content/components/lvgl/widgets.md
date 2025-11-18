@@ -443,8 +443,8 @@ A notable state is `checked` (boolean) which can have different styles applied.
 ```yaml
 # Example widget with text:
 - button:
-    text: "Click me!"
     id: btn_id
+    text: "Click me!"
 ```
 
 To create an image button, add a child [`image`](#lvgl-widget-image) widget to it:
@@ -485,15 +485,16 @@ See [Remote light button](/cookbook/lvgl#lvgl-cookbook-binent) for an example wh
 
   > [!NOTE]
   > Where other widgets are added as children, they must be updated directly.
+
 ```yaml
-# Example widget:
+# Text update example
 - button:
-    text: "Click me!"
     id: btn_id
+    text: "Click me!"
     on_click:
       lvgl.button.update:
-        text: "Clicked"
         id: btn_id
+        text: "Clicked"
 ```
 
 {{< anchor "lvgl-widget-buttonmatrix" >}}
