@@ -73,6 +73,6 @@ but can be overridden if needed.
 
 ## See Also
 
-- {{< docref "index/" >}}
 - {{< apiref "epaper_spi/epaper_spi.h" "epaper_spi/epaper_spi.h" >}}
 - [ESPHome Display Rendering Engine](/components/display#display-engine)
+- {{< docref "components/lvgl" >}}
