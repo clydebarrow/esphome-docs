@@ -12,7 +12,7 @@ with improved state management and non-blocking operation. This component implem
 queue-based state machine that eliminates blocking waits for the busy pin and provides
 better integration with ESPHome's async architecture.
 
-The communication method uses 4-wire [SPI](/components/spi), so you need to have an `spi:` section in your
+The communication method uses [SPI](/components/spi), so you need to have an `spi:` section in your
 configuration.
 
 The driver supports a number of displays and there are also specific configurations for ESP32 boards with integrated displays.
@@ -46,10 +46,16 @@ but can be overridden if needed.
 - **busy_pin** (*Optional*, [Pin Schema](/guides/configuration-types#pin-schema)): The BUSY pin, if used.
 - **reset_pin** (*Optional*, [Pin Schema](/guides/configuration-types#pin-schema)): The RESET pin, if used.
   Make sure you pull this pin high (by connecting it to 3.3V with a resistor) if not connected to a GPIO pin.
+- **dimensions** (**Required**, dict): Dimensions of the screen, specified either as *width* **x** *height* (e.g `320x240`  )
+  or with separate config keys. For models with full pre-defined configuration this is optional and will be preset by
+  the model selected. The dimensions are specified in pixels, and the width and height must be greater than 0.
 
-- **rotation** (*Optional*): Set the rotation of the display. Everything you draw in `lambda:` will be rotated
+    - **height** (**Required**, int): Specifies height of display.
+    - **width** (**Required**, int): Specifies width of display.
+
+- **rotation** (*Optional*, int): Set the rotation of the display. Everything you draw in `lambda:` will be rotated
   by this option. One of `0°` (default), `90°`, `180°`, `270°`.
-- **transform** (*Optional*): If `rotation` is not sufficient, use this to transform the display. Options are:
+- **transform** (*Optional*, dict): If `rotation` is not sufficient, use this to transform the display. Options are:
   - **mirror_x** (**Required**, boolean): If true, mirror the x axis.
   - **mirror_y** (**Required**, boolean): If true, mirror the y axis.
 
@@ -61,8 +67,8 @@ but can be overridden if needed.
   use `never` to only manually update the screen via `component.update`.
 - **full_update_every** (*Optional*, int): On screens that support partial updates, this sets the number of updates
   before a full update is forced. Defaults to `1` which will make every update a full update.
-- **spi_id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID of the [SPI Component](/components/spi) if you want
-  to use multiple SPI buses.
+- **spi_id** (*Optional*, [ID](/guides/configuration-types#id)): Required to specify the ID of the [SPI Component](/components/spi) if your
+  configuration defines multiple SPI buses. If only a single SPI bus is configured, this is optional.
 - **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID used for code generation.
 
 ## See Also
