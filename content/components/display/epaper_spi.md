@@ -50,8 +50,8 @@ but can be overridden if needed.
   or with separate config keys. For models with full pre-defined configuration this is optional and will be preset by
   the model selected. The dimensions are specified in pixels, and the width and height must be greater than 0.
 
-    - **height** (**Required**, int): Specifies height of display.
-    - **width** (**Required**, int): Specifies width of display.
+  - **height** (**Required**, int): Specifies height of display.
+  - **width** (**Required**, int): Specifies width of display.
 
 - **rotation** (*Optional*, int): Set the rotation of the display. Everything you draw in `lambda:` will be rotated
   by this option. One of `0°` (default), `90°`, `180°`, `270°`.
