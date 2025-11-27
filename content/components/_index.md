@@ -292,6 +292,7 @@ Sensors are organized into categories; if a given sensor fits into more than one
 "Mopeka Pro Check LP","components/sensor/mopeka_pro_check","mopeka_pro_check.jpg","Tank level"
 "Mopeka Standard Check LP","components/sensor/mopeka_std_check","mopeka_std_check.jpg","Tank level"
 "RuuviTag","components/sensor/ruuvitag","ruuvitag.jpg","Temperature & Humidity & Accelerometer"
+"ThermoPro BLE","components/sensor/thermopro_ble","thermopro_tp357.jpg","Temperature & Humidity"
 "Xiaomi BLE","components/sensor/xiaomi_ble","xiaomi_mijia_logo.jpg","Various"
 {{< /imgtable >}}
 
@@ -1001,6 +1002,7 @@ at the {{< docref "light/fastled" "FastLED Light" >}}.
 
 {{< imgtable >}}
 "Time Core","components/time/index","clock-outline.svg","dark-invert"
+"BM8563 RTC","components/time/bm8563","bm8563.svg",""
 "DS1307 RTC","components/time/ds1307","clock-outline.svg","dark-invert"
 "RX8130 RTC","components/time/rx8130","clock-outline.svg","dark-invert"
 "GPS Time","components/time/gps","crosshairs-gps.svg","dark-invert"
