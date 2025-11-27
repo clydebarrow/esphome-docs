@@ -41,7 +41,6 @@ pins and dimensions specified.
 These models correspond to displays integrated with a microcontroller, and have a full configuration predefined, so at
 a minimum only the model name need be configured. Other options can be overridden in the configuration if needed.
 
-
 | Model name             | Manufacturer | Product Description                                                                                                          |
 | ---------------------- |--------------| ---------------------------------------------------------------------------------------------------------------------------- |
 | Seeed-reTerminal-E1002 | Seeed Studio | <https://www.seeedstudio.com/reTerminal-E1002-p-6533.html>                                                                   |
