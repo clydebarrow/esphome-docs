@@ -1324,23 +1324,25 @@ lvgl:
 
 {{< anchor "lvgl-cookbook-ckboxmark" >}}
 
-## Restore checkbox mark
+## Fix missing checkbox and chevron
 
-If you configure a custom font as the `default_font` used by LVGL and this font does not contain the
-[FontAwesome](https://fontawesome.com/) symbols, you may observe that some widgets won't display correctly; specifically
-[`checkbox`](/components/lvgl/widgets#lvgl-widget-checkbox) won't show the checkmark when it's checked.
+If you configure your custom font as the `default_font` used by LVGL, it will likely not contain the
+[FontAwesome](https://fontawesome.com/) symbols, you may observe that some widgets won't display correctly;
+specifically [`checkbox`](/components/lvgl/widgets#checkbox) won't show the checkmark when it's checked, and
+[`dropdown`](/components/lvgl/widgets#dropdown) won't show the chewrnon pointing downwards to open the list.
 
-To work around this issue, simply import only the checkmark symbol in the desired size and apply it through
-[Theme and style definitions](#lvgl-cookbook-theme) to all the checkboxes in the configuration:
+To work around this issue, simply import just the checkmark and chevron symbols in the desired size and apply
+them through [Theme and style definitions](#lvgl-cookbook-theme) to all the checkboxes and dropdowns in the configuration:
 
 ```yaml
 font:
   - file: 'fonts/FontAwesome5-Solid+Brands+Regular.woff'
     id: fontawesome_checkmark
-    size: 18
+    size: 16
     bpp: 4
     glyphs: [
-      "\uF00C", # ckeckmark, for checkbox
+      "\uF00C", # checkmark, for checkbox
+      "\uF078", # chevron down, for dropdown
       ]
 
 lvgl:
@@ -1350,6 +1352,10 @@ lvgl:
         indicator:
           checked:
             text_font: fontawesome_checkmark
+    dropdown:
+      indicator:
+        text_font: fontawesome_checkmark
+
 ```
 
 You could of course simply apply one of the built-in `montserrat_` packs, but that would not be beneficial on the
