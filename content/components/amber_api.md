@@ -51,7 +51,7 @@ text_sensor:
 ## Configuration variables
 
 - **api_key** (**Required**, string): Your Amber Electric API key. You can obtain this from the [Amber Electric API Portal](https://app.amber.com.au/developers/api).
-- **site_id** (**Required**, string): Your Amber Electric site ID.
+- **site_id** (**Required**, string): Your Amber Electric site ID. You can find this in the Amber web portal (for example under your account or site details), or by querying the Amber API (such as the `/sites` endpoint) and using the `id` field for the site you want to monitor.
 - **http_request_id** (**Required**, [ID](/guides/configuration-types#id)): ID of the {{< docref "http_request" >}} component to use for API requests.
 - **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID used for code generation.
 - **update_interval** (*Optional*, [Time](/guides/configuration-types#time)): The interval to poll the API. Defaults to `5min`. Note that Amber updates pricing data every 5 minutes, so more frequent polling may not yield new data.
