@@ -32,18 +32,15 @@ amber_api:
 
 sensor:
   - platform: amber_api
-    amber_api_id: amber_component
     type: general
     name: "Electricity Price"
 
 binary_sensor:
   - platform: amber_api
-    amber_api_id: amber_component
     name: "Price Spike"
 
 text_sensor:
   - platform: amber_api
-    amber_api_id: amber_component
     name: "Price Descriptor"
 ```
 
@@ -53,7 +50,7 @@ text_sensor:
 
 - **api_key** (**Required**, string): Your Amber Electric API key. You can obtain this from the [Amber Electric API Portal](https://app.amber.com.au/developers/api).
 - **site_id** (**Required**, string): Your Amber Electric site ID. You can find this in the Amber web portal (for example under your account or site details), or by querying the Amber API (such as the `/sites` endpoint) and using the `id` field for the site you want to monitor.
-- **http_request_id** (**Required**, [ID](/guides/configuration-types#id)): ID of the {{< docref "http_request" >}} component to use for API requests.
+- **http_request_id** (**Required**, [ID](/guides/configuration-types#id)): ID of the {{< docref "http_request" >}} component to use for API requests. If a single http_request instance is configured this may be omitted.
 - **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID used for code generation.
 - **update_interval** (*Optional*, [Time](/guides/configuration-types#time)): The interval to poll the API. Defaults to `5min`. Note that Amber updates pricing data every 5 minutes, so more frequent polling may not yield new data.
 
@@ -63,19 +60,30 @@ text_sensor:
 
 ### `on_update` Trigger
 
-This automation will be triggered after the component successfully retrieves and parses new data from the Amber API.
+This automation will be triggered after the component successfully retrieves and parses new data from the Amber API. The trigger passes the current data as a parameter `x` that you can access directly.
 
 ```yaml
 amber_api:
   # ...
   on_update:
-    - logger.log: "New pricing data available"
+    - logger.log:
+        format: "New pricing: General=%.2f, Feed-in=%.2f, Status=%s"
+        args: ['x.general_price', 'x.feedin_price', 'x.descriptor.c_str()']
     - if:
         condition:
-          lambda: 'return id(electricity_price).state < 0;'
+          lambda: 'return x.general_price < 0;'
         then:
           - logger.log: "Negative pricing - great time for heavy loads!"
 ```
+
+The `x` parameter provides access to all current data fields:
+
+- `x.general_price` - Current electricity purchase price ($/kWh)
+- `x.general_forecast_price` - Forecast purchase price ($/kWh)
+- `x.feedin_price` - Current solar feed-in tariff ($/kWh)
+- `x.feedin_forecast_price` - Forecast feed-in tariff ($/kWh)
+- `x.spike_status` - Spike status string
+- `x.descriptor` - Price descriptor string
 
 {{< anchor "amber_api-sensor" >}}
 
@@ -86,30 +94,26 @@ The `amber_api` sensor platform exposes electricity pricing data as numeric sens
 ```yaml
 sensor:
   - platform: amber_api
-    amber_api_id: amber_component
     type: general
     name: "Current Electricity Price"
     accuracy_decimals: 4
 
   - platform: amber_api
-    amber_api_id: amber_component
     type: general_forecast
     name: "Forecast Electricity Price"
 
   - platform: amber_api
-    amber_api_id: amber_component
     type: feedin
     name: "Solar Feed-in Price"
 
   - platform: amber_api
-    amber_api_id: amber_component
     type: feedin_forecast
     name: "Solar Feed-in Forecast"
 ```
 
 ### Configuration variables
 
-- **amber_api_id** (**Required**, [ID](/guides/configuration-types#id)): The ID of the amber_api component.
+- **amber_api_id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the amber_api component.
 - **type** (**Required**, enum): The type of price data to expose. One of:
   - `general` - Current electricity purchase price (includes network charges)
   - `general_forecast` - Forecast purchase price for the next 5-minute interval
@@ -128,14 +132,13 @@ The `amber_api` binary sensor platform exposes the price spike status.
 ```yaml
 binary_sensor:
   - platform: amber_api
-    amber_api_id: amber_component
     name: "Price Spike"
     device_class: problem
 ```
 
 ### Configuration variables
 
-- **amber_api_id** (**Required**, [ID](/guides/configuration-types#id)): The ID of the amber_api component.
+- **amber_api_id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the amber_api component.
 - All other options from [Binary Sensor](/components/binary_sensor).
 
 The binary sensor is `ON` when the spike status from the API is "spike", and `OFF` otherwise (including "none" and "potential" states).
@@ -149,13 +152,12 @@ The `amber_api` text sensor platform exposes the price descriptor.
 ```yaml
 text_sensor:
   - platform: amber_api
-    amber_api_id: amber_component
     name: "Price Descriptor"
 ```
 
 ### Configuration variables
 
-- **amber_api_id** (**Required**, [ID](/guides/configuration-types#id)): The ID of the amber_api component.
+- **amber_api_id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the amber_api component.
 - All other options from [Text Sensor](/components/text_sensor).
 
 Possible descriptor values:
@@ -190,14 +192,12 @@ amber_api:
 
 sensor:
   - platform: amber_api
-    amber_api_id: amber_component
     type: general
     name: "Electricity Price"
     id: electricity_price
     icon: "mdi:currency-usd"
 
   - platform: amber_api
-    amber_api_id: amber_component
     type: feedin
     name: "Solar Feed-in Price"
     id: feedin_price
@@ -219,14 +219,12 @@ sensor:
 
 binary_sensor:
   - platform: amber_api
-    amber_api_id: amber_component
     name: "Price Spike"
     id: price_spike
     device_class: problem
 
 text_sensor:
   - platform: amber_api
-    amber_api_id: amber_component
     name: "Price Descriptor"
     id: price_descriptor
 
