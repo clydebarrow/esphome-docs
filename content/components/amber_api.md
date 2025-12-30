@@ -10,6 +10,7 @@ params:
 The `amber_api` component allows you to integrate [Amber Electric](https://www.amber.com.au/) electricity pricing data into your ESPHome devices. Amber Electric is an Australian electricity retailer that provides wholesale electricity pricing passed directly to customers.
 
 This component polls the Amber Electric API to retrieve:
+
 - Current and forecast electricity purchase prices (general usage)
 - Current and forecast feed-in tariff prices (solar export)
 - Price spike status
@@ -158,6 +159,7 @@ text_sensor:
 - All other options from [Text Sensor](/components/text_sensor).
 
 Possible descriptor values:
+
 - `extremelyLow`
 - `veryLow`
 - `low`
