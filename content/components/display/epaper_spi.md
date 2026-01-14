@@ -46,7 +46,6 @@ the pins used to interface to the display to be specified.
 | Waveshare-2.13in-v3 | Waveshare    | <https://www.waveshare.com/pico-epaper-2.13.htm>   |
 | Waveshare-4.26in    | Waveshare    | <https://www.waveshare.com/4.26inch-e-paper.htm>   |
 
-
 ## Supported integrated display boards
 
 These models correspond to displays integrated with a microcontroller, and have a full configuration predefined, so at
