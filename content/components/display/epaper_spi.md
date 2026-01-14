@@ -36,7 +36,6 @@ pins and dimensions specified.
 | Spectra-E6             | Eink         | <https://www.eink.com/brand/detail/Spectra6>       |
 | SSD1677                | Solomon      | <https://www.solomon-systech.com/product/ssd1677/> |
 
-
 ## Supported display panels
 
 These models represent display panels with known dimensions, but without a microcontroller. The configuration will require
