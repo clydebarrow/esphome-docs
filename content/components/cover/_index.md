@@ -204,7 +204,7 @@ Configuration variables:
 
 ### `cover.is_open` Condition
 
-This [condition](/automations/conditions#all-conditions) checks if the cover with the given ID is fully open.
+This [condition](#all-conditions) checks if the cover with the given ID is fully open.
 
 ```yaml
 on_...:
