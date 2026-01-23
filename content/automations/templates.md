@@ -96,7 +96,6 @@ on_press:
 When you see the label "templatable" in the documentation for a given action, it can be templated as in this example,
 using the lambda syntax as described/shown above.
 
-
 ### Simplified Lambda Syntax for Sensor States
 
 For the common case of just returning the state of an entity like ``sensor`` or ``binary_sensor``, you can use a simplified syntax
