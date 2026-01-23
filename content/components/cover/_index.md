@@ -313,6 +313,8 @@ cover:
 > [!NOTE]
 > The `on_open` trigger is deprecated and will be removed in a future release. Please use `on_opened` instead.
 
+{{< anchor "cover-lambda_calls" >}}
+
 ## Lambdas
 
 From [lambdas](/automations/templates#config-lambda), you can access the current state of the cover (note that these
