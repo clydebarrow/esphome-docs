@@ -98,7 +98,7 @@ using the lambda syntax as described/shown above.
 
 ### Simplified Lambda Syntax for Sensor States
 
-For the common case of just returning the state of an entity like `sensor`` or `binary_sensor`, you can use a simplified syntax
+For the common case of just returning the state of an entity like `sensor` or `binary_sensor`, you can use a simplified syntax
 wherever a lambda is expected which avoids having to write C++ code to return the value.
 In the example below, the red and green values generate identical lambda code.
 
