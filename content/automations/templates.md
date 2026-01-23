@@ -98,45 +98,45 @@ using the lambda syntax as described/shown above.
 
 ### Simplified Lambda Syntax for Sensor States
 
-For the common case of just returning the state of an entity like ``sensor`` or ``binary_sensor``, you can use a simplified syntax
+For the common case of just returning the state of an entity like `sensor`` or `binary_sensor`, you can use a simplified syntax
 wherever a lambda is expected which avoids having to write C++ code to return the value.
 In the example below, the red and green values generate identical lambda code.
 
 This may be used with any entity that has a state, including sensors, binary sensors, text sensors, numbers, etc.
 
 ```yaml
-    on_press:
-      then:
-        - light.turn_on:
-            id: some_light_id
-            
-            # Simpler syntax - identical to the lambda below
-            red:
-              entity_state: brightness_sensor
-              
-            # Regular C++ lambda syntax
-            green: !lambda return id(brightness_sensor).state;
-            
-            blue: 1.0
+on_press:
+  then:
+    - light.turn_on:
+        id: some_light_id
+        
+        # Simpler syntax - identical to the lambda below
+        red:
+          entity_state: brightness_sensor
+          
+        # Regular C++ lambda syntax
+        green: !lambda return id(brightness_sensor).state;
+        
+        blue: 1.0
 ```
 
 If there are contextual parameters available (for example, `x` as the value in an `on_value` trigger), you can also use `x` directly:
 
 ```yaml
-    on_value:
-      then:
-        - light.turn_on:
-            id: some_light_id
-            
-            # Use the argument `x` from the on_value trigger directly
-            red:
-              argument: x
-              
-            blue: 1.0
+on_value:
+  then:
+    - light.turn_on:
+        id: some_light_id
+        
+        # Use the argument `x` from the on_value trigger directly
+        red:
+          argument: x
+          
+        blue: 1.0
 ```
 
->[!NOTE]
-The type or existence of the argument cannot be checked at configuration time, so if you use an invalid argument name or type, compilation
+> [!NOTE]
+> The type or existence of the argument cannot be checked at configuration time, so if you use an invalid argument name or type, compilation
 will fail, just as it would with a regular lambda expression.
 
 ## All Lambda Calls
