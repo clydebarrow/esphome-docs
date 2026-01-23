@@ -229,9 +229,9 @@ fields are read-only, if you want to act on the cover, use the `make_call()` met
         }
 ```
 
-{{< anchor "cover-on_open_trigger" >}}
+{{< anchor "cover-on_opened_trigger" >}}
 
-### `cover.on_open` Trigger
+### `cover.on_opened` Trigger
 
 This trigger is activated each time the cover reaches a fully open state.
 
@@ -239,8 +239,8 @@ This trigger is activated each time the cover reaches a fully open state.
 cover:
   - platform: template  # or any other platform
     # ...
-    on_open:
-      - logger.log: "Cover is Open!"
+    on_opened:
+      - logger.log: "Cover is fully open!"
 ```
 
 {{< anchor "cover-on_closed_trigger" >}}
@@ -254,8 +254,53 @@ cover:
   - platform: template  # or any other platform
     # ...
     on_closed:
-      - logger.log: "Cover is Closed!"
+      - logger.log: "Cover is fully closed!"
 ```
+
+{{< anchor "cover-on_opening_trigger" >}}
+
+### `cover.on_opening` Trigger
+
+This trigger is activated each time the cover starts opening.
+
+```yaml
+cover:
+  - platform: template  # or any other platform
+    # ...
+    on_opening:
+      - logger.log: "Cover started opening"
+```
+
+{{< anchor "cover-on_closing_trigger" >}}
+
+### `cover.on_closing` Trigger
+
+This trigger is activated each time the cover starts closing.
+
+```yaml
+cover:
+  - platform: template  # or any other platform
+    # ...
+    on_closing:
+      - logger.log: "Cover started closing"
+```
+
+{{< anchor "cover-on_idle_trigger" >}}
+
+### `cover.on_idle` Trigger
+
+This trigger is activated each time the cover stops moving and becomes idle.
+
+```yaml
+cover:
+  - platform: template  # or any other platform
+    # ...
+    on_idle:
+      - logger.log: "Cover stopped moving"
+```
+
+> [!NOTE]
+> The `on_open` trigger is deprecated and will be removed in a future release. Please use `on_opened` instead.
 
 ## See Also
 
