@@ -179,6 +179,7 @@ Create update entities simplifying management of OTA updates.
 
 {{< imgtable >}}
 "CH422G","components/ch422g","ch422g.svg"
+"CH423","components/ch423","ch423.png"
 "MAX6956 - I²C Bus","components/max6956","max6956.jpg"
 "MCP230XX - I²C Bus","components/mcp230xx","mcp230xx.svg"
 "MCP23SXX - SPI Bus","components/mcp23Sxx","mcp23sxx.svg"
@@ -338,6 +339,7 @@ Sensors are organized into categories; if a given sensor fits into more than one
 "CSE7766","components/sensor/cse7766","cse7766.svg","Voltage & Current & Power"
 "CT Clamp","components/sensor/ct_clamp","ct_clamp.jpg","AC Current"
 "Daly BMS","components/sensor/daly_bms","daly_bms.jpg","Voltage & Current & Power"
+"DLMS Meter","components/sensor/dlms_meter","dlms_meter.jpg","Electrical counter"
 "DSMR","components/sensor/dsmr","dsmr.svg","Electrical counter"
 "HLW8012","components/sensor/hlw8012","hlw8012.svg","Voltage & Current & Power"
 "HLW8032","components/sensor/hlw8032","hlw8032.png","Voltage & Current & Power"
