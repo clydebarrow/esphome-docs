@@ -1006,6 +1006,7 @@ at the {{< docref "light/fastled" "FastLED Light" >}}.
 "BLE Scanner","components/text_sensor/ble_scanner","bluetooth.svg","dark-invert"
 "Ethernet Info","components/text_sensor/ethernet_info","ethernet.svg","dark-invert"
 "Home Assistant","components/text_sensor/homeassistant","home-assistant.svg","dark-invert"
+"Key Collector","components/text_sensor/key_collector","matrix_keypad.jpg",""
 "LibreTiny","components/text_sensor/libretiny","libretiny.svg",""
 "LVGL textarea Text Sensor","components/text_sensor/lvgl","lvgl_c_txt.png",""
 "Modbus Text Sensor","components/text_sensor/modbus_controller","modbus.png",""
