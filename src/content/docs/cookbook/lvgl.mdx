@@ -281,17 +281,17 @@ lvgl:
                           - line:
                               id: val_needle
                               width: 8
-                              r_mod: 12 # sets line length by this much difference from the scale default radius
+                              length: 112% # needle length relative to the scale default radius
                               value: -2
                           - arc: # first half of the scale background
                               color: 0xFF3000
-                              r_mod: 10 # radius difference from the scale default radius
+                              padding: 10 # offset from the scale default radius
                               width: 31
                               start_value: -10
                               end_value: 0
                           - arc: # second half of the scale background
                               color: 0x00FF00
-                              r_mod: 10
+                              padding: 10
                               width: 31
                               start_value: 0
                               end_value: 10
@@ -375,7 +375,7 @@ lvgl:
                         id: temperature_needle
                         width: 2
                         color: 0xFF0000
-                        r_mod: -4
+                        length: 96%
                     - tick_style:
                         start_value: -10
                         end_value: 40
@@ -461,7 +461,7 @@ lvgl:
                           - line:
                               id: temperature_needle
                               width: 8
-                              r_mod: 2
+                              length: 102%
                               value: -150
                 - obj: # to cover the middle part of meter indicator line
                     height: 123
@@ -1680,7 +1680,7 @@ lvgl:
                             id: minute_hand
                             width: 3
                             color: 0xa6a6a6
-                            r_mod: -4
+                            length: 96%
                             value: 0
                     - range_from: 1 # hours scale for labels
                       range_to: 12
@@ -1707,7 +1707,7 @@ lvgl:
                             id: hour_hand
                             width: 5
                             color: 0xa6a6a6
-                            r_mod: -30
+                            length: 70%
                             value: 0
               - label:
                   styles: date_style
