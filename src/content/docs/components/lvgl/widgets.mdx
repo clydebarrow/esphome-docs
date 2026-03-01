@@ -1303,6 +1303,7 @@ The meter widget can visualize data in very flexible ways. It can use arcs, need
       - **local**: If `true` the ticks' color will be faded from `color_start` to `color_end` in the start and end values specified above. If `false`, `color_start` and `color_end` will be mapped to the entire scale range (and only a *slice* of that color gradient will be visible in the indicator's start and end value range). Defaults to `false`.
       - **start_value**: The value in the scale range to modify the ticks from.
       - **width**: Modifies the `width` of the tick lines.
+  - **draw_ticks_on_top** (*Optional*): If `true`, the ticks and their labels will be drawn on top of the indicators, otherwise they will be drawn under the indicators. Defaults to `true`.
   - **range_from** (**Required**): The minimum value of the tick scale. Defaults to `0`.
   - **range_to** (**Required**): The maximum value of the tick scale. Defaults to `100`.
   - **rotation** (*Optional*): The rotation angle offset of the tick scale.
