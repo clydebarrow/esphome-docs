@@ -134,6 +134,7 @@ The following configuration variables apply to the main `lvgl` component, in ord
 > - If you press the encoder on a complex object (like a list, message box, etc.) the object will go to edit mode whereby you can adjust the value of the object by turning the encoder.
 > - To leave edit mode, long press the button.
 
+- **rotation** (*Optional*, int16): Rotate the display content by a specified angle. Valid values are `0`, `90`, `180` and `270`. Defaults to `0`.
 - **update_when_display_idle** (*Optional*, boolean): When using the [Epaper Spi](/components/display/epaper_spi/)
   or other displays with long update times, setting this option
   to `true` will cause the display to only be updated if the display is idle. During the update LVGL will pause.
@@ -224,6 +225,16 @@ lvgl:
 ```
 
 <span id="lvgl-color"></span>
+
+### Display Rotation
+
+The `rotation` option allows you to rotate the display content by a specified angle. Valid values are `0`, `90`, `180` and `270`. Defaults to `0`.
+Using this in the LVGL configuration will automatically adjust both the display and touch input (if a touchscreen is configured) to the specified rotation.
+When using this the display configuration should not include a rotation option (it will be ignored if it does), and the touchscreen configuration should not
+transform the touchscreen unless required (for example if the touchscreen axes don't match the display.)
+
+The display orientation may be changed at runtime with the `lvgl.set_rotation` action, which accepts the same values as the configuration option.
+When using this action, the touchscreen will be automatically adjusted to match the new orientation.
 
 ### Colors
 
@@ -605,6 +616,23 @@ widgets:
 on_...:
   then:
     - lvgl.widget.refresh: label1 # will update the label text using the lambda.
+```
+
+<span id="lvgl-display-set-rotation-action"></span>
+
+### `lvgl.display.set_rotation` Action
+
+This [action](/automations/actions#actions-action) changes the display rotation at runtime. The touchscreen will be automatically adjusted to match the new orientation.
+- **rotation** (**Required**): The rotation to set. Valid values are `0`, `90`, `180` and `270`.
+- **lvgl_id** (*Optional*): The ID of the LVGL instance to pause.
+
+```yaml
+on_...:
+  then:
+    - lvgl.display.set_rotation: 90
+    - lvgl.display.set_rotation:
+        rotation: 270
+        lvgl_id: lvgl1  # optional when only one LVGL instance is configured
 ```
 
 <span id="lvgl-pause-action"></span>
