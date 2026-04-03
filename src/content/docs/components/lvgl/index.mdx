@@ -234,8 +234,17 @@ Using this in the LVGL configuration will automatically adjust both the display 
 When using this the display configuration should not include a rotation option (it will be ignored if it does), and the touchscreen configuration should not
 transform the touchscreen unless required (for example if the touchscreen axes don't match the display.)
 
-The display orientation may be changed at runtime with the `lvgl.set_rotation` action, which accepts the same values as the configuration option.
+If the display driver can rotate the display content in hardware, (for example, most `mipi_spi` display models can do this)
+LVGL will automatically use this to improve performance. If not, the rotation will be performed in software by LVGL,
+which will reduce performance.
+
+The display orientation may be changed at runtime with the `lvgl.display.set_rotation` action, which accepts the same values as the configuration option.
 When using this action, the touchscreen will be automatically adjusted to match the new orientation.
+
+```yaml
+on_...:
+  - lvgl.display.set_rotation: 90
+```
 
 ## Style properties
 
