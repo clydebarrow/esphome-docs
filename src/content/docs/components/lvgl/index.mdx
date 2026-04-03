@@ -238,13 +238,9 @@ If the display driver can rotate the display content in hardware, (for example, 
 LVGL will automatically use this to improve performance. If not, the rotation will be performed in software by LVGL,
 which will reduce performance.
 
-The display orientation may be changed at runtime with the `lvgl.display.set_rotation` action, which accepts the same values as the configuration option.
-When using this action, the touchscreen will be automatically adjusted to match the new orientation.
+Touchscreen coordinates will be automatically rotated when using LVGL rotation.
 
-```yaml
-on_...:
-  - lvgl.display.set_rotation: 90
-```
+The display orientation may be changed at runtime with the [`lvgl.display.set_rotation`](#lvgl-display-set-rotation-action) action.
 
 ## Style properties
 
@@ -641,6 +637,21 @@ This [action](/automations/actions#actions-action) resumes the activity of LVGL,
 ```yaml
 on_...:
   - lvgl.resume:
+```
+
+<span id="lvgl-display-set-rotation-action"></span>
+
+### `lvgl.display.set_rotation` Action
+
+This [action](/automations/actions#actions-action) rotates the LVGL display.
+
+- **rotation** (**Required**, int): The angle to rotate the display to. Valid values are `0`, `90`, `180` and `270`. Note
+  that the angle is absolute, not relative, so the current rotation of the display does not affect the result.
+- **lvgl_id** (*Optional*): The ID of the LVGL instance to rotate.
+
+```yaml
+on_...:
+  - lvgl.display.set_rotation: 90
 ```
 
 ### `lvgl.update` Action
