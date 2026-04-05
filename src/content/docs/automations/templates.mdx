@@ -94,8 +94,11 @@ using the lambda syntax as described/shown above.
 
 ### Simplified Lambda Syntax for Sensor States
 
+> [!NOTE]
+> This is an incubating feature and may change in the future. If you have any feedback on this, please let us know in the ESPHome Discord server.
+
 For the common case of just returning the state of an entity like `sensor` or `binary_sensor`, you can use a simplified syntax
-wherever a lambda is expected which avoids having to write C++ code to return the value.
+wherever a lambda is expected, which avoids having to write C++ code to return the value.
 In the example below, the red and green values generate identical lambda code.
 
 This may be used with any entity that has a state, including sensors, binary sensors, text sensors, numbers, etc.
