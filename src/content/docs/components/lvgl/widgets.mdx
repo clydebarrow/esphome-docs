@@ -2108,9 +2108,10 @@ on_...:
 This [action](/automations/actions#actions-action) re-evaluates all properties specified with lambdas in the specified widget's configuration. This offers
 an alternative technique to using the `lvgl.widget.update` action, which updates specified properties.
 
-- **id** (**Required**): The ID of a widget configured in LVGL to refresh (may also be a list of widgets).
+- **id** (*Optional*): The ID of a widget configured in LVGL to refresh, or a list of widgets.
 
-Only properties with lambdas are refreshed. A build-time error will be raised if the widget has no lambda properties.
+Only properties with lambdas are refreshed. A build-time error will be raised if a widget is refreshed but it does not have any properties with lambdas.
+If no widgets are specified, then all widgets with lambda properties will be refreshed.
 
 ```yaml
 widgets:
