@@ -180,7 +180,14 @@ Two or more widgets may not be explicitly assigned the same row and column posit
 The configuration `layout: <rows>x<cols>` is a shorthand for a grid layout with the specified number of rows and
 columns, with all rows and columns of equal size. For example `layout: 2x3` is a shorthand for
 
-`layout: {type: grid, grid_rows: [FR(1), FR(1)], grid_columns: [FR(1), FR(1), FR(1)], grid_cell_x_align: center, grid_cell_y_align: center}`.
+```yaml
+layout:
+  type: grid
+  grid_rows: [FR(1), FR(1)]
+  grid_columns: [FR(1), FR(1), FR(1)]
+  grid_cell_x_align: center
+  grid_cell_y_align: center
+```
 
 Either dimension may be omitted from the shorthand; the missing dimension will be calculated from the configured
 number of widgets:
@@ -215,7 +222,8 @@ For example, with five widgets, `layout: x3` produces a 2-row by 3-column grid, 
 - **grid_cell_y_align** (*Optional*, string): A default value for `grid_cell_y_align` for cells. Will default to `center`
   if a shorthand layout is used. Can be overridden on individual widgets.
 
-At least one of `grid_rows` and `grid_columns` must be specified.
+At least one of `grid_rows` and `grid_columns` must be specified. The number of rows and number of columns must
+both be greater than zero.
 
 In a grid layout, all child widgets placed on the grid have additional configuration options available:
 
