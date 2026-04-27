@@ -197,8 +197,9 @@ number of widgets:
 - `layout: x<cols>` specifies the number of columns; the row count is computed as the number of widgets divided by
   the column count (rounded up).
 
-For example, with five widgets, `layout: x3` produces a 2-row by 3-column grid, and `layout: 2x` produces a
-2-row by 3-column grid as well. If there are no widgets, the missing dimension defaults to `1`.
+For example, with five widgets, both `layout: x3` and `layout: 2x` will produce a 2-row by 3-column grid.
+
+If there are no widgets, the missing dimension defaults to `1`.
 
 **Configuration variables (must be placed under the layout key):**
 
