@@ -17,11 +17,11 @@ espnow:
 ```
 
 ## Configuration variables
-- **channel** (*Optional*, int): The Wi-Fi channel that the esp-now communication will use to send/receive data packets.
+- **channel** (*Optional*, int): The Wi-Fi channel that the ESP-NOW communication will use to send/receive data packets.
   Cannot be set when [Wi-Fi](/components/wifi/) is used, as ESP-NOW will use the same channel as the Wi-Fi network.
-- **auto_add_peer** (*Optional*, boolean): When set to `true`, the esp-now component will automatically add any new incoming
+- **auto_add_peer** (*Optional*, boolean): When set to `true`, the ESP-NOW component will automatically add any new incoming
   device as a peer. See [Peers](#espnow-peers) below. Defaults to `false`.
-- **enable_on_boot** (*Optional*, boolean): Enable the esp-now component on boot. Defaults to `true`.
+- **enable_on_boot** (*Optional*, boolean): Enable the ESP-NOW component on boot. Defaults to `true`.
 - **peers** (*Optional*, list of MAC Address): The list of MAC addresses of the devices that this device is allowed to
   communicate with. See [Peers](#espnow-peers) below.
 
@@ -124,7 +124,7 @@ espnow:
 ### `on_broadcast`
 This automation is triggered when a packet sent to the broadcast address (`FF:FF:FF:FF:FF:FF`) is received from a
 registered peer. Broadcasts from devices that are not registered peers are dispatched to
-[`on_unknown_peer`](#espnow-on_unknown_peer) first; once the peer has been added, future broadcasts from it will
+[`on_unknown_peer`](#espnow-on_unknown_peer) first; once the peer has been added, broadcasts from it will
 reach this trigger.
 
 Multiple `on_broadcast` automations may be configured; each can optionally filter on the source address.
