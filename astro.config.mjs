@@ -293,7 +293,7 @@ export default defineConfig({
                 'top:' + (rect.top + rect.height / 2 - 14) + 'px',
                 'left:' + (rect.right + 8) + 'px',
                 'background:var(--sl-color-gray-1)',
-                'color:var(--sl-color-gray-7)',
+                'color:var(--sl-color-gray-6)',
                 'padding:0.25rem 0.75rem',
                 'border-radius:999px',
                 'font-size:0.8rem',
