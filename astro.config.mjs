@@ -306,6 +306,7 @@ export default defineConfig({
           }
 
           document.addEventListener('click', function(e) {
+            if (!(e.target instanceof Element)) return;
             const anchor = e.target.closest('a.sl-anchor-link');
             if (!anchor) return;
             if (
