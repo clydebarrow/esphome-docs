@@ -271,7 +271,7 @@ export default defineConfig({
             const anchor = e.target.closest('a.sl-anchor-link');
             if (!anchor) return;
             e.preventDefault();
-            const url = new URL(anchor.getAttribute('href'), location.href).href;
+            const url = anchor.href;
             navigator.clipboard.writeText(url).then(function() {
               showLinkCopiedToast(anchor);
             });
@@ -284,6 +284,9 @@ export default defineConfig({
 
               const toast = document.createElement('div');
               toast.id = 'sl-link-toast';
+              toast.setAttribute('role', 'status');
+              toast.setAttribute('aria-live', 'polite');
+              toast.setAttribute('aria-atomic', 'true');
               toast.textContent = 'Link copied to clipboard';
               toast.style.cssText = [
                 'position:fixed',
