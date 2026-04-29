@@ -284,7 +284,7 @@ export default defineConfig({
 
               const toast = document.createElement('div');
               toast.id = 'sl-link-toast';
-              toast.textContent = 'Link copied';
+              toast.textContent = 'Link copied to clipboard';
               toast.style.cssText = [
                 'position:fixed',
                 'top:' + (rect.top + rect.height / 2 - 14) + 'px',
