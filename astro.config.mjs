@@ -267,13 +267,67 @@ export default defineConfig({
               }
             }
           });
+
+          function fallbackCopyText(text) {
+            return new Promise(function(resolve, reject) {
+              try {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.setAttribute('readonly', '');
+                textarea.style.position = 'fixed';
+                textarea.style.top = '-9999px';
+                textarea.style.left = '-9999px';
+                document.body.appendChild(textarea);
+                textarea.focus();
+                textarea.select();
+
+                const copied = document.execCommand('copy');
+                textarea.remove();
+
+                if (copied) {
+                  resolve();
+                } else {
+                  reject(new Error('Fallback copy failed'));
+                }
+              } catch (err) {
+                reject(err);
+              }
+            });
+          }
+
+          function copyText(text) {
+            if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+              return navigator.clipboard.writeText(text).catch(function() {
+                return fallbackCopyText(text);
+              });
+            }
+
+            return fallbackCopyText(text);
+          }
+
           document.addEventListener('click', function(e) {
             const anchor = e.target.closest('a.sl-anchor-link');
             if (!anchor) return;
+            if (
+              e.button !== 0 ||
+              e.metaKey ||
+              e.ctrlKey ||
+              e.shiftKey ||
+              e.altKey
+            ) {
+              return;
+            }
             e.preventDefault();
             const url = anchor.href;
-            navigator.clipboard.writeText(url).then(function() {
+            copyText(url).then(function() {
               showLinkCopiedToast(anchor);
+            }).catch(function() {
+              const targetUrl = new URL(anchor.href, window.location.href);
+              if (targetUrl.hash) {
+                window.location.hash = targetUrl.hash;
+              } else {
+                window.location.assign(anchor.href);
+              }
             });
           });
 
