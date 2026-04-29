@@ -335,37 +335,37 @@ export default defineConfig({
           function showLinkCopiedToast(anchor) {
             const existing = document.getElementById('sl-link-toast');
             if (existing) existing.remove();
-              const rect = anchor.getBoundingClientRect();
+            const rect = anchor.getBoundingClientRect();
 
-              const toast = document.createElement('div');
-              toast.id = 'sl-link-toast';
-              toast.setAttribute('role', 'status');
-              toast.setAttribute('aria-live', 'polite');
-              toast.setAttribute('aria-atomic', 'true');
-              toast.textContent = 'Link copied to clipboard';
-              toast.style.cssText = [
-                'position:fixed',
-                'top:' + (rect.top + rect.height / 2 - 14) + 'px',
-                'left:' + (rect.right + 8) + 'px',
-                'background:var(--sl-color-gray-1)',
-                'color:var(--sl-color-gray-6)',
-                'padding:0.25rem 0.75rem',
-                'border-radius:999px',
-                'font-size:0.8rem',
-                'white-space:nowrap',
-                'box-shadow:0 2px 8px rgba(0,0,0,0.2)',
-                'z-index:9999',
-                'opacity:1',
-                'transition:opacity 0.4s ease',
-                'pointer-events:none',
-              ].join(';');
-              document.body.appendChild(toast);
+            const toast = document.createElement('div');
+            toast.id = 'sl-link-toast';
+            toast.setAttribute('role', 'status');
+            toast.setAttribute('aria-live', 'polite');
+            toast.setAttribute('aria-atomic', 'true');
+            toast.textContent = 'Link copied to clipboard';
+            toast.style.cssText = [
+              'position:fixed',
+              'top:' + (rect.top + rect.height / 2 - 14) + 'px',
+              'left:' + (rect.right + 8) + 'px',
+              'background:var(--sl-color-gray-1)',
+              'color:var(--sl-color-gray-6)',
+              'padding:0.25rem 0.75rem',
+              'border-radius:999px',
+              'font-size:0.8rem',
+              'white-space:nowrap',
+              'box-shadow:0 2px 8px rgba(0,0,0,0.2)',
+              'z-index:9999',
+              'opacity:1',
+              'transition:opacity 0.4s ease',
+              'pointer-events:none',
+            ].join(';');
+            document.body.appendChild(toast);
 
-              // If it overflows the right edge, flip it to the left of the icon
-              const toastRect = toast.getBoundingClientRect();
-              if (toastRect.right > window.innerWidth - 8) {
-                toast.style.left = (rect.left - toastRect.width - 8) + 'px';
-              }
+            // If it overflows the right edge, flip it to the left of the icon
+            const toastRect = toast.getBoundingClientRect();
+            if (toastRect.right > window.innerWidth - 8) {
+              toast.style.left = (rect.left - toastRect.width - 8) + 'px';
+            }
 
             setTimeout(function() {
               toast.style.opacity = '0';
