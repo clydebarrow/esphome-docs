@@ -47,7 +47,7 @@ sensor:
 
 ## Configuration variables
 
-### Hub
+### Base configuration
 
 - **address** (*Optional*, int): Manually specify the I²C address of the sensor. Defaults to `0x68`.
   The BMI270 supports `0x68` (SDO to GND) and `0x69` (SDO to VDDIO).
@@ -63,7 +63,7 @@ sensor:
   sensor data is read. Defaults to `50ms`.
 - **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID used for code generation.
 
-### Sensors
+### Sensor configuration
 
 - **type** (**Required**, string): The type of measurement to expose. One of:
   - `acceleration_x`: X-axis acceleration in `g`.
