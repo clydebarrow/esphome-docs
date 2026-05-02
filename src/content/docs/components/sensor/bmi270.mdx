@@ -1,0 +1,82 @@
+---
+description: "Instructions for setting up BMI270 Accelerometer/Gyroscope sensors."
+title: "BMI270 Accelerometer/Gyroscope Sensor"
+---
+
+import APIRef from '@components/APIRef.astro';
+
+The `bmi270` sensor platform allows you to use your BMI270 Accelerometer/Gyroscope
+([datasheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmi270-ds000.pdf))
+sensors with ESPHome. The [I²C Bus](/components/i2c) is required to be set up in
+your configuration for this sensor to work.
+
+The BMI270 is an ultra-low-power IMU optimized for wearable applications. It includes
+a 16-bit 3-axis accelerometer and a 16-bit 3-axis gyroscope, plus an on-chip temperature
+sensor. It requires an internal configuration blob to be uploaded at each power-on
+(handled automatically by this component).
+
+```yaml
+# Example configuration entry
+bmi270:
+  acceleration_range: 4G
+  gyroscope_range: 2000DPS
+
+sensor:
+  - platform: bmi270
+    type: acceleration_x
+    name: "BMI270 Accel X"
+  - platform: bmi270
+    type: acceleration_y
+    name: "BMI270 Accel Y"
+  - platform: bmi270
+    type: acceleration_z
+    name: "BMI270 Accel Z"
+  - platform: bmi270
+    type: gyroscope_x
+    name: "BMI270 Gyro X"
+  - platform: bmi270
+    type: gyroscope_y
+    name: "BMI270 Gyro Y"
+  - platform: bmi270
+    type: gyroscope_z
+    name: "BMI270 Gyro Z"
+  - platform: bmi270
+    type: temperature
+    name: "BMI270 Temperature"
+```
+
+## Configuration variables
+
+### Hub
+
+- **address** (*Optional*, int): Manually specify the I²C address of the sensor. Defaults to `0x68`.
+  The BMI270 supports `0x68` (SDO to GND) and `0x69` (SDO to VDDIO).
+- **acceleration_range** (*Optional*, string): The full-scale range of the accelerometer. One of
+  `2G`, `4G`, `8G`, `16G`. Defaults to `4G`.
+- **acceleration_odr** (*Optional*, string): The output data rate of the accelerometer. One of
+  `12_5HZ`, `25HZ`, `50HZ`, `100HZ`, `200HZ`, `400HZ`, `800HZ`, `1600HZ`. Defaults to `100HZ`.
+- **gyroscope_range** (*Optional*, string): The full-scale range of the gyroscope. One of
+  `125DPS`, `250DPS`, `500DPS`, `1000DPS`, `2000DPS`. Defaults to `2000DPS`.
+- **gyroscope_odr** (*Optional*, string): The output data rate of the gyroscope. One of
+  `25HZ`, `50HZ`, `100HZ`, `200HZ`, `400HZ`, `800HZ`, `1600HZ`, `3200HZ`. Defaults to `200HZ`.
+- **update_interval** (*Optional*, [Time](/guides/configuration-types#time)): The interval at which
+  sensor data is read. Defaults to `50ms`.
+- **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID used for code generation.
+
+### Sensors
+
+- **type** (**Required**, string): The type of measurement to expose. One of:
+  - `acceleration_x`: X-axis acceleration in `g`.
+  - `acceleration_y`: Y-axis acceleration in `g`.
+  - `acceleration_z`: Z-axis acceleration in `g`.
+  - `gyroscope_x`: X-axis angular velocity in `°/s`.
+  - `gyroscope_y`: Y-axis angular velocity in `°/s`.
+  - `gyroscope_z`: Z-axis angular velocity in `°/s`.
+  - `temperature`: Internal die temperature in `°C`.
+- All other options from [Sensor](/components/sensor).
+
+## See Also
+
+- [Sensor Filters](/components/sensor#sensor-filters)
+- [BMI160 Accelerometer/Gyroscope](/components/sensor/bmi160/)
+- <APIRef text="bmi270.h" path="bmi270/bmi270.h" />
