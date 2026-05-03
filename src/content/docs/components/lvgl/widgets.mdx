@@ -1222,7 +1222,7 @@ but also more complex shapes like polygons or zig-zag lines.
 
 - **line_color** (*Optional*, [color](/components/lvgl#lvgl-color)): Color for the line.
 - **line_width** (*Optional*, int16): Set the width of the line in pixels.
-- **points** (**Required**, list): A list of `x, y` integer pairs for point coordinates (origin from top left of parent)
+- **points** (**Required**, list): A list of `x, y` pairs of point coordinates (origin from top left of parent)
 - **line_rounded** (*Optional*, boolean): Make the end points of the line rounded. `true` rounded, `false` perpendicular line ending.
 - **line_dash_gap** (*Optional*, int16): Set the width of the gap between the dashes in the line (in pixels).
 - **line_dash_width** (*Optional*, int16): Set the width of the dashes in the line (in pixels).
@@ -1246,6 +1246,8 @@ The points list may be defined with constants in the form `x, y` or as a list of
 ```yaml
 # Example widget:
 - line:
+    width: 100%
+    height: 100%
     points:
       - 5%, 5%
       - 70, 70
