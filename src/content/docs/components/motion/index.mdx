@@ -1,0 +1,72 @@
+---
+description: "Instructions for setting up Accelerometer/Gyroscope components."
+title: "Motion Component (IMU)"
+---
+
+import APIRef from '@components/APIRef.astro';
+
+The `motion` hub component allows you to define sensors that read data from inertial measurement units (IMUs)
+such as accelerometers and gyroscopes. Not all IMU chips support all types of measurements, see the individual platform
+documentation for details.
+
+```yaml
+# Example configuration entry
+motion:
+  - platform: ...
+      acceleration_range: 4G # Platform dependent options here
+
+sensor:
+  - platform: motion
+    type: acceleration_x
+    name: "Accel X"
+  - platform: motion
+    type: angular_rate_x
+    name: "Gyro X"
+  - platform: motion
+    type: pitch
+    name: "Pitch Angle"
+```
+
+## Configuration variables
+
+### Base configuration
+
+- **axis_map** (*Optional*, mapping): Remap or invert the physical axes of the sensor to match
+  your board orientation. Each key (`x`, `y`, `z`) maps to the physical axis it should read from,
+  optionally prefixed with `-` to invert. All three axes must be present and each physical axis
+  may only appear once.
+
+  ```yaml
+  # Example: swap X and Y, invert Z
+  motion:
+    - platform: ...
+      axis_map:
+        x: y
+        y: x
+        z: "-z"
+  ```
+
+- **update_interval** (*Optional*, [Time](/guides/configuration-types#time)): The interval at which
+  sensor data is read. Defaults to `250ms`.
+- **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID used for code generation.
+
+### Sensor configuration
+
+- **type** (**Required**, string): The type of measurement to expose. One of:
+  - `acceleration_x`: X-axis acceleration in `g`.
+  - `acceleration_y`: Y-axis acceleration in `g`.
+  - `acceleration_z`: Z-axis acceleration in `g`.
+  - `angular_rate_x`: X-axis angular velocity in `°/s`.
+  - `angular_rate_y`: Y-axis angular velocity in `°/s`.
+  - `angular_rate_z`: Z-axis angular velocity in `°/s`.
+  - `gyroscope_x`: Synonym for `angular_rate_x`.
+  - `gyroscope_y`: Synonym for `angular_rate_y`.
+  - `gyroscope_z`: Synonym for `angular_rate_z`.
+  - `pitch`: Pitch angle in `°`.
+  - `roll`: Roll angle in `°`.
+- All other options from [Sensor](/components/sensor).
+
+## See Also
+
+- [Sensor Filters](/components/sensor#sensor-filters)
+- <APIRef text="motion_component.h" path="motion/motion_component.h" />
