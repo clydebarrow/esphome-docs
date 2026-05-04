@@ -66,6 +66,14 @@ sensor:
   - `roll`: Roll angle in `°`.
 - All other options from [Sensor](/components/sensor).
 
+## Pitch and Roll
+
+The `pitch` and `roll` sensor types are calculated from the accelerometer data, and represent the angle of the device
+relative to gravity. By convention `pitch` represents rotation around the Y-axis and `roll` represents rotation around
+the X-axis, which implies that the X-axis should run forward, and the Y-axis is oriented left and right relative to
+the object being measured. It will likely be necessary to adjust the `axis_map` to achieve this orientation depending
+on how your sensor is mounted.
+
 ## See Also
 
 - [Sensor Filters](/components/sensor#sensor-filters)
