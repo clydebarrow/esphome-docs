@@ -1,0 +1,70 @@
+---
+description: "Instructions for setting up GSL3670 touch screen controller with ESPHome"
+title: "GSL3670 Touch Screen Controller"
+---
+
+import APIRef from '@components/APIRef.astro';
+
+The `gsl3670` touchscreen platform allows using the touch screen controllers based on the GSL3670 chip with ESPHome.
+An [I²C](/components/i2c) bus is required to be set up in your configuration for this touchscreen to work.
+
+This controller is used in the Seeed Studio reTerminal D1001.
+
+The component requires a binary firmware file to be loaded into the controller during initialization. A firmware file for the Seeed reTerminal D1001 is bundled with the component.
+
+## Base Touchscreen Configuration
+
+```yaml
+# Example configuration entry using the built-in Seeed reTerminal D1001 model
+touchscreen:
+  platform: gsl3670
+  id: my_touchscreen
+  model: SEEED-RETERMINAL-D1001
+```
+
+```yaml
+# Example configuration entry using a custom firmware file
+touchscreen:
+  platform: gsl3670
+  id: my_touchscreen
+  interrupt_pin: GPIOXX
+  reset_pin: GPIOXX
+  firmware_file: my_gsl3670_firmware.bin
+```
+
+### Configuration variables
+
+- **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually set the ID of this touchscreen.
+- **model** (*Optional*, string): A predefined model that sets default values for pin assignments, calibration, and firmware. Currently supported:
+  - `SEEED-RETERMINAL-D1001`: Seeed Studio reTerminal D1001. Sets appropriate defaults for interrupt pin, reset pin, calibration, axis mirroring/swapping, and firmware.
+  - `CUSTOM`: No defaults are applied; all options must be configured manually. This is the default.
+- **interrupt_pin** (*Optional*, [Pin Schema](/guides/configuration-types#pin-schema)): The touch detection pin.
+- **reset_pin** (*Optional*, [Pin Schema](/guides/configuration-types#pin-schema)): The chip reset pin.
+- **firmware_file** (**Required**, string): Path to the GSL3670 binary firmware file. When using a built-in model, this is set automatically. The firmware file is validated at compile time for correct format and integrity. If the file is not found at the given path, the component will also look for it in its own directory.
+
+- All other options from [Touchscreen](/components/touchscreen#config-touchscreen).
+
+### Sample config for the Seeed reTerminal D1001
+
+```yaml
+i2c:
+  - id: lcd_i2c
+    sda:
+      ignore_strapping_warning: true
+      number: GPIO37
+    scl:
+      ignore_strapping_warning: true
+      number: GPIO38
+    scan: true
+    frequency: 400kHz
+
+touchscreen:
+  - platform: gsl3670
+    i2c_id: lcd_i2c
+    model: SEEED-RETERMINAL-D1001
+```
+
+## See Also
+
+- [Touchscreen Components](/components/touchscreen/)
+- <APIRef text="gsl3670_touchscreen.h" path="gsl3670/gsl3670_touchscreen.h" />
