@@ -28,7 +28,8 @@ sensor:
 ```
 
 > [!NOTE]
-> Widget-specific actions (`lvgl.arc.update`, `lvgl.bar.update`, `lvgl.slider.update`, `lvgl.spinbox.update`, `lvgl.spinbox.decrement`, `lvgl.spinbox.increment`  ) will trigger corresponding component updates to be sent to Home Assistant.
+> Widget-specific actions (`lvgl.arc.update`, `lvgl.bar.update`, `lvgl.slider.update`, `lvgl.spinbox.update`, `lvgl.spinbox.decrement`, `lvgl.spinbox.increment`  )
+> will trigger corresponding component updates to be sent to Home Assistant if the `trigger` is set to `on_value` (the default) or `on_update`.
 
 ## See Also
 

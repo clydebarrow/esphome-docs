@@ -1850,9 +1850,9 @@ The tabs are indexed (zero-based) in the order they appear in the configuration 
 
 **Triggers:**
 
-- `on_value` [trigger](/automations/actions#actions-trigger) is activated when the tab value changes, either by user interaction or programmatically. The new value is returned in the variable `x`.
-- `on_change` [trigger](/automations/actions#actions-trigger) is activated when the tab value is changed by user interaction. The new value is returned in the variable `x`.
-- `on_update` [trigger](/automations/actions#actions-trigger) is activated when the tab is changed programmatically (e.g. via `lvgl.tabview.select`). The new value is returned in the variable `x`.
+- `on_value` [trigger](/automations/actions#actions-trigger) is activated when the tab value changes, either by user interaction or programmatically. The id of the new tab is returned in the variable `tab`.
+- `on_change` [trigger](/automations/actions#actions-trigger) is activated when the tab value is changed by user interaction. The id of the new tab is returned in the variable `tab`.
+- `on_update` [trigger](/automations/actions#actions-trigger) is activated when the tab is changed programmatically (e.g. via `lvgl.tabview.select`). The id of the new tab is returned in the variable `tab`.
 - [interaction](#lvgl-automation-triggers) LVGL event triggers.
 
 **Example:**
