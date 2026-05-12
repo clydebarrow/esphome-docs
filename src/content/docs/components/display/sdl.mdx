@@ -39,9 +39,11 @@ display:
 - **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID used for code generation.
 - **window_options** (*Optional*): Options that affect how the display renders on the host system. All default to false, except position, which defaults to SDL's undefined position
 
-  - **position** (*Optional*):
+  - **position** (*Optional*): May not be used with `centered_on_display`.
     - **x** (**Required**, int): X position of the display window in pixels
     - **y** (**Required**, int): Y position of the display window in pixels
+  - **centered_on_display** (*Optional*, int): For use with multiple display screens.
+    Center the window on the specified display number. Display numbering starts at 0. May not be used with `position`.
   - **borderless** (*Optional*, boolean): Whether to draw the display window with or without borders
   - **always_on_top** (*Optional*, boolean): Whether to always draw the display window above other windows or not
   - **fullscreen** (*Optional*, boolean): Whether to draw the display window in fullscreen or not. This may resize the resolution of the host display to match the SDL display dimensions
