@@ -34,7 +34,7 @@ sensor:
 - **axis_map** (*Optional*, mapping): Remap or invert the physical axes of the sensor to match
   your board orientation. Each key (`x`, `y`, `z`) maps to the physical axis it should read from,
   optionally prefixed with `-` to invert. All three axes must be present and each physical axis
-  may only appear once.
+  may only appear once. Mutually exclusive with `transform_matrix`.
 
   ```yaml
   # Example: swap X and Y, invert Z
@@ -45,6 +45,32 @@ sensor:
         y: x
         z: "-z"
   ```
+
+- **transform_matrix** (*Optional*, list of floats): A 3×3 transformation matrix applied to
+  raw accelerometer and gyroscope readings. This allows arbitrary calibration beyond simple
+  axis remapping. Can be specified as a flat list of 9 values (row-major order) or as a
+  3×3 nested list. Mutually exclusive with `axis_map`.
+
+  ```yaml
+  # Example: 3x3 nested format
+  motion:
+    - platform: ...
+      transform_matrix:
+        - [0.998, 0.010, -0.050]
+        - [-0.010, 0.999, 0.020]
+        - [0.050, -0.020, 0.998]
+  ```
+
+  ```yaml
+  # Example: flat format
+  motion:
+    - platform: ...
+      transform_matrix: [0.998, 0.010, -0.050, -0.010, 0.999, 0.020, 0.050, -0.020, 0.998]
+  ```
+
+  The matrix can be obtained from the runtime calibration actions described below — after
+  calibration the computed matrix is logged in a format that can be copied directly into
+  your configuration for persistent use.
 
 - **update_interval** (*Optional*, [Time](/guides/configuration-types#time)): The interval at which
   sensor data is read. Defaults to `250ms`.
@@ -65,6 +91,47 @@ sensor:
   - `pitch`: Pitch angle in `°`.
   - `roll`: Roll angle in `°`.
 - All other options from [Sensor](/components/sensor).
+
+## Actions
+
+### `motion.calibrate_level` Action
+
+This [action](/automations/actions#all-actions) computes a calibration matrix so that the
+current accelerometer reading maps to `[0, 0, 1]` (device flat, Z pointing up). Place the
+device on a level surface and trigger this action. It replaces the current `transform_matrix`.
+
+```yaml
+on_...:
+  then:
+    - motion.calibrate_level:
+        id: my_motion
+```
+
+After execution the resulting matrix is logged at INFO level in a format that can be
+copied into the `transform_matrix` configuration for persistent calibration.
+
+### `motion.calibrate_heading` Action
+
+This [action](/automations/actions#all-actions) corrects the heading (rotation around Z)
+after a prior level calibration. Tilt the device around its Y axis only (pitch forward or
+backward) and trigger this action. It composes a Z-rotation correction with the existing
+matrix so that the horizontal acceleration component falls entirely on the X axis, with its
+sign preserved.
+
+```yaml
+on_...:
+  then:
+    - motion.calibrate_heading:
+        id: my_motion
+```
+
+### Calibration procedure
+
+1. Place the device on a flat, level surface.
+2. Trigger `motion.calibrate_level`. This aligns Z with gravity.
+3. Tilt the device around the Y axis only (e.g. prop one edge up along the X direction).
+4. Trigger `motion.calibrate_heading`. This fixes the X/Y heading.
+5. Copy the logged `transform_matrix` values into your YAML configuration.
 
 ## See Also
 
