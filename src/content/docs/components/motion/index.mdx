@@ -100,11 +100,22 @@ This [action](/automations/actions#all-actions) computes a calibration matrix so
 current accelerometer reading maps to `[0, 0, 1]` (device flat, Z pointing up). Place the
 device on a level surface and trigger this action. It replaces the current `transform_matrix`.
 
+- **save** (*Optional*, boolean): Save the resulting matrix to NVS flash so it is
+  automatically restored on the next boot. Defaults to `false`.
+- **on_success** (*Optional*, [Automation](/automations/actions)): Actions to run when calibration succeeds.
+- **on_error** (*Optional*, [Automation](/automations/actions)): Actions to run when calibration fails
+  (e.g. sensor read failure or insufficient tilt).
+
 ```yaml
 on_...:
   then:
     - motion.calibrate_level:
         id: my_motion
+        save: true
+        on_success:
+          - logger.log: "Level calibration succeeded"
+        on_error:
+          - logger.log: "Level calibration failed"
 ```
 
 After execution the resulting matrix is logged at INFO level in a format that can be
@@ -118,11 +129,18 @@ backward) and trigger this action. It composes a Z-rotation correction with the 
 matrix so that the horizontal acceleration component falls entirely on the X axis, with its
 sign preserved.
 
+- **save** (*Optional*, boolean): Save the resulting matrix to NVS flash. Defaults to `false`.
+- **on_success** (*Optional*, [Automation](/automations/actions)): Actions to run when calibration succeeds.
+- **on_error** (*Optional*, [Automation](/automations/actions)): Actions to run when calibration fails.
+
 ```yaml
 on_...:
   then:
     - motion.calibrate_heading:
         id: my_motion
+        save: true
+        on_success:
+          - logger.log: "Heading calibration succeeded"
 ```
 
 ### Calibration procedure
