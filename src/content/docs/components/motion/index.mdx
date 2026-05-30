@@ -4,6 +4,8 @@ title: "Motion Component (IMU)"
 ---
 
 import APIRef from '@components/APIRef.astro';
+import Figure from '@components/Figure.astro';
+import calibrationImg from './images/calibrate.png';
 
 The `motion` hub component allows you to define sensors that read data from inertial measurement units (IMUs)
 such as accelerometers and gyroscopes. Not all IMU chips support all types of measurements, see the individual platform
@@ -143,13 +145,50 @@ on_...:
           - logger.log: "Heading calibration succeeded"
 ```
 
+### `motion.clear_calibration` Action
+
+This [action](/automations/actions#all-actions) discards any runtime calibration and restores
+the build-time matrix defined by `axis_map` or `transform_matrix` (or the identity matrix if
+neither is configured). Use it to undo a `motion.calibrate_level` / `motion.calibrate_heading`
+sequence without re-flashing.
+
+- **save** (*Optional*, boolean): Also clear the saved calibration in NVS flash so the reset
+  persists across reboots. Defaults to `false`. When `false`, the in-memory matrix is reset but
+  a previously saved calibration will be restored again on the next boot.
+
+```yaml
+on_...:
+  then:
+    - motion.clear_calibration:
+        id: my_motion
+        save: true
+```
+
+### Calibration persistence
+
+When a calibration action is run with `save: true`, the resulting matrix is stored in NVS flash
+and automatically restored on the next boot, taking precedence over the `axis_map` /
+`transform_matrix` configuration. The saved calibration is tied to the configured base matrix:
+if you change `axis_map` or `transform_matrix` and re-flash, the stale saved calibration is
+automatically discarded and the new configuration is used. To explicitly return to the
+configured base at runtime, use `motion.clear_calibration`.
+
 ### Calibration procedure
 
 1. Place the device on a flat, level surface.
 2. Trigger `motion.calibrate_level`. This aligns Z with gravity.
 3. Tilt the device around the Y axis only (e.g. prop one edge up along the X direction).
 4. Trigger `motion.calibrate_heading`. This fixes the X/Y heading.
-5. Copy the logged `transform_matrix` values into your YAML configuration.
+
+The new calibration matrix is now active and can be saved to flash if desired.
+If you have a way to monitor the logs, you can verify that the calibration succeeded by checking for an INFO log
+entry with the resulting matrix in a format suitable for copy-pasting into your configuration.
+
+<Figure
+  src={calibrationImg}
+  alt="Device being calibrated"
+  caption="Device Calibration"
+/>
 
 ## See Also
 
