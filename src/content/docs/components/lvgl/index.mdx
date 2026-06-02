@@ -662,13 +662,16 @@ on_...:
 
 This [action](/automations/actions#actions-action) rotates the LVGL display.
 
-- **rotation** (**Required**, int): The angle to rotate the display to. Valid values are `0`, `90`, `180` and `270`. Note
-  that the angle is absolute, not relative, so the current rotation of the display does not affect the result.
+- **rotation** (**Required**, [templatable](/automations/templates), int): The angle in degrees to rotate the display to.
+  Valid values are `0`, `90`, `180` and `270`. Note that the angle is absolute, not relative, so the current rotation of
+  the display does not affect the result. When a lambda is used, it must return the angle in degrees.
 - **lvgl_id** (*Optional*): The ID of the LVGL instance to rotate.
 
 ```yaml
 on_...:
   - lvgl.display.set_rotation: 90
+  # or with a lambda returning the angle in degrees:
+  - lvgl.display.set_rotation: !lambda "return id(my_rotation_number).state;"
 ```
 
 ### `lvgl.update` Action
