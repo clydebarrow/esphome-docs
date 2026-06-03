@@ -53,8 +53,8 @@ sensor:
 - **max_charge_voltage** (**Required**, float): The voltage at which the battery is
   considered fully charged. When the (filtered) voltage reaches this value while the charge
   current is low, the gauge resynchronises its estimate to 100%.
-- **efficiency** (*Optional*, float): The charge efficiency, applied to charging currents
-  only, to account for energy lost while charging. Defaults to `0.98`.
+- **efficiency** (*Optional*, percentage): The round-trip efficiency, applied to charging currents
+  only, to account for energy losses in the charge/discharge cycle. Defaults to `98%`.
 - **initial_state** (*Optional*, percentage): The charge state to assume on first boot,
   before any value has been saved to flash. Must be between `0%` and `100%`. If not set,
   the battery is assumed to start empty.
