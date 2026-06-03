@@ -1,0 +1,78 @@
+---
+title: "Battery Gauge Sensor"
+description: "Instructions for setting up a coulomb-counting battery gauge sensor"
+---
+import APIRef from '@components/APIRef.astro';
+
+
+The `battery_gauge` sensor platform estimates the state of charge of a battery by
+*coulomb counting*: it integrates the battery current over time to track how much
+charge has flowed into and out of the pack. It takes its readings from two existing
+sensors — one measuring battery voltage and one measuring battery current — so it can
+be used with any voltage/current source you already have, such as an
+[INA226](/components/sensor/ina226) or [INA219](/components/sensor/ina219).
+
+The reported state is a percentage of the configured battery capacity. Because charge
+is accumulated over time, the gauge persists the last known percentage to flash so the
+estimate survives reboots. It also resynchronises to 100% whenever the battery reaches
+its full-charge voltage at a low charge current, correcting any drift accumulated by the
+integration.
+
+```yaml
+# Example configuration entry
+sensor:
+  - platform: battery_gauge
+    name: Battery Level
+    voltage_source: battery_voltage
+    current_source: battery_current
+    capacity: 3.0Ah
+    max_charge_voltage: 4.2V
+
+  # Any voltage and current source can be used, e.g. an INA226:
+  - platform: ina226
+    address: 0x40
+    shunt_resistance: 0.01 ohm
+    max_current: 5A
+    bus_voltage:
+      name: Battery Voltage
+      id: battery_voltage
+    current:
+      name: Battery Current
+      id: battery_current
+```
+
+## Configuration variables
+
+- **voltage_source** (**Required**, [ID](/guides/configuration-types#id)): The sensor that
+  measures the battery voltage, in volts.
+- **current_source** (**Required**, [ID](/guides/configuration-types#id)): The sensor that
+  measures the battery current, in amps. The value must be **positive while charging** and
+  **negative while discharging**.
+- **capacity** (**Required**, float): The battery capacity in amp-hours. An optional `Ah`
+  suffix may be given, e.g. `3.0Ah` or `3.0`.
+- **max_charge_voltage** (**Required**, float): The voltage at which the battery is
+  considered fully charged. When the (filtered) voltage reaches this value while the charge
+  current is low, the gauge resynchronises its estimate to 100%.
+- **efficiency** (*Optional*, float): The charge efficiency, applied to charging currents
+  only, to account for energy lost while charging. Defaults to `0.98`.
+- **initial_state** (*Optional*, percentage): The charge state to assume on first boot,
+  before any value has been saved to flash. Must be between `0%` and `100%`. If not set,
+  the battery is assumed to start empty.
+- All other options from [Sensor](/components/sensor).
+
+## Notes
+
+- The gauge relies on the **sign of the current** to distinguish charging from discharging.
+  If your current sensor reports the opposite sign, use a
+  [`multiply` filter](/components/sensor#sensor-filters) of `-1` on that sensor.
+- The accuracy of the estimate depends on the accuracy of the current measurement and on a
+  correctly configured `capacity`. The periodic full-charge resynchronisation corrects
+  long-term drift, so reaching a full charge regularly keeps the reading accurate.
+- The state of charge is saved to flash whenever it changes by 0.1% or more, so the estimate
+  is restored after a restart or power loss.
+
+## See Also
+
+- [Sensor Filters](/components/sensor#sensor-filters)
+- [Coulomb counting on Wikipedia](https://en.wikipedia.org/wiki/State_of_charge#Coulomb_counting)
+- <APIRef text="battery_gauge_sensor.h" path="battery_gauge/sensor/battery_gauge_sensor.h" />
