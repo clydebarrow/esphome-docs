@@ -2086,6 +2086,7 @@ This powerful [action](/automations/actions#actions-action) allows changing/upda
 
 - **id** (**Required**): The ID or a list of IDs of widgets configured in LVGL to be updated.
 - The widget's common [style property](/components/lvgl#lvgl-styling), state (templatable) or [flag](#lvgl-widget-flags).
+- **layout** (*Optional*): Update the [layout](/components/lvgl/layouts#lvgl-layouts-update) options of the widget. Only the layout options may be changed; the layout type and grid structure are fixed when the widget is created.
 
 ```yaml
 # Example for updating styles (in states):
@@ -2101,6 +2102,13 @@ on_...:
   - lvgl.widget.update:
       id: my_label_id
       hidden: true
+
+# Example for updating layout options:
+on_...:
+  - lvgl.widget.update:
+      id: my_container_id
+      layout:
+        flex_flow: column
 ```
 
 Check out in the Cookbook [Remote light button](/cookbook/lvgl#lvgl-cookbook-binent) for an example which demonstrates how to use a template to update the state.
