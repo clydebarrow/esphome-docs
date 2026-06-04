@@ -1,34 +1,36 @@
 ---
-description: "Instructions for setting up LSM6DS3 Accelerometer/Gyroscope sensors."
-title: "LSM6DS3 Accelerometer/Gyroscope Sensor"
+description: "Instructions for setting up LSM6DS Accelerometer/Gyroscope sensors."
+title: "LSM6DS Accelerometer/Gyroscope Sensor"
 ---
 
 import APIRef from '@components/APIRef.astro';
 
-The `lsm6ds3` motion platform allows you to use your LSM6DS3 Accelerometer/Gyroscope
+The `lsm6ds` motion platform allows you to use your LSM6DS Accelerometer/Gyroscope
 ([datasheet](https://www.st.com/resource/en/datasheet/lsm6ds3tr-c.pdf))
 sensors with ESPHome. The [I²C Bus](/components/i2c) is required to be set up in
 your configuration for this sensor to work.
 
-The LSM6DS3 is an IMU including a 16-bit 3-axis accelerometer and a 16-bit 3-axis gyroscope, plus an on-chip temperature sensor.
+The LSM6DS is an IMU including a 16-bit 3-axis accelerometer and a 16-bit 3-axis gyroscope, plus an on-chip temperature sensor.
+
+The LSM6DS3 is currently the only supported variant.
 
 ```yaml
 # Example configuration entry
 motion:
-  - platform: lsm6ds3
+  - platform: lsm6ds
     accelerometer_range: 4G
     gyroscope_range: 2000DPS
 
 sensor:
   - platform: motion
     type: acceleration_x
-    name: "LSM6DS3 Accel X"
+    name: "LSM6DS Accel X"
   - platform: motion
     type: gyroscope_x
-    name: "LSM6DS3 Gyro X"
+    name: "LSM6DS Gyro X"
   - platform: motion
     type: roll
-    name: "LSM6DS3 Roll"
+    name: "LSM6DS Roll"
 ```
 
 ## Configuration variables
@@ -52,6 +54,5 @@ and the shake [event](/components/motion#event).
 
 ## See Also
 
-- [Motion Component (IMU)](/components/motion/)
-- [LSM6DS3 Temperature Sensor](/components/sensor/lsm6ds3/)
-- <APIRef text="lsm6ds3.h" path="lsm6ds3/lsm6ds3.h" />
+- [LSM6DS Temperature Sensor](/components/sensor/lsm6ds/)
+- <APIRef text="lsm6ds.h" path="lsm6ds/lsm6ds.h" />
