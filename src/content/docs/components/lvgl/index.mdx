@@ -148,6 +148,8 @@ The following configuration variables apply to the main `lvgl` component, in ord
   to `true` will cause the display to only be updated if the display is idle. During the update LVGL will pause.
   The display `update_interval` should be set to `never` when this is used, as the display will be updated automatically
   by LVGL.
+- **paused** (*Optional*, boolean): When `true`, LVGL will be initially paused and the display will not be updated until `lvgl.resume:` is called. Defaults to `false`.
+  Used to prevent display updates on boot for epaper displays until data is ready, to avoid showing a blank screen or unstyled content.
 - **resume_on_input** (*Optional*, boolean): If LVGL is paused and the user interacts with the screen, resume the activity of LVGL. Defaults to `true`. "Interacts" means to release a touch or button, or rotate an encoder.
 - **color_depth** (*Optional*, string): The color depth at which the contents are generated. Currently only `16` is supported (RGB565, 2 bytes/pixel), which is the default value.
 - **buffer_size** (*Optional*, percentage): The percentage of screen size to allocate buffer memory. If unconfigured, the default is `100%` with runtime fallback to `12%` if a full size buffer allocation fails. For devices without PSRAM, the recommended value is `25%`.
