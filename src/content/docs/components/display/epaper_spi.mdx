@@ -80,6 +80,10 @@ but can be overridden if needed.
 
 - **reset_pin** (*Optional*, [Pin Schema](/guides/configuration-types#pin-schema)): The RESET pin, if used.
   Make sure you pull this pin high (by connecting it to 3.3V with a resistor) if not connected to a GPIO pin.
+- **enable_pin** (*Optional*, [Pin Schema](/guides/configuration-types#pin-schema)): An optional pin to enable the
+  display, if required. A list of pins can be provided for displays that require multiple enable pins.
+  A full pin configuration may be provided to set the pin mode and inverted property if required.
+  The pin or pins will be driven high (low if inverted) prior to display initialisation.
 - **dimensions** (**Required**, dict): Dimensions of the screen, specified either as *width* **x** *height* (e.g `320x240`  )
   or with separate config keys. For integrated boards with full pre-defined configuration this is optional and will be preset by
   the model selected. The dimensions are specified in pixels, and the width and height must be greater than 0.
