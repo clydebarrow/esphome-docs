@@ -157,10 +157,9 @@ most of the configuration will be set by default, but can be overridden if neede
 - **pixel_mode** (*Optional*): Select the interface mode for the display driver. Options are `16bit` (default) and `18bit`. Most displays require 16 bit mode, and it is preferred unless the display requires 18 bit mode.
 - **spi_16** (*Optional*): Set to `true` on boards where single bit SPI is used but drives the display in parallel via a 16 bit shift register.
 - **data_rate** (*Optional*): The SPI data rate. Defaults to 10MHz but board presets may override this.
-  The maximum achievable data rate will depend on the chip type (e.g. ESP32 vs ESP32-S3) the pins used (on ESP32 using the default SPI pins allows higher rates)
+  The maximum achievable data rate will depend on the chip type (e.g. ESP32 vs ESP32-S3), the pins used (on ESP32 using the default SPI pins allows higher rates),
   and the connection type (on-board connections will support higher rates than long cables or DuPont wires.) If in doubt, start with a low speed
-  and test higher rates to find what works. A MISO pin should preferably not be specified, as this may limit the maximum rate in some circumstances,
-  and is not required if the SPI bus is used only for the display.
+  and test higher rates to find what works.
 - **spi_mode** (*Optional*): The SPI mode. Options are `MODE0`, `MODE1`, `MODE2`, and `MODE3`. Defaults to `MODE3` for
   octal SPI and single bit SPI with no CS pin, or `MODE0` otherwise.
 - **draw_rounding** (*Optional*): The rounding factor for drawing operations. Defaults to 2. Some chips require a higher value to avoid display artifacts. Must be a power of 2.
@@ -168,9 +167,10 @@ most of the configuration will be set by default, but can be overridden if neede
   using 16 bit color depth. The default is appropriate for the majority of displays.
 - **transform** (*Optional*): Can be used to mirror and/or swap the x and y axes. Should not be required unless using the `CUSTOM` model.
   When selecting a predefined model, simply use `rotation` instead to orient the display, for example to switch from portrait to landscape.
-  If this option is specified, then the `dimensions` option must also be provided. The value can either be the string `disabled` to disable hardware transform, or a dictionary.
-  For the `CUSTOM` model, use `transform: disabled` if the display does not support it, which will prevent a `rotation`
-  being translated to a hardware transform, otherwise the options below:
+  If this option is specified, then the `dimensions` option must also be provided.
+  The value can either be the string `disabled` to disable hardware transform, or a dictionary with the options listed below.
+  For the `CUSTOM` model, use `transform: disabled` if the display does not support axis swapping, which will prevent a `rotation`
+  being translated to a hardware transform.
 
   - **swap_xy** (**Required**, boolean): If true, exchange the x and y axes.
   - **mirror_x** (**Required**, boolean): If true, mirror the x axis.
