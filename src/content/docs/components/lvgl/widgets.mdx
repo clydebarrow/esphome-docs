@@ -889,7 +889,7 @@ The color picker lets the user choose a color by dragging sliders. It is built f
 
 - `on_value` [trigger](/automations/actions#actions-trigger) is activated when the color changes, either by user interaction or programmatically. The new color is returned in the variable `x`, which is a `Color` with `r`, `g` and `b` members, and can be passed directly wherever a color is expected.
 - `on_update` [trigger](/automations/actions#actions-trigger) is activated when the color is changed programmatically (e.g. via `lvgl.color_picker.update`). The new color is returned in the variable `x`.
-- [interaction](#triggers) LVGL event triggers which also return the value in `x`. These apply to the widget itself, not to the sliders inside it, so they are sent only when its own background is touched.
+- [interaction](#triggers) LVGL event triggers which also return the value in `x`. Touching a slider counts as touching the widget, so these are sent for the sliders as well as for the widget's own background.
 
 The current color can also be read at any time in a lambda from the widget's `state` member, for example `id(picker_id).state.r`.
 
@@ -920,7 +920,7 @@ on_...:
 ```
 
 > [!NOTE]
-> The `on_value` trigger is sent continuously while a slider is being dragged, so keep the automation light. If it does anything expensive, put the work in a [script](/components/script/) with `mode: restart` and a short delay, so that only the last color in a drag is acted on.
+> The `on_value` trigger is sent continuously while a slider is being dragged, which generally has a negative effect on performance. To act only once the user has finished, use a [universal interaction trigger](#triggers) like `on_release`, to get the `x` variable once after the interaction has completed.
 
 > [!NOTE]
 > The default color is grey, which has zero saturation. Until the saturation or brightness slider is moved, dragging the hue slider will not change the color, since every hue at zero saturation is the same grey. Set `color` to a saturated value to avoid this.
