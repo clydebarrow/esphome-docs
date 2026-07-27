@@ -12,6 +12,7 @@ import lvglButtonImg from './images/lvgl_button.png';
 import lvglButtonmatrixImg from './images/lvgl_buttonmatrix.png';
 import lvglCanvasImg from './images/lvgl_canvas.png';
 import lvglCheckboxImg from './images/lvgl_checkbox.png';
+import lvglColorPickerImg from './images/color-picker.png';
 import lvglDropdownImg from './images/lvgl_dropdown.png';
 import lvglImageImg from './images/lvgl_image.png';
 import lvglKeyboardImg from './images/lvgl_keyboard.png';
@@ -865,6 +866,64 @@ on_...:
 > In case you configure `default_font` in the main section to a custom font, the checkmark will not be shown correctly when the checkbox is in the checked state. See [Restore checkbox mark](/cookbook/lvgl#lvgl-cookbook-ckboxmark) for how to easily resolve this.
 
 The `checkbox` can be also integrated as a [Switch](/components/switch/lvgl/) component.
+
+### `color_picker`
+
+The color picker lets the user choose a color by dragging sliders. It is built from six sliders: hue, saturation and brightness, and one for each of the red, green and blue channels. Moving any slider updates all the others, along with a swatch of the chosen color and its hex value. Each slider's knob is filled with the color its own bar shows at the current position.
+
+<Image src={lvglColorPickerImg} layout="constrained" alt="" />
+
+**Configuration variables:**
+
+- **width** (**Required**): Width of the widget in pixels or a percentage, or `SIZE_CONTENT`. It is square, so the height is always set to match, and giving a `height` is an error. With `SIZE_CONTENT` the widget sizes itself from the height of a line of its `text_font`, so setting a larger font makes the whole widget larger.
+- **color** (*Optional*, [color](/components/lvgl#lvgl-color)): The color to start with. Defaults to mid grey (`0x808080`).
+- Style options from [Style properties](/components/lvgl#lvgl-styling). `text_font` sets the font used for the slider names and values, and is inherited by every part of the widget.
+
+**Actions:**
+
+- `lvgl.color_picker.update` [action](/automations/actions#actions-action) updates the widget styles and properties from the specific options above, just like the [lvgl.widget.update](#lvgl-automation-actions) action is used for the common styles, states or flags.
+  - **id** (**Required**): The ID or a list of IDs of color picker widgets to be updated.
+  - **color** (*Optional*, [color](/components/lvgl#lvgl-color)): The color to show.
+
+**Triggers:**
+
+- `on_value` [trigger](/automations/actions#actions-trigger) is activated when the color changes, either by user interaction or programmatically. The new color is returned in the variable `x`, which is a `Color` with `r`, `g` and `b` members, and can be passed directly wherever a color is expected.
+- `on_update` [trigger](/automations/actions#actions-trigger) is activated when the color is changed programmatically (e.g. via `lvgl.color_picker.update`). The new color is returned in the variable `x`.
+- [interaction](#triggers) LVGL event triggers which also return the value in `x`. These apply to the widget itself, not to the sliders inside it, so they are sent only when its own background is touched.
+
+The current color can also be read at any time in a lambda from the widget's `state` member, for example `id(picker_id).state.r`.
+
+**Example:**
+
+```yaml
+# Example widget:
+- color_picker:
+    align: CENTER
+    id: picker_id
+    width: SIZE_CONTENT
+    text_font: montserrat_24
+    color: 0x3366CC
+
+# Example action:
+on_...:
+  - lvgl.color_picker.update:
+      id: picker_id
+      color: 0xFF8800
+
+# Example trigger:
+- color_picker:
+    ...
+    on_value:
+      - logger.log:
+          format: "Picked %d,%d,%d"
+          args: [ x.r, x.g, x.b ]
+```
+
+> [!NOTE]
+> The `on_value` trigger is sent continuously while a slider is being dragged, so keep the automation light. If it does anything expensive, put the work in a [script](/components/script/) with `mode: restart` and a short delay, so that only the last color in a drag is acted on.
+
+> [!NOTE]
+> The default color is grey, which has zero saturation. Until the saturation or brightness slider is moved, dragging the hue slider will not change the color, since every hue at zero saturation is the same grey. Set `color` to a saturated value to avoid this.
 
 ### `container`
 
