@@ -877,6 +877,8 @@ The color picker lets the user choose a color by dragging sliders. It is built f
 
 - **width** (**Required**): Width of the widget in pixels or a percentage, or `SIZE_CONTENT`. It is square, so the height is always set to match, and giving a `height` is an error. With `SIZE_CONTENT` the widget sizes itself from the height of a line of its `text_font`, so setting a larger font makes the whole widget larger.
 - **color** (*Optional*, [color](/components/lvgl#lvgl-color)): The color to start with. Defaults to mid grey (`0x808080`).
+- **items** (*Optional*, list): Settings for the bars of all six sliders. Supports a list of [styles](/components/lvgl#lvgl-styling) and state-based styles to customize. Each slider already has a color gradient of its own, so setting a background color here will hide it.
+- **knob** (*Optional*, list): Settings for the knob *part* of all six sliders. Supports a list of [styles](/components/lvgl#lvgl-styling) and state-based styles to customize. See the note below about `bg_color`.
 - Style options from [Style properties](/components/lvgl#lvgl-styling). `text_font` sets the font used for the slider names and values, and is inherited by every part of the widget.
 
 **Actions:**
@@ -903,6 +905,11 @@ The current color can also be read at any time in a lambda from the widget's `st
     width: SIZE_CONTENT
     text_font: montserrat_24
     color: 0x3366CC
+    items:
+      border_color: 0x808080
+      border_width: 1
+    knob:
+      radius: 4
 
 # Example action:
 on_...:
@@ -924,6 +931,9 @@ on_...:
 
 > [!NOTE]
 > The default color is grey, which has zero saturation. Until the saturation or brightness slider is moved, dragging the hue slider will not change the color, since every hue at zero saturation is the same grey. Set `color` to a saturated value to avoid this.
+
+> [!NOTE]
+> Each knob is normally filled with the color its own slider shows at the current position, which is updated as the sliders move. Setting `bg_color` under `knob` turns this off, so that all the knobs keep the color you give them. Other `knob` styles, such as `radius` or `border_width`, leave the filling in place.
 
 ### `container`
 
