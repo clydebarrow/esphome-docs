@@ -4,7 +4,8 @@ title: "SDL Binary Sensor"
 ---
 
 The `sdl` binary sensor platform creates a binary sensor from keyboard presses on the host platform.
-The sensor will be true when the key is pressed.
+The sensor will be true when the key is pressed. The `sdl` display it belongs to must have a window - a display
+with [headless](/components/display/sdl#headless-operation) set receives no key presses.
 
 ## Configuration variables
 
