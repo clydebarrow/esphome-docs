@@ -102,7 +102,7 @@ The properties below are common to all widgets.
   of the child in the X direction. One of `NONE` (default), `START`, `END`, `CENTER`.
 - **scroll_snap_y** (*Optional*, string): For a child of a scrollable object, this property defines the snap position
   of the child in the Y direction. One of `NONE` (default), `START`, `END`, `CENTER`.
-- **ext_click_area** (*Optional*, int16): Increase the area that will respond to pointer input (touch, mouse, etc.) outside the widget by a specified number of pixels. Use in conjunction with `adv_hittest` [flag](#lvgl-widget-flags) to fine-tune the sensitivity of the areas around the widgets.
+- **ext_click_area** (*Optional*, int16): Increase the area that will respond to pointer input (touch, mouse, etc.) outside the widget by a specified number of pixels. Use in conjunction with `adv_hittest` [flag](#lvgl-widget-flags) to fine-tune the sensitivity of the areas around the widgets. This belongs to the widget as a whole; see the note below.
 - **align** (*Optional*, enum): Alignment of the widget relative to the parent. A child widget is clipped to its parent boundaries. One of the values *not* starting with `OUT_` (see picture below).
 - **align_to** (*Optional*, list): Alignment of the widget relative to another widget on the same level. Note that resizing the screen or a widget containing or referred by this directive will not update the position.
   - **id** (**Required**): The ID of a widget *to* which you want to align.
@@ -180,7 +180,10 @@ In addition to visual styling, each widget supports some boolean **flags** to in
 > LVGL only supports **integers** for numeric `value`. Visualizer widgets can't display floats directly, but they allow scaling by 10s. Some examples in the [Cookbook](/cookbook/lvgl/) cover how to do that.
 
 > [!TIP]
-> By default, widgets can be clicked only within their bounding area. However, especially with small widgets, it can be helpful to make a widget's "clickable" area larger. You can do this with `ext_click_area` styling property by specifying a number of pixels to extend the clickable area around the widget.
+> By default, widgets can be clicked only within their bounding area. However, especially with small widgets, it can be helpful to make a widget's "clickable" area larger. You can do this with the `ext_click_area` property by specifying a number of pixels to extend the clickable area around the widget.
+
+> [!NOTE]
+> `ext_click_area`, `scrollbar_mode`, `scroll_dir`, `scroll_snap_x` and `scroll_snap_y` belong to a widget as a whole rather than to one part or state of it, unlike the [style properties](/components/lvgl#lvgl-styling). Set them at the widget's top level: LVGL has no way to apply them to a single part, so setting them under one such as `knob` or under a state such as `pressed` has no effect, and is reported when the configuration is compiled.
 
 ## Widget-specific properties
 
@@ -343,7 +346,7 @@ The arc consists of a background and a foreground arc. The indicator foreground 
 - **value** (*Optional*, int16): Actual value of the indicator at start, in `0`  -`100` range. Defaults to `0`.
 - Any [Styling](/components/lvgl#lvgl-styling) and state-based option to override styles inherited from parent. The arc's size and position will respect the padding style properties.
 
-By default the whole area of the widget is interactive. If the `adv_hittest` [flag](#lvgl-widget-flags) is enabled the arc can be clicked through in the middle. Clicks are recognized only on the ring of the background arc. If this is too narrow, you can use `ext_click_area` styling property to increase the sensitive area near the arc line.
+By default the whole area of the widget is interactive. If the `adv_hittest` [flag](#lvgl-widget-flags) is enabled the arc can be clicked through in the middle. Clicks are recognized only on the ring of the background arc. If this is too narrow, you can use the `ext_click_area` property to increase the sensitive area near the arc line.
 
 > [!NOTE]
 > The zero degree position is at the middle right (3 o'clock) of the widget and the degrees increase in a clockwise direction from there. Angles are specified in the `0`  -`360` range.
@@ -880,6 +883,7 @@ The color picker lets the user choose a color by dragging sliders. By default it
 - **sliders** (*Optional*, list): Which sliders to give the widget, from `hue`, `saturation`, `brightness`, `red`, `green` and `blue`. Defaults to all six. `hsv` (or `hsb`) and `rgb` can be used as shorthand for the three sliders of each set. The order they are listed in makes no difference. The remaining space is shared out among the sliders that are present, so the fewer there are, the larger each one and the color swatch become.
 - **items** (*Optional*, list): Settings for the bars of all the widget's sliders. Supports a list of [styles](/components/lvgl#lvgl-styling) and state-based styles to customize. Each slider already has a color gradient of its own, so setting a background color here will hide it.
 - **knob** (*Optional*, list): Settings for the knob *part* of all the widget's sliders. Supports a list of [styles](/components/lvgl#lvgl-styling) and state-based styles to customize. See the note below about `bg_color`.
+- **ext_click_area** (*Optional*, int16): Widens the area each slider responds to by the given number of pixels, making the knobs easier to move. Set it on the widget itself, not under `items` or `knob`. See the note below.
 - Style options from [Style properties](/components/lvgl#lvgl-styling). `text_font` sets the font used for the slider names and values, and is inherited by every part of the widget.
 
 **Actions:**
@@ -924,6 +928,12 @@ The current color can also be read at any time in a lambda from the widget's `st
     width: 150
     sliders: [ hue, saturation ]
 
+# A small picker whose sliders are easier to hit on a touchscreen:
+- color_picker:
+    id: small_picker
+    width: 120
+    ext_click_area: 10
+
 # Example action:
 on_...:
   - lvgl.color_picker.update:
@@ -950,6 +960,9 @@ on_...:
 
 > [!NOTE]
 > Each knob is normally filled with the color its own slider shows at the current position, which is updated as the sliders move. Setting `bg_color` under `knob` turns this off, so that all the knobs keep the color you give them. Other `knob` styles, such as `radius` or `border_width`, leave the filling in place.
+
+> [!NOTE]
+> A slider responds to a press anywhere along it, so a knob is as easy to grab as its slider is wide. To make the sliders of a small widget easier to use, set `ext_click_area` on the widget, which widens that area without changing how anything looks. Making the knob itself bigger, with `radius` or padding under `knob`, only changes what is drawn.
 
 ### `container`
 
@@ -1678,7 +1691,7 @@ The slider widget looks like a bar supplemented with a knob. The user can drag t
 
 Normally, the slider can be adjusted either by dragging the knob, or by clicking on the slider bar. In the latter case the knob moves to the point clicked and slider value changes accordingly. In some cases it is desirable to set the slider to react on dragging the knob only. This feature is enabled by enabling the `adv_hittest` [flag](#lvgl-widget-flags). 
 
-If your slider is narrow, you can use `ext_click_area` styling property to increase the sensitive area around it without affecting it visually.
+If your slider is narrow, you can use the `ext_click_area` property to increase the sensitive area around it without affecting it visually.
 
 **Actions:**
 
