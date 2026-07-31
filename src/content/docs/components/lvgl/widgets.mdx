@@ -878,7 +878,7 @@ The color picker lets the user choose a color by dragging sliders. By default it
 
 **Configuration variables:**
 
-- **width** (**Required**): Width of the widget in pixels or a percentage, or `SIZE_CONTENT`. It is square, so the height is always set to match, and giving a `height` is an error. With `SIZE_CONTENT` the widget sizes itself from the height of a line of its `text_font`, so setting a larger font makes the whole widget larger.
+- **width** (*Optional*): Width of the widget in pixels or a percentage, or `SIZE_CONTENT` (the default.) It is square, so the height is always set to match, and giving a `height` is an error. With `SIZE_CONTENT` (recommended) the widget sizes itself from the height of a line of its `text_font`, so setting a larger font makes the whole widget larger.
 - **color** (*Optional*, [color](/components/lvgl#lvgl-color)): The color to start with. Defaults to mid grey (`0x808080`).
 - **sliders** (*Optional*, list): Which sliders to give the widget, from `hue`, `saturation`, `brightness`, `red`, `green` and `blue`. Defaults to all six. `hsv` (or `hsb`) and `rgb` can be used as shorthand for the three sliders of each set. The order they are listed in makes no difference. The remaining space is shared out among the sliders that are present, so the fewer there are, the larger each one and the color swatch become.
 - **items** (*Optional*, list): Settings for the bars of all the widget's sliders. Supports a list of [styles](/components/lvgl#lvgl-styling) and state-based styles to customize. Each slider already has a color gradient of its own, so setting a background color here will hide it.
