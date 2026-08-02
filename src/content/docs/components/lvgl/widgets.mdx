@@ -196,7 +196,7 @@ one nested inside another widget's `widgets:` -- by specifying the widget that *
 indices to walk from it:
 
 - **parent** (**Required**, [ID](/guides/configuration-types#id)): The ID of a widget with children.
-- **path** (**Required**, list of templatable positive ints): Child indices to walk from `parent`. `path: [1]` selects
+- **path** (**Required**, list of templatable ordinal numbers): Child indices to walk from `parent`. `path: [1]` selects
   `parent`'s 2nd child (indices are zero-based); `path: [1, 0]` selects that child's own 1st child, and so on.
 
 ```yaml
