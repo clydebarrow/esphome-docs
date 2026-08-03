@@ -153,8 +153,9 @@ sensor:
 
 ### Configuration variables
 
-- **battery_gauge_id** (**Required**, [ID](/guides/configuration-types#id)): The
-  [Battery Gauge hub](#battery_gauge-component) this sensor reads from.
+- **battery_gauge_id** (*Optional*, [ID](/guides/configuration-types#id)): The
+  [Battery Gauge hub](#battery_gauge-component) this sensor reads from. Only needs to be
+  given if you have more than one `battery_gauge` hub configured.
 - **type** (*Optional*, string): The reading to expose. Defaults to `state_of_charge`.
   - `state_of_charge`: The estimated charge remaining, as a percentage of `capacity`.
 - All other options from [Sensor](/components/sensor).
