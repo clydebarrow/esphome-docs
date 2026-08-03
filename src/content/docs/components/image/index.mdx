@@ -113,16 +113,17 @@ used for that platform.
 
 ## Transparency Options
 
-By default transparency is not used. If `transparency: chroma_key` is set then a specific colour will be used to
-replace any transparent or partially transparent portions of the image. This will not be drawn when rendering the
-image, allowing the background to be visible.
+The `transparency` option controls how the alpha channel of the input image is handled. Possible values are:
 
-If `transparency: alpha_channel` is set, then each pixel of the image will be assigned an additional byte with a
-transparency value. This is useful mainly when using [LVGL](/components/lvgl/) as the `alpha_channel` transparency
-will enable smooth blending of transparent images with the background. This choice is not available for binary
-images.
-When using the display lambda image drawing functions these will draw or not draw the pixel, no blending with the
-background will be done.
+- `opaque` (default): Transparency is not used; the image is drawn fully opaque.
+- `chroma_key`: A specific colour is used to represent any transparent or partially transparent portions of the
+  image. Pixels of that colour will not be drawn when rendering the image, allowing the background to be visible.
+- `alpha_channel`: Each pixel of the image is assigned an additional byte with a transparency value. This is useful
+  mainly when using [LVGL](/components/lvgl/), as `alpha_channel` transparency enables smooth blending of
+  transparent images with the background. This choice is not available for binary images. When using the display
+  lambda image drawing functions, these will only draw or not draw the pixel; no blending with the background will
+  be done.
+
 The `BINARY` format with `chroma_key` transparency effectively turns the image into an alpha mask with one bit per
 pixel. GRAYSCALE images with transparency store the alpha channel only, and remain 1 byte per pixel.
 
