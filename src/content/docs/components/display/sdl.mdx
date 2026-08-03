@@ -39,7 +39,8 @@ display:
   See [Headless Operation](#headless-operation). May not be used together with `window_options` or `screenshot_key`.
 - **screenshot_key** (*Optional*): A key that saves a screenshot when pressed, for example `SDLK_F12`.
   See the [SDL binary sensor](/components/binary_sensor/sdl/) for the list of key names. Since this needs a
-  keyboard, it may not be used with `headless`.
+  keyboard, it may not be used with `headless`. Each press saves one screenshot; holding the key down does
+  not keep saving them.
 - **pages** (*Optional*, list): Show pages instead of a single lambda. See [Display Pages](/components/display#display-pages).
 - **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID used for code generation.
 - **window_options** (*Optional*): Options that affect how the display renders on the host system. All default to false, except position, which defaults to SDL's undefined position
