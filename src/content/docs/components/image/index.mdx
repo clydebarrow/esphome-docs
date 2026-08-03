@@ -81,6 +81,36 @@ display:
 You can also use this to invert images in two color displays, use `COLOR_OFF` then `COLOR_ON`
 as the additional parameters.
 
+## Setting Defaults
+
+If you have several images that share most of their options (`type`, `transparency`, `resize`, ...), a platform entry
+can use `defaults:` together with `files:` instead of repeating those options on every image:
+
+```yaml
+image:
+  - platform: file
+    defaults:
+      type: RGB565
+      transparency: opaque
+      resize: 100x100
+    files:
+      - id: image_one
+        file: "image1.png"
+      - id: image_two
+        file: "image2.png"
+        type: GRAYSCALE # overrides the default type for this image only
+```
+
+Each entry in `files:` is merged with `defaults:`, with the entry's own options taking priority. `defaults:` can only
+be used together with `files:`. This works the same way for every image platform
+([`file`](/components/image/file/), [`animation`](/components/image/animation/) and
+[`online_image`](/components/image/online_image/)) — just replace the entries in `files:` with the options normally
+used for that platform.
+
+- **defaults** (*Optional*, mapping): Options merged into every entry in `files:`.
+- **files** (*Optional*, list): A list of images, each using the normal configuration variables of the selected
+  platform.
+
 ## Transparency Options
 
 By default transparency is not used. If `transparency: chroma_key` is set then a specific colour will be used to
