@@ -62,9 +62,18 @@ condition must hold before resynchronising, depends on the configured `chemistry
   **negative while discharging**.
 - **capacity** (**Required**, float): The battery capacity in amp-hours. An optional `Ah`
   suffix may be given, e.g. `3.0Ah` or `3.0`.
-- **max_charge_voltage** (**Required**, float): The voltage at which the battery is
+- **max_charge_voltage** (*Optional*, float): The voltage at which the battery is
   considered fully charged. When the (filtered) voltage reaches this value while the charge
-  current is low, the gauge resynchronises its estimate to 100%.
+  current is low, the gauge resynchronises its estimate to 100%. Exactly one of
+  `max_charge_voltage` or `cell_count` must be given.
+- **cell_count** (*Optional*, int): The number of cells in series, as an alternative to
+  giving `max_charge_voltage` directly. The full-charge voltage is derived by multiplying
+  this by the chemistry's standard per-cell full-charge voltage (see
+  [Chemistry options](#chemistry-options) below) — for example, `cell_count: 4` with
+  `chemistry: lifepo4` is equivalent to `max_charge_voltage: 14.6V`. Not available for
+  `chemistry: custom`, since it has no standard per-cell voltage to assume; use
+  `max_charge_voltage` instead. Exactly one of `max_charge_voltage` or `cell_count` must
+  be given.
 - **chemistry** (**Required**, string): The battery chemistry, which determines how charge
   and discharge currents are derated and how a full charge is detected. One of:
   - `lifepo4`: LiFePO4 or general lithium-ion. No charge-acceptance or rate-of-discharge
@@ -122,18 +131,22 @@ of the five may be omitted, in which case it falls back to a no-op value (equiva
 - **`lifepo4`**: No charge-acceptance or discharge-rate derating is applied, and there is
   no dwell requirement for full-charge detection — the gauge resynchronises to 100% as
   soon as the voltage reaches `max_charge_voltage` while the current is below 2% of
-  `capacity`. This is also the correct choice for other lithium-ion chemistries.
+  `capacity`. This is also the correct choice for other lithium-ion chemistries. Standard
+  per-cell full-charge voltage for `cell_count`: `3.65V`.
 - **`lead_acid_flooded`** and **`lead_acid_agm`**: Charge acceptance falls off above
   `acceptance_knee`, discharge currents are derated by Peukert's law using
   `peukert_exponent` and the rated current implied by `capacity_rate`, and a full charge
   requires the voltage and `tail_current` conditions to hold for `full_charge_dwell`
   before the gauge resynchronises. Both presets use the same defaults except for
   `peukert_exponent`, which is slightly lower for AGM batteries to reflect their lower
-  internal resistance.
+  internal resistance. Standard per-cell full-charge voltage for `cell_count`: `2.45V`
+  for `lead_acid_flooded`, `2.40V` for `lead_acid_agm` (a lead-acid cell is nominally 2V,
+  so a common 12V/6-cell battery is `cell_count: 6`).
 - **`custom`**: The same lead-acid-style model as above, but with no preset — every
   parameter must be given explicitly (except that any single one may be left out to fall
   back to a no-op value for that parameter). Use this for chemistries that don't match the
   built-in presets, such as gel or a lead-acid battery with unusual characteristics.
+  `cell_count` is not available for this chemistry; use `max_charge_voltage` directly.
 
 ## Sensor
 
