@@ -36,10 +36,10 @@ display:
 - **update_interval** (*Optional*, [Time](/guides/configuration-types#time)): The interval to re-draw the screen. Defaults to `1s`.
 - **sdl_options** (*Optional*, string): Build arguments if required to specify include or library paths. Should not be required if SDL2 is properly installed.
 - **headless** (*Optional*, boolean): Draw into memory instead of opening a window. Defaults to `false`.
-  See [Headless Operation](#headless-operation). May not be used together with `window_options` or `screenshot_key`.
-- **screenshot_key** (*Optional*): A key that saves a screenshot when pressed, for example `SDLK_F12`.
+  See [Headless Operation](#headless-operation). May not be used together with `window_options` or `snapshot_key`.
+- **snapshot_key** (*Optional*): A key that saves a [snapshot](#snapshots) when pressed, for example `SDLK_F12`.
   See the [SDL binary sensor](/components/binary_sensor/sdl/) for the list of key names. Since this needs a
-  keyboard, it may not be used with `headless`. Each press saves one screenshot; holding the key down does
+  keyboard, it may not be used with `headless`. Each press saves one snapshot; holding the key down does
   not keep saving them.
 - **pages** (*Optional*, list): Show pages instead of a single lambda. See [Display Pages](/components/display#display-pages).
 - **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID used for code generation.
@@ -65,7 +65,7 @@ display:
 
 With `headless: true` the display draws into memory and no window is opened. This lets the display run on a
 system with no graphical desktop, such as a continuous integration runner or a machine you are logged into over
-SSH. Taking a [screenshot](#screenshots) is then the only way to see what was drawn.
+SSH. Taking a [snapshot](#snapshots) is then the only way to see what was drawn.
 
 ```yaml
 display:
@@ -81,52 +81,27 @@ display:
 Because there is no window, a headless display receives no mouse or keyboard events. The
 [SDL touchscreen](/components/touchscreen/sdl#sdl_touchscreen) and
 [SDL binary sensor](/components/binary_sensor/sdl/) cannot be used with it, and neither can `window_options`
-or `screenshot_key`.
+or `snapshot_key`.
 
-## Screenshots
+If all you want is a picture of what a configuration draws, consider the
+[snapshot display](/components/display/snapshot/) instead. It does the same job without SDL, so it needs no
+graphics library installed.
 
-A screenshot writes the current contents of the display to a `.bmp` file. Screenshots are saved in the
-`screenshots` folder under the `.esphome` folder that holds the build directory. Set the
-`ESPHOME_SCREENSHOT_DIR` environment variable when running the binary to save them somewhere else.
+## Snapshots
 
-An existing file is never overwritten. Screenshots that use a generated name get a number added if a file of
-that name is already there; a screenshot with a name you chose yourself will fail instead, so that a test
-checking a fixed path cannot pick up an old file by mistake.
-
-### `sdl.screenshot` Action
-
-Save a screenshot of the given display.
+A snapshot writes the current contents of the display to a `.bmp` file, either when `snapshot_key` is pressed or
+from the [`snapshot.take`](/components/display/snapshot/#snapshot-take-action) action. It works with or without a
+window.
 
 ```yaml
 on_...:
-  # save to a name built from the display id and the current time
-  - sdl.screenshot: my_display
-
-  # save to a name you choose
-  - sdl.screenshot:
+  - snapshot.take:
       id: my_display
       filename: start_screen.bmp
-
-  # the name may be templated
-  - sdl.screenshot:
-      id: my_display
-      filename: !lambda |-
-        return id(night_mode).state ? "dark.bmp" : "light.bmp";
 ```
 
-Configuration variables:
-
-- **id** (*Optional*, [ID](/guides/configuration-types#id)): The display to capture. Required if you have more
-  than one SDL display.
-- **filename** (*Optional*, string, [templatable](/automations/templates#config-templatable)): The name of the
-  file to write. If not given, a name is built from the display id and the current date and time. Only letters,
-  digits, `.`, `_` and `-` are kept, so the file is always written inside the screenshots folder. A `.bmp`
-  ending is added if you leave it off.
-
-> [!NOTE]
-> Writing the file blocks the main loop for as long as it takes, which may be reported as a slow component.
-> This is not a problem for the design and test work this display is meant for, but it is not something to do
-> on a timer in a device you leave running.
+Where the file goes and how it is named is described under
+[snapshots](/components/display/snapshot/#snapshots).
 
 ## MacOS SDL2 Installation
 
@@ -173,5 +148,6 @@ The `esphome run yourfile.yaml` command will compile and automatically run the b
 
 - [SDL touchscreen](/components/touchscreen/sdl#sdl_touchscreen)
 - [SDL binary sensor](/components/binary_sensor/sdl/)
+- [Snapshot display](/components/display/snapshot/)
 - [Display Component](/components/display/)
 - <APIRef text="sdl_esphome.h" path="sdl/sdl_esphome.h" />
