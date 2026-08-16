@@ -1818,7 +1818,7 @@ The table widget displays data arranged in rows and columns of text cells.
 - **row_count** (*Optional*, int): The number of rows in the table. Defaults to the number of entries in `rows`, or `0` if not given.
 - **column_count** (*Optional*, int): The number of columns in the table. Defaults to the largest number of `cells` given for any row in `rows`, or `0` if not given.
 - **columns** (*Optional*, list): Settings for each column, in column order:
-  - **width** (*Optional*, int or percentage): The width of the column.
+  - **width** (*Optional*, int): The width of the column, in pixels. Unlike most size properties, LVGL's table widget does not support percentage widths for columns.
 - **rows** (*Optional*, list): The rows of the table, in order. Each row may be given as a bare list of cells, or as a dict:
   - **cells** (**Required**, list): The cells of the row, in column order. Each cell may be given as a bare [Text property](#text-property), or as a dict:
     - **text** (*Optional*, [Text property](#text-property)): The text to display in the cell. Defaults to an empty string.
@@ -1856,8 +1856,8 @@ The table widget displays data arranged in rows and columns of text cells.
     id: table_id
     width: 100%
     columns:
-      - width: 40%
-      - width: 60%
+      - width: 96
+      - width: 144
     rows:
       - ["Name", "Value"]
       - ["Temperature", "22.5°"]
@@ -1870,8 +1870,8 @@ The table widget displays data arranged in rows and columns of text cells.
     row_count: 3
     column_count: 2
     columns:
-      - width: 50%
-      - width: 50%
+      - width: 120
+      - width: 120
 
 # Example action:
 interval:
