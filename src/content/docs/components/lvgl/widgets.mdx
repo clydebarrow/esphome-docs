@@ -1816,7 +1816,7 @@ The table widget displays data arranged in rows and columns of text cells.
 **Configuration variables:**
 
 - **row_count** (*Optional*, int): The number of rows in the table. Defaults to the number of entries in `rows`, or `0` if not given.
-- **column_count** (*Optional*, int): The number of columns in the table. Defaults to the largest number of `cells` given for any row in `rows`, or `0` if not given.
+- **column_count** (*Optional*, int): The number of columns in the table. Defaults to the largest number of cells in any row in `rows`, or `0` if not given.
 - **columns** (*Optional*, list): Settings for each column, in column order:
   - **width** (*Optional*, int or percentage): The width of the column. A percentage is relative to the table's own content width, and is recalculated automatically if the table is resized.
 - **rows** (*Optional*, list): The rows of the table, in order. Each row may be given as a bare list of cells, or as a dict:
