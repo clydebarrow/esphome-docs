@@ -58,7 +58,7 @@ light:
   overrides **initial_state**'s `state`.
 
   > [!WARNING]
-  > Before 2026.10.0, a light with `initial_state: {state: on}` and neither `restore_mode` nor `restore_state`
+  > Before 2026.10.0, a light with `initial_state: {state: ON}` and neither `restore_mode` nor `restore_state`
   > set would still boot OFF, because omitting both keys implicitly behaved like `restore_mode: ALWAYS_OFF`.
   > This was counter-intuitive and has been fixed: such a light now boots ON, as `initial_state` says.
 
@@ -102,7 +102,7 @@ light:
   light:
     - platform: ...
       restore_state:
-        state: on
+        state: ON
   ```
 
   ```yaml
@@ -139,13 +139,13 @@ light:
   | `restore_mode` | Equivalent config | Also needs |
   | --- | --- | --- |
   | `RESTORE_DEFAULT_OFF` | `restore_state: all` | — |
-  | `RESTORE_DEFAULT_ON` | `restore_state: all` | `initial_state: {state: on}` |
+  | `RESTORE_DEFAULT_ON` | `restore_state: all` | `initial_state: {state: ON}` |
   | `RESTORE_INVERTED_DEFAULT_OFF` | `restore_state: {state: INVERT}` | — |
-  | `RESTORE_INVERTED_DEFAULT_ON` | `restore_state: {state: INVERT}` | `initial_state: {state: on}` |
-  | `RESTORE_AND_OFF` | `restore_state: {state: off}` | — |
-  | `RESTORE_AND_ON` | `restore_state: {state: on}` | `initial_state: {state: on}` |
+  | `RESTORE_INVERTED_DEFAULT_ON` | `restore_state: {state: INVERT}` | `initial_state: {state: ON}` |
+  | `RESTORE_AND_OFF` | `restore_state: {state: OFF}` | — |
+  | `RESTORE_AND_ON` | `restore_state: {state: ON}` | `initial_state: {state: ON}` |
   | `ALWAYS_OFF` | *(neither `restore_mode` nor `restore_state` set — this is the default)* | — |
-  | `ALWAYS_ON` | *(neither `restore_mode` nor `restore_state` set)* | `initial_state: {state: on}` |
+  | `ALWAYS_ON` | *(neither `restore_mode` nor `restore_state` set)* | `initial_state: {state: ON}` |
 
 - **on_turn_on** (*Optional*, [Action](/automations/actions#all-actions)): An automation to perform when the light is turned on. See
   [`light.on_turn_on` / `light.on_turn_off` Trigger](#light-on_turn_on_off_trigger).
@@ -384,7 +384,7 @@ on_...:
   then:
     - light.control:
         id: light_1
-        state: on
+        state: ON
 ```
 
 **Configuration variables:**
@@ -718,15 +718,15 @@ light:
       - strobe:
           name: Strobe Effect With Custom Values
           colors:
-            - state: on
+            - state: ON
               brightness: 100%
               red: 100%
               green: 90%
               blue: 0%
               duration: 500ms
-            - state: off
+            - state: OFF
               duration: 250ms
-            - state: on
+            - state: ON
               brightness: 100%
               red: 0%
               green: 100%
