@@ -113,7 +113,7 @@ The action returns as soon as the first frame has been captured. The remaining f
 so the animation takes about *frames* divided by *frame_rate* seconds to finish. Only one animation can be recorded
 for a display at a time; asking for another while one is running is refused with a warning.
 
-Each frame is reduced to at most 256 colours, chosen from the colours in that frame. A frame that uses 256 colours or
+Each frame is reduced to at most 256 colors, chosen from the colors in that frame. A frame that uses 256 colors or
 fewer is stored exactly. Frames with smooth gradients may show banding. The main loop runs about every 16 ms, so
 frame rates close to `50fps` will not be perfectly even.
 
