@@ -138,7 +138,36 @@ binary_sensor:
 
 ### `invert`
 
-Simple filter that just inverts every value from the binary sensor.
+Inverts every value from the binary sensor. With no value given, it always inverts:
+
+```yaml
+filters:
+  - invert:
+```
+
+A boolean, or a [templatable](/automations/templates) boolean such as a `!lambda`, can be given
+instead. The value is only inverted while the boolean is `true`; while it's `false` the value
+passes through unchanged:
+
+```yaml
+filters:
+  # Only invert while a reed switch is active
+  - invert: !lambda "return id(reed_switch).state;"
+```
+
+A [Condition](/automations/actions#all-conditions) can be used instead of a boolean, which allows
+more complex logic without a lambda:
+
+```yaml
+filters:
+  - invert:
+      switch.is_on: invert_switch
+```
+
+Configuration variables:
+
+- The filter takes a boolean, [templatable](/automations/templates) boolean, or
+  [Condition](/automations/actions#all-conditions). Defaults to `true` (always invert).
 
 ### `delayed_on`
 
