@@ -279,8 +279,9 @@ configuration variables:
 - **red** (*Optional*, percentage, [templatable](/automations/templates)): The red channel of the light.
 - **green** (*Optional*, percentage, [templatable](/automations/templates)): The green channel of the light.
 - **blue** (*Optional*, percentage, [templatable](/automations/templates)): The blue channel of the light.
-- **color** (*Optional*, string): A [standard CSS color name](https://developer.mozilla.org/en-US/docs/Web/CSS/named-color),
-  for example `red` or `springgreen`, used instead of **red**, **green** and **blue**. Names are not case sensitive.
+- **color** (*Optional*, string): A
+  [standard CSS color name](https://developer.mozilla.org/en-US/docs/Web/CSS/named-color),
+  for example `red` or `springgreen`, used instead of **red**, **green** and **blue**. Names are not case-sensitive.
   Cannot be used together with **red**, **green** or **blue**. This option is not templatable.
 
   The light always drives its brightest color channel at full level. For a dark color such as `darkred`, the
@@ -289,7 +290,8 @@ configuration variables:
   is logged if the color is a dark one.
 
 - **white** (*Optional*, percentage, [templatable](/automations/templates)): The brightness of the white channel.
-- **color_temperature** (*Optional*, float, [templatable](/automations/templates)): The color temperature (in [mireds](https://en.wikipedia.org/wiki/Mired) or Kelvin) of the white channel.
+- **color_temperature** (*Optional*, float, [templatable](/automations/templates)): The color temperature
+  (in [mireds](https://en.wikipedia.org/wiki/Mired) or Kelvin) of the white channel.
 
 - **cold_white** (*Optional*, percentage, [templatable](/automations/templates)): The brightness of the cold white
   channel. Cannot be used at the same time as *color_temperature*.
@@ -581,7 +583,8 @@ on_...:
 - **red** (*Optional*, [templatable](/automations/templates), percentage): The value to set the red channel to.
 - **green** (*Optional*, [templatable](/automations/templates), percentage): The value to set the green channel to.
 - **blue** (*Optional*, [templatable](/automations/templates), percentage): The value to set the blue channel to.
-- **color** (*Optional*, string): A [standard CSS color name](https://developer.mozilla.org/en-US/docs/Web/CSS/named-color)
+- **color** (*Optional*, string): A
+  [standard CSS color name](https://developer.mozilla.org/en-US/docs/Web/CSS/named-color)
   to use instead of **red**, **green** and **blue**. Not templatable. Also sets **color_brightness**, as
   described in [light state](#light-state).
 - **white** (*Optional*, [templatable](/automations/templates), percentage): The brightness to set the white channel
