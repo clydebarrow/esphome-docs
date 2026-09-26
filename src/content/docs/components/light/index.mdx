@@ -566,6 +566,12 @@ on_...:
       red: 100%
       green: 0%
       blue: 0%
+  # Using a color name instead
+  - light.addressable_set:
+      id: my_light
+      range_from: 51
+      range_to: 99
+      color: darkred
 ```
 
 **Configuration variables:**
@@ -586,7 +592,8 @@ on_...:
 - **color** (*Optional*, string): A
   [standard CSS color name](https://developer.mozilla.org/en-US/docs/Web/CSS/named-color)
   to use instead of **red**, **green** and **blue**. Not templatable. Also sets **color_brightness**, as
-  described in [light state](#light-state).
+  described in [light state](#light-state). Unlike **red**, **green** and **blue**, which use the light's current
+  **color_brightness** when it is not given, a color name always sets **color_brightness** for the range.
 - **white** (*Optional*, [templatable](/automations/templates), percentage): The brightness to set the white channel
   to.
 
