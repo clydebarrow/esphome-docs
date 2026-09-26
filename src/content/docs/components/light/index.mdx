@@ -290,6 +290,9 @@ configuration variables:
   set **color_brightness** to 100%. If you also set **color_brightness**, your value is used instead, and a warning
   is logged if the color is a dark one.
 
+  Color names such as `white` and `gray` are converted to RGB colors only and do not affect the white channel,
+  if present.
+
 - **white** (*Optional*, percentage, [templatable](/automations/templates)): The brightness of the white channel.
 - **color_temperature** (*Optional*, float, [templatable](/automations/templates)): The color temperature
   (in [mireds](https://en.wikipedia.org/wiki/Mired) or Kelvin) of the white channel.
