@@ -17,8 +17,8 @@ sensor:
 ```
 
 The counter starts at zero unless [`initial_value`](#configuration-variables) is set or a stored value is restored.
-Change it with the [`counter.increment`](#counterincrement-action) and
-[`counter.set_value`](#counterset_value-action) actions.
+Change it with the [`counter.increment`](#counter-increment-action) and
+[`counter.set_value`](#counter-set_value-action) actions.
 
 > [!NOTE]
 > The sensor state is published as a floating point number, so it shows whole numbers exactly only up to
@@ -37,7 +37,14 @@ Change it with the [`counter.increment`](#counterincrement-action) and
   `true`. A binary sensor does not report a new state that matches its current one, so a repeated `true` is not counted.
 - All other options from [Sensor](/components/sensor/).
 
-To count events from other kinds of component, call the [`counter.increment`](#counterincrement-action) action from
+> [!NOTE]
+> If both **sensor** and **binary_sensor** are configured, the counter accumulates counts from both sources.
+
+> [!NOTE]
+> On ESP8266, stored values are kept in RTC memory by default. They survive a restart, but are lost when power is
+> removed. To save the value to flash, set `restore_from_flash: true` in the [ESP8266](/components/esp8266/) component.
+
+To count events from other kinds of component, call the [`counter.increment`](#counter-increment-action) action from
 that component's automations instead. For example, to count each time a text sensor publishes a value:
 
 ```yaml
