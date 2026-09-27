@@ -87,8 +87,8 @@ on_...:
 
 Configuration options:
 
-- **id** (**Required**, [ID](/guides/configuration-types#id)): The ID of the counter. May be left out when only
-  one counter is configured.
+- **id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the counter.
+  Must be specified if more than one counter is configured.
 - **value** (*Optional*, integer, [templatable](/automations/templates)): The amount to add. Defaults to `1`. Must be
   within the range of a signed 64-bit integer. If the result goes past the largest or smallest 64-bit value, it wraps
   around.
@@ -106,8 +106,8 @@ on_...:
 
 Configuration options:
 
-- **id** (**Required**, [ID](/guides/configuration-types#id)): The ID of the counter. May be left out when only
-  one counter is configured.
+- **id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the counter.
+  Must be specified if more than one counter is configured.
 - **value** (**Required**, integer, [templatable](/automations/templates)): The value to set. Must be within the range
   of a signed 64-bit integer.
 
