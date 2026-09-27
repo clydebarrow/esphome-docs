@@ -16,7 +16,8 @@ sensor:
     id: door_openings
 ```
 
-The counter starts at zero. Change it with the [`counter.increment`](#counterincrement-action) and
+The counter starts at zero unless [`initial_value`](#configuration-variables) is set or a stored value is restored.
+Change it with the [`counter.increment`](#counterincrement-action) and
 [`counter.set_value`](#counterset_value-action) actions.
 
 > [!NOTE]
@@ -27,20 +28,38 @@ The counter starts at zero. Change it with the [`counter.increment`](#counterinc
 
 - **restore** (*Optional*, boolean): Whether to store the value on the device and restore it after a restart.
   Defaults to `true`. See [Flash Wear](/components/preferences/#flash-wear) for how often the value is written to flash.
+- **initial_value** (*Optional*, integer): The value the counter starts with when no stored value is restored: on the
+  first boot, or when `restore` is `false`. Must be within the range of a signed 64-bit integer. Defaults to `0`.
 - **sensor** (*Optional*, [ID](/guides/configuration-types#id)): The ID of a [sensor](/components/sensor/). The counter
   increases by one each time this sensor publishes a value. The value the sensor publishes is not used.
+- **binary_sensor** (*Optional*, [ID](/guides/configuration-types#id)): The ID of a
+  [binary sensor](/components/binary_sensor/). The counter increases by one each time this binary sensor changes to
+  `true`. A binary sensor does not report a new state that matches its current one, so a repeated `true` is not counted.
 - All other options from [Sensor](/components/sensor/).
 
 To count events from other kinds of component, call the [`counter.increment`](#counterincrement-action) action from
-that component's automations instead. For example, to count presses of a binary sensor:
+that component's automations instead. For example, to count each time a text sensor publishes a value:
+
+```yaml
+text_sensor:
+  - platform: template
+    name: "Door Status"
+    on_value:
+      - counter.increment: door_openings
+```
+
+To count each time a binary sensor changes to `true`, use the **binary_sensor** option:
 
 ```yaml
 binary_sensor:
   - platform: gpio
     pin: GPIOXX
-    name: "Door"
-    on_press:
-      - counter.increment: door_openings
+    id: door_contact
+
+sensor:
+  - platform: counter
+    name: "Door Openings"
+    binary_sensor: door_contact
 ```
 
 ## `counter.increment` Action
@@ -95,6 +114,7 @@ on_...:
 ## See Also
 
 - [Sensor Component](/components/sensor/)
+- [Binary Sensor Component](/components/binary_sensor/)
 - [Integration Sensor](/components/sensor/integration/)
 - [Preferences](/components/preferences/)
 - <APIRef text="counter_sensor.h" path="counter/counter_sensor.h" />
