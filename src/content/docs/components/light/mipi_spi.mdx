@@ -44,6 +44,24 @@ The light brightness is scaled into the range `min_brightness` to `max_brightnes
 
 The `brightness` option of the display sets the brightness used at startup, before the light restores its state.
 
+## Power-on state
+
+Like other lights, this light is off by default when the device starts. With the default `min_brightness` of `0`,
+the display will be dark after startup until the light is turned on. To have the display visible at startup, use
+`initial_state` to turn the light on:
+
+```yaml
+light:
+  - platform: mipi_spi
+    display_id: my_display
+    name: "Display Brightness"
+    initial_state:
+      state: on
+      brightness: 80%
+```
+
+See the [Light Component](/components/light#config-light) for more options that control the state at startup.
+
 ## See Also
 
 - [MIPI SPI Display Driver](/components/display/mipi_spi/)
