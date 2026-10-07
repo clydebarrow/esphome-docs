@@ -38,8 +38,8 @@ remote_transmitter:
   transmitters are connected to a single device.
 - **non_blocking** (*Optional*, boolean): If enabled, transmissions return immediately and complete in the
   background; the `on_complete` automation triggers once the transmission finishes. Only available on ESP32
-  variants with RMT hardware, where it defaults to `true`, and on RTL8720C, BK7231N and BK7238, where it
-  defaults to `false`.
+  variants with RMT hardware, where it defaults to `true`, and on RTL8720C and BK7238, where it defaults
+  to `false`.
 
 ### ESP32 RMT configuration variables
 
@@ -463,6 +463,31 @@ on_...:
   - SOFTER = 0xf807,
 
   - All other options from [Remote Transmitter Actions](#remote_transmitter-transmit_action).
+
+<span id="remote_transmitter-transmit_hob2hood"></span>
+
+### `remote_transmitter.transmit_hob2hood` Action
+
+This [action](/automations/actions#all-actions) sends a Hob2Hood infrared remote code to a remote transmitter.
+
+```yaml
+on_...:
+  - remote_transmitter.transmit_hob2hood:
+      command: light_on
+```
+
+#### Configuration variables
+
+- **command** (**Required**, enum, [templatable](/automations/templates)): The Hob2Hood command to send,
+  see dumper output for more info.
+  - `light_off`
+  - `light_on`
+  - `fan_off`
+  - `fan_low`
+  - `fan_medium`
+  - `fan_high`
+  - `fan_max`
+- All other options from [Remote Transmitter Actions](#remote_transmitter-transmit_action).
 
 <span id="remote_transmitter-transmit_jvc"></span>
 
