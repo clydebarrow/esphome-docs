@@ -208,6 +208,9 @@ In addition to visual styling, each widget supports some boolean **flags** to in
   ignored in layout calculations. Defaults to `false`.
 - **ignore_layout** (*Optional*, boolean): the widget is simply ignored by the layouts. Its coordinates can be set as
   usual.
+- **layout_1** (*Optional*, boolean): custom flag, free to use by layouts. This is the same flag as
+  `flex_in_new_track`.
+- **layout_2** (*Optional*, boolean): custom flag, free to use by layouts.
 - **overflow_visible** (*Optional*, boolean): do not clip the children's content to the parent's boundary.
 - **press_lock** (*Optional*, boolean): keep the widget pressed even if the press slid from the widget.
 - **radio_button** (*Optional*, boolean): use together with `checkable` to make a group of sibling widgets where only
@@ -227,6 +230,7 @@ In addition to visual styling, each widget supports some boolean **flags** to in
 - **snappable** (*Optional*, boolean): if scroll snap is enabled on the parent it can snap to this widget.
 - **state_trickle** (*Optional*, boolean): propagate the state changes (for example pressed or checked) to the
   children.
+- **widget_1**, **widget_2** (*Optional*, boolean): custom flags, free to use by widgets.
 
 > [!NOTE]
 > LVGL only supports **integers** for numeric `value`. Visualizer widgets can't display floats directly, but they allow
