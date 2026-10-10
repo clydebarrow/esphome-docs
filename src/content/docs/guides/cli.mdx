@@ -69,9 +69,10 @@ place in the YAML file. Errors in a package or included file give the location i
 is printed on following lines starting with `note:`, for example where a file with a YAML syntax error was included:
 
 ```text
-common/wifi.yaml:3:5: error: expected ',' or ']', but got ':'
-common/wifi.yaml:2:10: note: while parsing a flow sequence
-livingroom.yaml:5:3: note: included from here
+common/wifi.yaml:3:11: error: expected ',' or ']', but got ':'
+common/wifi.yaml:2:9: note: while parsing a flow sequence
+livingroom.yaml:6:3: note: Error including file 'common/wifi.yaml'
+livingroom.yaml:6:3: note: In: packages->wifi in livingroom.yaml 6:3
 ```
 
 <span id="cli-toolchain"></span>
