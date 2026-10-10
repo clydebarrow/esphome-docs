@@ -62,7 +62,8 @@ Please see [command line substitutions](/components/substitutions#command-line-s
 * `yaml` (default): show each error inside a copy of the failing part of the configuration.
 * `line`: print one line per error in the form `file:line:column: error: message`.
 
-Can also be set via environment variable `ESPHOME_ERROR_FORMAT`. The command line option takes precedence.
+Values are not case-sensitive. Can also be set via environment variable `ESPHOME_ERROR_FORMAT`. The command line
+option takes precedence.
 
 The `line` format is the same one compilers use, so editors, IDE terminals and CI tools can link each error to its
 place in the YAML file. Errors in a package or included file give the location in that file. Extra information
@@ -71,8 +72,7 @@ is printed on following lines starting with `note:`, for example where a file wi
 ```text
 common/wifi.yaml:3:11: error: expected ',' or ']', but got ':'
 common/wifi.yaml:2:9: note: while parsing a flow sequence
-livingroom.yaml:6:3: note: Error including file 'common/wifi.yaml'
-livingroom.yaml:6:3: note: In: packages->wifi in livingroom.yaml 6:3
+livingroom.yaml:6:3: note: included from here
 ```
 
 <span id="cli-toolchain"></span>
