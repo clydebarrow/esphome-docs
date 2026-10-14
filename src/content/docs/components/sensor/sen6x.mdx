@@ -12,7 +12,7 @@ The `sen6x` sensor platform allows you to use your Sensirion
 [SEN66](https://sensirion.com/products/catalog/SEN66/),
 [SEN68](https://sensirion.com/products/catalog/SEN68/) and
 [SEN69C](https://sensirion.com/products/catalog/SEN69C/) Environmental sensor
-([datasheet](https://sensirion.com/media/documents/FAFC548D/693FBB15/PS_DS_SEN6x.pdf))
+([datasheet](https://sensirion.com/resource/datasheet/SEN6x))
 sensors with ESPHome.
 
 The [I²C Bus](/components/i2c) is required to be set up in your configuration for this sensor to work.
@@ -45,15 +45,21 @@ sensor:
       name: Temperature
     humidity:
       name: Humidity
-    voc:
-      name: VOC
-    nox:
-      name: NOx
+    voc_index:
+      name: VOC Index
+    nox_index:
+      name: NOx Index
     co2:
       name: Carbon Dioxide
     formaldehyde:
       name: Formaldehyde
 ```
+
+> [!NOTE]
+> The `voc` and `nox` keys were renamed to `voc_index` and `nox_index`, since
+> these sensors report Sensirion's unitless Gas Index rather than a
+> concentration. The old keys still work but are deprecated and will be removed
+> in ESPHome 2027.2.0.
 
 ## Configuration variables
 
@@ -95,12 +101,12 @@ sensor:
 
   - All options from [Sensor](/components/sensor).
 
-- **voc** (*Optional*): VOC Index. Note: only available with SEN65, SEN66, SEN68 or SEN69C. The sensor will be
+- **voc_index** (*Optional*): VOC Index. Note: only available with SEN65, SEN66, SEN68 or SEN69C. The sensor will be
   ignored on unsupported models.
 
   - All options from [Sensor](/components/sensor).
 
-- **nox** (*Optional*): NOx Index. Note: only available with SEN65, SEN66, SEN68 or SEN69C. The sensor will be
+- **nox_index** (*Optional*): NOx Index. Note: only available with SEN65, SEN66, SEN68 or SEN69C. The sensor will be
   ignored on unsupported models.
 
   - All options from [Sensor](/components/sensor).
