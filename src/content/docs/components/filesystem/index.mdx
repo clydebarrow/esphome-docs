@@ -29,7 +29,8 @@ filesystem:
 
 The filesystem is mounted at boot when the storage device has media, and otherwise the first time it is used
 after media is inserted. When the media is changed, the filesystem mounts the new media the next time it is
-used.
+used. If the media holds no filesystem it can read, the failure is logged once and mounting is not tried again
+until the media is changed, or `mount()` or `format()` is called from a lambda.
 
 ## Configuration variables
 
@@ -73,8 +74,8 @@ Paths are absolute, start with `/`, and use `/` between names. A method that can
 - `space(total, free)`: the size and free space of the filesystem in bytes.
 - `format()`: erase the media and create a new, empty filesystem.
 - `is_mounted()`, `mount()`, `unmount()`: check, or change, whether the filesystem is mounted. Calls mount it
-  when needed, so `mount()` is rarely needed; `unmount()` closes all open files, for example before the media
-  is removed.
+  when needed, so `mount()` is only needed to try again after a failed mount; `unmount()` closes all open
+  files, for example before the media is removed.
 
 A `filesystem::File` has `read(buf, len)`, `write(buf, len)`, `seek(offset)`, `tell()`, `size()`, `sync()`,
 `truncate()` and `close()`. `read`, `write` and `seek` return a byte count or position, or a negative

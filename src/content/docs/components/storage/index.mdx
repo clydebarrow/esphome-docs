@@ -36,9 +36,9 @@ count in powers of two, so `1KB` is 1024 bytes.
 ## Removable media
 
 Some devices, such as an SD card with a card detect switch, can have their media taken out and put back while
-the device is running. A filesystem on the device notices the change the next time it is used: it closes any
-files that were open on the old media and mounts the new one. Files opened on the old media can not be used
-again; open them again after the media changes.
+the device is running. Files that were open on the old media can not be used once the media changes; open them
+again. Data written to them but not yet stored on the old media is lost, so call `sync()` or close a file
+before the media may be removed. The filesystem mounts the new media the next time it is used.
 
 ## Conditions
 
