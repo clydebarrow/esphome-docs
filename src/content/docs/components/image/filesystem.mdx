@@ -44,7 +44,7 @@ time, possibly hundreds of milliseconds.
 - **path** (*Optional*, string): The path of the image file, starting with `/`. Loaded on each update.
 - **file_id** (*Optional*, [ID](/guides/configuration-types#id)): A [file](/components/file/) whose current
   path is loaded on each update, instead of a fixed `path`. Change the image with the
-  [file.set_path](/components/file/#fileset_path-action) action and then `component.update`.
+  [file.set_path](/components/file/#file-set_path-action) action and then `component.update`.
   Only one of `path` and `file_id` can be given; with neither, images are only loaded with the
   `filesystem.load_image` action.
 - **format** (**Required**): The format of the image files.
