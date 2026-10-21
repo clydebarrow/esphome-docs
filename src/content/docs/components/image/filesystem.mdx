@@ -17,8 +17,7 @@ images can be changed without rebuilding the firmware.
 > - QOI images
 
 > [!WARNING]
-> The decoded image is held in RAM, and a JPEG file is read into RAM in full before it is decoded. Large images
-> need a device with PSRAM.
+> The decoded image is held in RAM: width × height × bytes per pixel. Large images need a device with PSRAM.
 
 ```yaml
 image:
@@ -32,9 +31,8 @@ image:
 ```
 
 The file is read and decoded in small steps in the main loop, so other components keep running while an image
-loads. Use `on_load_finished` to redraw the display when the image is ready. A JPEG image is the exception: the
-file is read in steps, but then decoded in one go, which for a large image holds up the main loop for some
-time, possibly hundreds of milliseconds.
+loads. A JPEG image is decoded one row of blocks (8 or 16 pixel rows) at a time, reading the file as it goes,
+so the file is never held in RAM. Use `on_load_finished` to redraw the display when the image is ready.
 
 ## Configuration variables
 
@@ -63,8 +61,9 @@ time, possibly hundreds of milliseconds.
   show until an image has loaded. It is not resized.
 - **update_interval** (*Optional*, [Time](/guides/configuration-types#time)): Load the image again at this
   interval, so a changed file is shown. Defaults to `never`; use the `component.update` action to load it.
-- **chunk_size** (*Optional*, size): How much of the file is read at a time, from 256 bytes to 64KB. Defaults
-  to `4KB`. A PNG or BMP file that fails with a message asking for a larger `chunk_size` needs a bigger buffer.
+- **chunk_size** (*Optional*, size): How much of a BMP, PNG or QOI file is read at a time, from 256 bytes to
+  64KB. Defaults to `4KB`. A file that fails with a message asking for a larger `chunk_size` needs a bigger
+  buffer. JPEG files are read through the decoder's own 2 KB buffer instead.
 
 ## Automations
 
