@@ -1,0 +1,60 @@
+---
+description: "Instructions for connecting an SD card over SPI as a storage device in ESPHome."
+title: "SD Card over SPI"
+---
+import APIRef from '@components/APIRef.astro';
+
+The `sd_spi` [storage](/components/storage/) platform uses an SD card connected to an
+[SPI bus](/components/spi/) as a storage device. It supports standard capacity SD cards (version 1 and 2) and
+SDHC and SDXC cards. Add a [filesystem](/components/filesystem/) to read and write files on the card.
+
+The SPI bus needs both `mosi_pin` and `miso_pin`. The card can share the bus with other SPI devices.
+
+```yaml
+spi:
+  clk_pin: GPIOXX
+  mosi_pin: GPIOXX
+  miso_pin: GPIOXX
+
+storage:
+  - platform: sd_spi
+    id: sd_card
+    cs_pin: GPIOXX
+    card_detect_pin:
+      number: GPIOXX
+      inverted: true
+
+filesystem:
+  - platform: fatfs
+    storage_id: sd_card
+```
+
+## Configuration variables
+
+- **cs_pin** (**Required**, [Pin Schema](/guides/configuration-types#pin-schema)): The chip select pin of the card.
+- **card_detect_pin** (*Optional*, [Pin Schema](/guides/configuration-types#pin-schema)): A pin that reads high
+  when a card is in the slot. Most card slots have a switch that connects the pin to ground when a card is
+  inserted; for those, set `inverted: true` and, if the board has no pull-up resistor, `pullup: true`.
+- **data_rate** (*Optional*): The SPI clock rate used once the card is set up. Defaults to `20MHz`. The card
+  is always started at 400 kHz, as the SD standard requires.
+- **spi_id** (*Optional*, [ID](/guides/configuration-types#id)): The SPI bus the card is on. Only needed with
+  more than one SPI bus.
+- **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID used for code generation.
+
+## Inserting and removing cards
+
+The card is set up in the background after boot, so it may not be ready when other components first start.
+Use the [storage.has_media](/components/storage/#storagehas_media-condition) condition to check whether it is
+ready.
+
+The component checks for a card once a second. With a `card_detect_pin`, it notices at once when a card is
+removed or inserted. Without one, it only notices that a card was removed when a read or write fails, and it
+can not tell that a card was swapped for another while it was not being used. If cards will be swapped while
+the device is running, use a slot with a card detect pin.
+
+## See Also
+
+- [Storage Component](/components/storage/)
+- [Filesystem Component](/components/filesystem/)
+- [SPI Bus](/components/spi/)
+- <APIRef text="sd_spi.h" path="sd_spi/sd_spi.h" />

@@ -1,0 +1,64 @@
+---
+description: "Instructions for setting up block storage devices, such as SD cards and RAM disks, in ESPHome."
+title: "Storage Component"
+sidebar:
+  label: "Storage Component"
+---
+import APIRef from '@components/APIRef.astro';
+
+The `storage` component is the base for devices that store data in fixed size blocks, such as an SD card or a
+block of RAM. A storage device on its own only reads and writes blocks; to keep files on it, add a
+[filesystem](/components/filesystem/) on top.
+
+Each storage device is a platform of the `storage` component:
+
+- [RAM Disk](/components/storage/ram_disk/): a block of RAM (PSRAM when the device has some). Its contents are
+  lost on reboot.
+- [SD card over SPI](/components/storage/sd_spi/): an SD, SDHC or SDXC card on an SPI bus.
+
+```yaml
+storage:
+  - platform: sd_spi
+    id: sd_card
+    cs_pin: GPIOXX
+```
+
+## Configuration variables
+
+These options are common to all storage platforms:
+
+- **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID used for code generation and
+  to refer to this device from a filesystem.
+
+Sizes, where a platform takes one, are given in bytes or with a suffix such as `64KB` or `1MB`. Storage sizes
+count in powers of two, so `1KB` is 1024 bytes.
+
+## Removable media
+
+Some devices, such as an SD card with a card detect switch, can have their media taken out and put back while
+the device is running. A filesystem on the device notices the change the next time it is used: it closes any
+files that were open on the old media and mounts the new one. Files opened on the old media can not be used
+again; open them again after the media changes.
+
+## Conditions
+
+### `storage.has_media` Condition
+
+This condition is true when the storage device has media in it and the media is ready to use.
+
+```yaml
+on_...:
+  - if:
+      condition:
+        storage.has_media: sd_card
+      then:
+        - logger.log: "SD card is ready"
+```
+
+- **id** (**Required**, [ID](/guides/configuration-types#id)): The storage device to check.
+
+## See Also
+
+- [Filesystem Component](/components/filesystem/)
+- [File Component](/components/file/)
+- <APIRef text="block_device.h" path="storage/block_device.h" />

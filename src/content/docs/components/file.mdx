@@ -1,0 +1,107 @@
+---
+description: "Instructions for naming files on a filesystem for use in ESPHome automations."
+title: "File Component"
+---
+import APIRef from '@components/APIRef.astro';
+
+The `file` component names a path on a [filesystem](/components/filesystem/), so automations can check whether
+a file exists, find its size and modification time, and change which file a component uses. The path does not
+have to exist: every check asks the filesystem, so it sees files that are added or removed and a change of
+media.
+
+> [!NOTE]
+> This is not the [file image](/components/image/file/) platform, which builds an image file into the firmware.
+
+```yaml
+file:
+  - id: config_file
+    filesystem_id: sd_files
+    path: /config.txt
+  - id: current_image
+    filesystem_id: sd_files
+    max_path_length: 128
+```
+
+## Configuration variables
+
+- **id** (*Optional*, [ID](/guides/configuration-types#id)): The ID used to refer to this file.
+- **filesystem_id** (*Optional*, [ID](/guides/configuration-types#id)): The filesystem the file is on. Only
+  needed with more than one filesystem.
+- **path** (*Optional*, string): The path of the file, starting with `/`. Without a path, the file can not be
+  found until one is set with the [file.set_path](#fileset_path-action) action.
+- **max_path_length** (*Optional*, int): The longest path, in bytes, that the file can hold, from 1 to 255.
+  Defaults to `64`. Space for it is set aside at boot.
+
+## Actions
+
+### `file.set_path` Action
+
+Change the path of a file. A path that does not start with `/`, or is longer than `max_path_length`, is
+refused with a warning in the log, and the old path is kept.
+
+```yaml
+on_...:
+  - file.set_path:
+      id: current_image
+      path: !lambda 'return "/images/" + id(image_name).state + ".png";'
+```
+
+- **id** (**Required**, [ID](/guides/configuration-types#id)): The file to change.
+- **path** (**Required**, string, [templatable](/automations/templates)): The new path.
+
+## Conditions
+
+### `file.exists` Condition
+
+True when the path names an existing file or directory.
+
+### `file.is_file` Condition
+
+True when the path names an existing file.
+
+### `file.is_directory` Condition
+
+True when the path names an existing directory.
+
+```yaml
+on_...:
+  - if:
+      condition:
+        file.is_file: config_file
+      then:
+        - logger.log: "Found the configuration file"
+```
+
+Each condition takes:
+
+- **id** (**Required**, [ID](/guides/configuration-types#id)): The file to check.
+
+All of them are false when the filesystem can not be used, for example when there is no card in the slot.
+
+## Use in lambdas
+
+- `get_path()`: the current path; empty when none is set.
+- `exists()`, `is_file()`, `is_directory()`: as the conditions above.
+- `get_size()`: the size in bytes, or 0 when there is no such file.
+- `get_modified()`: the time the file was last changed, as an `ESPTime` in local time. Check it with
+  `is_valid()`; it is not valid when there is no such file or the filesystem does not record times.
+- `stat(info)`: fill a `filesystem::FileInfo` with the size, modification time and type in one call.
+- `open(flags)`, `remove()`: open or remove the file, as with the
+  [filesystem](/components/filesystem/#use-in-lambdas) methods.
+
+```yaml
+on_...:
+  - lambda: |-
+      ESPTime modified = id(config_file).get_modified();
+      if (modified.is_valid()) {
+        char when[ESPTime::STRFTIME_BUFFER_SIZE];
+        modified.strftime(when, sizeof(when), "%Y-%m-%d %H:%M");
+        ESP_LOGI("file", "%u bytes, changed %s", (unsigned) id(config_file).get_size(), when);
+      }
+```
+
+## See Also
+
+- [Filesystem Component](/components/filesystem/)
+- [Filesystem Image](/components/image/filesystem/)
+- <APIRef text="file_ref.h" path="file/file_ref.h" />

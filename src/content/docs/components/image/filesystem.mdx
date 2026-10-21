@@ -1,0 +1,118 @@
+---
+description: "Instructions for displaying images stored on a filesystem, such as an SD card, in ESPHome."
+title: "Filesystem Image"
+---
+import APIRef from '@components/APIRef.astro';
+
+The `filesystem` platform of the [image](/components/image/) component shows images that are read from a
+[filesystem](/components/filesystem/), such as a FAT filesystem on an SD card, and decoded at run time. The
+images can be changed without rebuilding the firmware.
+
+> [!NOTE]
+> Supported formats:
+>
+> - BMP images: 1-bit, 8-bit indexed and 24-bit RGB
+> - JPEG images, baseline only (not progressive)
+> - PNG images
+> - QOI images
+
+> [!WARNING]
+> The decoded image is held in RAM, and a JPEG file is read into RAM in full before it is decoded. Large images
+> need a device with PSRAM.
+
+```yaml
+image:
+  - platform: filesystem
+    id: photo
+    filesystem_id: sd_files
+    path: /images/photo.png
+    format: PNG
+    type: RGB565
+    update_interval: 1min
+```
+
+The file is read and decoded in small steps in the main loop, so other components keep running while an image
+loads. Use `on_load_finished` to redraw the display when the image is ready.
+
+## Configuration variables
+
+- **id** (**Required**, [ID](/guides/configuration-types#id)): The ID used to refer to the image in display code.
+- **filesystem_id** (*Optional*, [ID](/guides/configuration-types#id)): The filesystem to read from. Only needed
+  with more than one filesystem; not allowed with `file_id`, which sets it.
+- **path** (*Optional*, string): The path of the image file, starting with `/`. Loaded on each update.
+- **file_id** (*Optional*, [ID](/guides/configuration-types#id)): A [file](/components/file/) whose current
+  path is loaded on each update, instead of a fixed `path`. Change the image with the
+  [file.set_path](/components/file/#fileset_path-action) action and then `component.update`.
+  Only one of `path` and `file_id` can be given; with neither, images are only loaded with the
+  `filesystem.load_image` action.
+- **format** (**Required**): The format of the image files.
+
+  - `AUTO`: Tell the format from the first bytes of each file. This builds in every decoder, which increases the
+    firmware size; set the format when all files have the same one.
+  - `BMP`, `JPEG` (or `JPG`), `PNG`, `QOI`: The files are in this format.
+
+- **type** (**Required**): How the image is stored in RAM: `BINARY`, `GRAYSCALE`, `RGB111`, `RGB565` or `RGB`.
+  See the [online image](/components/image/online_image/#configuration-variables) platform for details.
+- **resize** (*Optional*, string): Resize the image to fit inside `WIDTHxHEIGHT`, keeping its aspect ratio.
+- **transparency** (*Optional*): `opaque` (default), `chroma_key` or `alpha_channel`. See the
+  [image component](/components/image#transparency-options).
+- **byte_order** (*Optional*): For `RGB565` images, `little_endian` (default) or `big_endian`.
+- **placeholder** (*Optional*, [ID](/guides/configuration-types#id)): Another [image](/components/image/) to
+  show until an image has loaded. It is not resized.
+- **update_interval** (*Optional*, [Time](/guides/configuration-types#time)): Load the image again at this
+  interval, so a changed file is shown. Defaults to `never`; use the `component.update` action to load it.
+- **chunk_size** (*Optional*, size): How much of the file is read at a time, from 256 bytes to 64KB. Defaults
+  to `4KB`. A PNG or BMP file that fails with a message asking for a larger `chunk_size` needs a bigger buffer.
+
+## Automations
+
+- **on_load_finished** (*Optional*, [Automation](/automations)): An automation to perform when an image has
+  loaded and is ready to show.
+- **on_error** (*Optional*, [Automation](/automations)): An automation to perform when an image could not be
+  opened, read or decoded. The reason is written to the log.
+
+```yaml
+image:
+  - platform: filesystem
+    id: photo
+    path: /images/photo.jpg
+    format: JPEG
+    type: RGB565
+    on_load_finished:
+      - component.update: my_display
+```
+
+## Actions
+
+### `filesystem.load_image` Action
+
+Load an image from a path, which need not be the configured one. Nothing happens, apart from a warning in
+the log, if an image is already loading.
+
+```yaml
+on_...:
+  - filesystem.load_image:
+      id: photo
+      path: !lambda 'return "/images/" + id(photo_name).state + ".jpg";'
+```
+
+- **id** (**Required**, [ID](/guides/configuration-types#id)): The image to load.
+- **path** (**Required**, string, [templatable](/automations/templates)): The path of the file to load.
+
+### `filesystem.release_image` Action
+
+Stop any load in progress and free the RAM used by the image.
+
+```yaml
+on_...:
+  - filesystem.release_image: photo
+```
+
+- **id** (**Required**, [ID](/guides/configuration-types#id)): The image to release.
+
+## See Also
+
+- [Image Component](/components/image/)
+- [Filesystem Component](/components/filesystem/)
+- [File Component](/components/file/)
+- <APIRef text="filesystem_image.h" path="filesystem/image/filesystem_image.h" />

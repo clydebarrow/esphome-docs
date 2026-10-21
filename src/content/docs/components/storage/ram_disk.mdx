@@ -1,0 +1,39 @@
+---
+description: "Instructions for setting up a RAM disk storage device in ESPHome."
+title: "RAM Disk"
+---
+import APIRef from '@components/APIRef.astro';
+
+The `ram_disk` [storage](/components/storage/) platform uses a block of RAM as a storage device. When the device
+has PSRAM the RAM disk is placed there. The RAM is cleared at boot, so anything stored on a RAM disk is lost on
+reboot; it is useful for temporary files and for testing.
+
+```yaml
+storage:
+  - platform: ram_disk
+    id: my_ram_disk
+    size: 256KB
+
+filesystem:
+  - platform: fatfs
+    storage_id: my_ram_disk
+    format_if_mount_failed: true
+```
+
+Since a new RAM disk is empty, a filesystem on it needs `format_if_mount_failed: true` to create a filesystem
+at boot.
+
+## Configuration variables
+
+- **size** (**Required**, size): The size of the RAM disk, for example `64KB` or `1MB`. At most `64MB`. It must
+  be a multiple of `block_size`.
+- **block_size** (*Optional*, size): The size of one block, a power of two from 128 to 65536 bytes. Defaults to
+  `512`. A [FAT filesystem](/components/filesystem/fatfs/) needs 512 byte blocks.
+- **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID used for code generation.
+
+If there is not enough free memory at boot to hold the RAM disk, the component is marked as failed.
+
+## See Also
+
+- [Storage Component](/components/storage/)
+- <APIRef text="ram_disk.h" path="ram_disk/ram_disk.h" />

@@ -1,0 +1,39 @@
+---
+description: "Instructions for using a FAT filesystem on a storage device in ESPHome."
+title: "FAT Filesystem"
+---
+import APIRef from '@components/APIRef.astro';
+
+The `fatfs` [filesystem](/components/filesystem/) platform reads and writes the FAT12, FAT16 and FAT32
+filesystems used on most SD cards, so files can be shared with a computer. It uses the FatFs library built into
+ESP-IDF, so it is only available on the ESP32 with the ESP-IDF framework.
+
+```yaml
+filesystem:
+  - platform: fatfs
+    id: sd_files
+    storage_id: sd_card
+```
+
+## Configuration variables
+
+This platform has only the options common to all [filesystems](/components/filesystem/#configuration-variables).
+
+## Notes
+
+- The storage device must have 512 byte blocks. SD cards always do; for a [RAM disk](/components/storage/ram_disk/)
+  keep the default `block_size`.
+- Long file names are supported, and names are UTF-8.
+- FAT records file times as local time. Times are written and read in the time zone of the
+  [time](/components/time/) component, so they show correctly on a computer in the same time zone. Until the
+  time is set, files are written with the earliest time FAT can hold, 1 January 1980.
+- `format_if_mount_failed` and `format()` create a single partition filling the whole device, with FAT12, FAT16
+  or FAT32 chosen from the size of the media.
+- Cards formatted as exFAT, which most SDXC cards (64 GB and larger) are when new, can not be read. Format
+  them as FAT32 on a computer first.
+- Up to four FAT filesystems can be used at the same time.
+
+## See Also
+
+- [Filesystem Component](/components/filesystem/)
+- <APIRef text="fatfs.h" path="fatfs/fatfs.h" />
