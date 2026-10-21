@@ -41,6 +41,12 @@ filesystem:
   more than one SPI bus.
 - **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID used for code generation.
 
+## Timing
+
+Reads and writes wait for the card to finish. A card can pause for hundreds of milliseconds during a write
+while it manages its memory; the component waits up to half a second for it before reporting an error. See
+[filesystem timing](/components/filesystem/#timing) for how to keep the device responsive.
+
 ## Inserting and removing cards
 
 The card is set up in the background after boot, so it may not be ready when other components first start.

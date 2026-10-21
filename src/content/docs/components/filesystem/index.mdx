@@ -47,8 +47,9 @@ These options are common to all filesystem platforms:
   filesystem of this type. Defaults to `false`.
 
   > [!WARNING]
-  > Formatting erases everything on the media. With this option set, a card that holds a different
-  > filesystem, or one that is damaged, is erased when it is inserted.
+  > Formatting erases everything on the media, and on a large card blocks the device for several seconds.
+  > With this option set, a card that holds a different filesystem, or one that is damaged, is erased when it
+  > is inserted.
 
 - **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID used for code generation.
 
@@ -71,8 +72,10 @@ Paths are absolute, start with `/`, and use `/` between names. A method that can
   1970) and `is_dir` of a file or directory.
 - `mkdir(path)`, `remove(path)`, `rename(from, to)`: create a directory, remove a file or empty directory, or
   rename a file or directory.
-- `space(total, free)`: the size and free space of the filesystem in bytes.
-- `format()`: erase the media and create a new, empty filesystem.
+- `space(total, free)`: the size and free space of the filesystem in bytes. Counting the free space can mean
+  reading the whole FAT, which takes several seconds on a large SD card.
+- `format()`: erase the media and create a new, empty filesystem. On a large SD card this takes several
+  seconds.
 - `is_mounted()`, `mount()`, `unmount()`: check, or change, whether the filesystem is mounted. Calls mount it
   when needed, so `mount()` is only needed to try again after a failed mount; `unmount()` closes all open
   files, for example before the media is removed.
@@ -100,6 +103,20 @@ interval:
 
 The filesystem is not safe to use from more than one task at a time; use it from the main loop, as lambdas
 and automations do.
+
+## Timing
+
+Every filesystem call runs to the end before it returns, and other components wait while it does. Most calls
+on an SD card take a few milliseconds, but a card can pause for hundreds of milliseconds while it tidies its
+memory, so an occasional write takes up to about half a second. The device watchdog is kept fed meanwhile.
+To keep the device responsive:
+
+- Read and write in pieces of a few kilobytes, spread over several loop passes or interval runs, rather than
+  a whole large file in one lambda.
+- Avoid calling `space()` and `format()` often, and avoid seeking far into a large file repeatedly; each walks
+  a long chain of sectors.
+- Keep a file open between writes and call `sync()` now and then, rather than opening and closing it for every
+  write. Each open looks up the path and each close updates the directory.
 
 ## See Also
 

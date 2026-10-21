@@ -32,7 +32,9 @@ image:
 ```
 
 The file is read and decoded in small steps in the main loop, so other components keep running while an image
-loads. Use `on_load_finished` to redraw the display when the image is ready.
+loads. Use `on_load_finished` to redraw the display when the image is ready. A JPEG image is the exception: the
+file is read in steps, but then decoded in one go, which for a large image holds up the main loop for some
+time, possibly hundreds of milliseconds.
 
 ## Configuration variables
 
