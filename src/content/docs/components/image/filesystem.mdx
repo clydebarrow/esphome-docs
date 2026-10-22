@@ -69,6 +69,10 @@ so the file is never held in RAM. Use `on_load_finished` to redraw the display w
 
 - **on_load_finished** (*Optional*, [Automation](/automations)): An automation to perform when an image has
   loaded and is ready to show.
+- **on_load_progress** (*Optional*, [Automation](/automations)): An automation to perform as an image loads. It
+  runs when the load starts, at most every 100 ms while it runs, and with 100% just before `on_load_finished`.
+  Two variables are available in [lambdas](/automations/templates#config-lambda): `progress` (float), the
+  percentage of the file decoded, from 0 to 100, and `bytes_read` (size_t), the bytes of the file decoded so far.
 - **on_error** (*Optional*, [Automation](/automations)): An automation to perform when an image could not be
   opened, read or decoded. The reason is written to the log.
 
@@ -79,6 +83,10 @@ image:
     path: /images/photo.jpg
     format: JPEG
     type: RGB565
+    on_load_progress:
+      - lvgl.bar.update:
+          id: load_bar
+          value: !lambda 'return progress;'
     on_load_finished:
       - component.update: my_display
 ```
